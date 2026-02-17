@@ -18,7 +18,7 @@ We craft distinctive brand identities that make you stand out. From identity des
 - Brand Assets
 - Packaging
 
-### Video Ads & Motion Content
+### Video Ads & Motion Content.
 Engage your audience with compelling visual content. We create AI-powered video ads and motion content that converts.
 
 - AI Video Ads
