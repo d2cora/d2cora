@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { Hero } from "@/components/sections/Hero";
+import { Projects } from "@/components/sections/Projects";
 
 // Lazy load heavy components
 
@@ -20,7 +21,7 @@ export default function Home() {
       
       <Technologies />
       <Services />
-
+      <Projects />
       <Process />
       <Contact />
     </main>
