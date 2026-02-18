@@ -4,8 +4,10 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Linkedin, Github } from "lucide-react";
 import Link from "next/link";
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ContactPage() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -72,7 +74,6 @@ export default function ContactPage() {
         mouseY2.set(0);
     };
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSending, setIsSending] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -80,34 +81,37 @@ export default function ContactPage() {
         setIsSending(true);
 
         try {
+            const form = new FormData();
+            form.append("access_key", "fae0e850-8311-4ef3-b39b-081e3f5197f7");
+            form.append("name", formData.name);
+            form.append("email", formData.email);
+            form.append("phone", formData.whatsapp);
+            form.append("subject", formData.subject || "New Inquiry");
+            form.append("message", formData.message);
+
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    access_key: "f80e96de-92d7-4fcd-af22-a407d135d3f7",
-                    name: formData.name,
-                    email: formData.email,
-                    phone: formData.whatsapp,
-                    subject: `New Contact: ${formData.subject || "Inquiry"}`,
-                    message: `Name: ${formData.name}\nEmail: ${formData.email}\nWhatsApp: ${formData.whatsapp}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`,
-                    to: "chizel.dev@gmail.com"
-                })
+                body: form
             });
 
             const result = await response.json();
 
             if (result.success) {
-                setIsSubmitted(true);
-                setFormData({
-                    name: "",
-                    email: "",
-                    whatsapp: "",
-                    subject: "",
-                    message: ""
-                });
+                // Push event to dataLayer for Google Tag Manager
+                if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                    (window as any).dataLayer.push({
+                        event: 'form_submission_success',
+                        form_name: 'contact_form',
+                        form_data: {
+                            name: formData.name,
+                            email: formData.email,
+                            subject: formData.subject
+                        }
+                    });
+                }
+                
+                // Redirect to thank you page
+                router.push('/thank-you');
             } else {
                 console.error("Failed to send message:", result);
                 alert("Something went wrong. Please try again or email us directly at chizel.dev@gmail.com");
@@ -165,35 +169,18 @@ export default function ContactPage() {
                         className="group relative"
                     >
                         {/* Contact Form Card */}
-                        <div className="relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 shadow-xl md:p-10">
-
-                            {isSubmitted ? (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="flex h-full flex-col items-center justify-center space-y-6 py-20 text-center"
-                                >
-                                    <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-green-500/20 bg-green-500/10">
-                                        <Send className="h-10 w-10 text-green-500" />
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
-                                    <p className="max-w-sm text-gray-400">
-                                        Thank you for reaching out. We have received your message and will get back to you shortly at {formData.email}.
-                                    </p>
-                                    <button
-                                        onClick={() => setIsSubmitted(false)}
-                                        className="mt-8 rounded-full bg-white/10 px-6 py-2 text-sm transition-colors hover:bg-white/20"
-                                    >
-                                        Send another message
-                                    </button>
-                                </motion.div>
-                            ) : (
-                                <motion.form
+                        <div 
+                            className="relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 shadow-xl md:p-10"
+                            data-form-type="contact"
+                        >
+                            <motion.form
                                     onSubmit={handleSubmit}
                                     className="space-y-6"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.0 }}
+                                    data-form-name="contact_form"
+                                    id="contact-form"
                                 >
                                     <div className="space-y-6">
                                         <motion.div
@@ -310,7 +297,6 @@ export default function ContactPage() {
                                         <span className="relative z-10">{isSending ? "Sending..." : "Send Message"}</span>
                                     </motion.button>
                                 </motion.form>
-                            )}
                         </div>
                     </motion.div>
 
