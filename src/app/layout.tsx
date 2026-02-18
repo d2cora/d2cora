@@ -38,6 +38,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MP7SS4HT');`,
           }}
         />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17959316000"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17959316000');
+            `,
+          }}
+        />
       </head>
       <body
         className={cn(
