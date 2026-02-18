@@ -94,6 +94,11 @@ export default function ContactPage() {
                 body: form
             });
 
+            // Check HTTP status first
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const result = await response.json();
 
             if (result.success) {
@@ -114,11 +119,13 @@ export default function ContactPage() {
                 router.push('/thank-you');
             } else {
                 console.error("Failed to send message:", result);
-                alert("Something went wrong. Please try again or email us directly at chizel.dev@gmail.com");
+                const errorMessage = result.message || "Something went wrong";
+                alert(`${errorMessage}. Please try again or email us directly at chizel.dev@gmail.com`);
             }
         } catch (error) {
             console.error("Error sending message:", error);
-            alert("Connection error. Please try again or email us directly at chizel.dev@gmail.com");
+            const errorMsg = error instanceof Error ? error.message : "Unknown error";
+            alert(`Connection error: ${errorMsg}. Please try again or email us directly at chizel.dev@gmail.com`);
         } finally {
             setIsSending(false);
         }
