@@ -81,25 +81,47 @@ export default function ContactPage() {
         setIsSending(true);
 
         try {
+            // Web3Forms expects specific field names
             const form = new FormData();
             form.append("access_key", "fae0e850-8311-4ef3-b39b-081e3f5197f7");
             form.append("name", formData.name);
             form.append("email", formData.email);
-            form.append("phone", formData.whatsapp);
-            form.append("subject", formData.subject || "New Inquiry");
             form.append("message", formData.message);
+            form.append("subject", formData.subject || "New Inquiry from Website");
+            
+            // Add optional fields
+            if (formData.whatsapp) {
+                form.append("phone", formData.whatsapp);
+            }
+            
+            // Important: Tell Web3Forms not to redirect (for API usage)
+            form.append("redirect", "false");
+            
+            // Add botcheck (honeypot field for spam prevention)
+            form.append("botcheck", "");
+
+            console.log("Submitting form with data:", {
+                name: formData.name,
+                email: formData.email,
+                hasPhone: !!formData.whatsapp,
+                subject: formData.subject || "New Inquiry from Website"
+            });
 
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: form
             });
 
-            // Check HTTP status first
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
+            // Parse response first
             const result = await response.json();
+
+            // Check if request was successful
+            if (!response.ok) {
+                // Web3Forms returns error details in the response
+                const errorMessage = result.message || `HTTP error! status: ${response.status}`;
+                console.error("API Error:", result);
+                throw new Error(errorMessage);
+            }
 
             if (result.success) {
                 // Push event to dataLayer for Google Tag Manager
