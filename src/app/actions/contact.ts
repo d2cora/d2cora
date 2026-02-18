@@ -1,5 +1,7 @@
 'use server';
 
+import { Resend } from 'resend';
+
 export async function submitContactForm(formData: FormData) {
     try {
         const name = formData.get("name") as string;
@@ -8,57 +10,57 @@ export async function submitContactForm(formData: FormData) {
         const subject = (formData.get("subject") as string) || "New Inquiry from Website";
         const phone = formData.get("phone") as string;
 
-        // Use JSON format for server-side requests
-        const payload = {
-            access_key: "fae0e850-8311-4ef3-b39b-081e3f5197f7",
-            name,
-            email,
-            message,
-            subject,
-            ...(phone && { phone }),
-            from_name: name,
-            replyto: email
-        };
+        // Use Resend API key from environment variable
+        const resendApiKey = process.env.RESEND_API_KEY;
+        
+        if (!resendApiKey) {
+            console.error("Server: RESEND_API_KEY not found");
+            return {
+                success: false,
+                message: "Email service not configured. Please contact us directly at chizel.dev@gmail.com"
+            };
+        }
 
-        console.log("Server: Sending to Web3Forms:", { name, email, hasPhone: !!phone });
+        const resend = new Resend(resendApiKey);
 
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(payload)
+        console.log("Server: Sending email via Resend:", { name, email, hasPhone: !!phone });
+
+        const { data, error } = await resend.emails.send({
+            from: 'Chizel Contact Form <onboarding@resend.dev>',
+            to: ['chizel.dev@gmail.com'],
+            subject: `${subject} - from ${name}`,
+            replyTo: email,
+            html: `
+                <h2>New Contact Form Submission</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
+                <p><strong>Subject:</strong> ${subject}</p>
+                <hr />
+                <h3>Message:</h3>
+                <p>${message.replace(/\n/g, '<br>')}</p>
+            `
         });
 
-        // Check if response is JSON
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-            const text = await response.text();
-            console.error("Server: Non-JSON response:", text.substring(0, 200));
-            return { 
-                success: false, 
-                message: "Invalid response from email service. Please try again or contact us directly." 
+        if (error) {
+            console.error("Server: Resend error:", error);
+            return {
+                success: false,
+                message: error.message || "Failed to send email"
             };
         }
 
-        const result = await response.json();
-        console.log("Server: Web3Forms response:", result);
-
-        if (!response.ok) {
-            return { 
-                success: false, 
-                message: result.message || `Server error: ${response.status}` 
-            };
-        }
-
-        return result;
+        console.log("Server: Email sent successfully:", data);
+        return {
+            success: true,
+            message: "Email sent successfully"
+        };
 
     } catch (error) {
-        console.error("Server error:", error);
-        return { 
-            success: false, 
-            message: error instanceof Error ? error.message : "Unknown error occurred" 
+        console.error("Server: Exception occurred:", error);
+        return {
+            success: false,
+            message: "Connection error: " + (error instanceof Error ? error.message : "Unknown error")
         };
     }
 }
