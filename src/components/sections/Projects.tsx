@@ -53,7 +53,7 @@ export function Projects() {
                             Selected projects that showcase our expertise
                         </p>
                         <p className="mt-2 text-sm font-semibold text-gray-300">
-                            Currently focusing on web development — reach out for availability on other services.
+                            Currently focused on landing pages and small business websites.
                         </p>
                     </div>
                     <span className="mb-2 text-sm font-light uppercase tracking-widest text-gray-500">

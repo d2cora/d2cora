@@ -109,7 +109,7 @@ export function Services() {
                         className="text-sm font-semibold"
                         style={{ color: textColor }}
                     >
-                        Currently focusing on web development — reach out for availability on other services.
+                        Currently focused on landing pages and small business websites.
                     </motion.p>
                 </motion.div>
 
