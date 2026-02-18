@@ -23,7 +23,7 @@ Engage your audience with compelling visual content. We create AI-powered video 
 
 - AI Video Ads
 - Short-Form Video Creation
-- AI UGC-Style Video Ads
+- AI UGC-Style Video Ads 
 - Product Demo & Explainer Videos
 
 ### UI/UX Design
