@@ -47,32 +47,32 @@ export function Navbar() {
             <motion.nav
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+                className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${scrolled
                     ? "glass"
                     : "bg-transparent"
                     }`}
             >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16 md:h-20">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="flex h-16 items-center justify-between md:h-20">
                         {/* Logo */}
                         <Link
                             href="/"
-                            className="flex items-center gap-2 text-white hover:opacity-90 transition-opacity z-50"
+                            className="z-50 flex items-center gap-2 text-white transition-opacity hover:opacity-90"
                             onClick={handleLinkClick}
                         >
-                            <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center">
-                                <span className="text-black font-bold text-lg">C</span>
+                            <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-white">
+                                <span className="text-lg font-bold text-black">C</span>
                             </div>
                             <span className="text-lg font-semibold">Chizel</span>
                         </Link>
 
                         {/* Desktop Navigation - Centered */}
-                        <div className="hidden md:flex items-center space-x-10 absolute left-1/2 -translate-x-1/2">
+                        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center space-x-10 md:flex">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="text-sm text-white/80 hover:text-white transition-colors duration-300 font-normal"
+                                    className="text-sm font-normal text-white/80 transition-colors duration-300 hover:text-white"
                                 >
                                     {link.label}
                                 </Link>
@@ -80,11 +80,11 @@ export function Navbar() {
                         </div>
 
                         {/* Right Side - CTA */}
-                        <div className="hidden md:flex items-center gap-4">
+                        <div className="hidden items-center gap-4 md:flex">
                             {/* CTA Button */}
                             <Link
                                 href="/contact"
-                                className="px-6 py-2.5 border border-white/30 rounded-full text-sm text-white hover:bg-white hover:text-black transition-all duration-300 font-normal"
+                                className="rounded-full border border-white/30 px-6 py-2.5 text-sm font-normal text-white transition-all duration-300 hover:bg-white hover:text-black"
                             >
                                 Let's Connect
                             </Link>
@@ -93,12 +93,12 @@ export function Navbar() {
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="md:hidden text-white/70 hover:text-white transition-colors z-50"
+                            className="z-50 text-white/70 transition-colors hover:text-white md:hidden"
                             aria-label="Menu"
                             aria-expanded={mobileMenuOpen}
                         >
                             <svg
-                                className="w-6 h-6"
+                                className="h-6 w-6"
                                 fill="none"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -127,7 +127,7 @@ export function Navbar() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+                            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
                             onClick={() => setMobileMenuOpen(false)}
                         />
 
@@ -137,9 +137,9 @@ export function Navbar() {
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="fixed top-0 right-0 bottom-0 w-[280px] bg-black/95 backdrop-blur-xl border-l border-white/10 z-50 md:hidden"
+                            className="w-70 fixed bottom-0 right-0 top-0 z-50 border-l border-white/10 bg-black/95 backdrop-blur-xl md:hidden"
                         >
-                            <div className="flex flex-col h-full pt-24 px-6">
+                            <div className="flex h-full flex-col px-6 pt-24">
                                 {/* Navigation Links */}
                                 <nav className="flex flex-col gap-2">
                                     {navLinks.map((link, index) => (
@@ -152,7 +152,7 @@ export function Navbar() {
                                             <Link
                                                 href={link.href}
                                                 onClick={handleLinkClick}
-                                                className="block py-3 px-4 text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 font-normal"
+                                                className="block rounded-lg px-4 py-3 font-normal text-white/80 transition-all duration-300 hover:bg-white/5 hover:text-white"
                                             >
                                                 {link.label}
                                             </Link>
@@ -170,7 +170,7 @@ export function Navbar() {
                                     <Link
                                         href="/contact"
                                         onClick={handleLinkClick}
-                                        className="block w-full px-6 py-3 border border-white/30 rounded-full text-center text-sm text-white hover:bg-white hover:text-black transition-all duration-300 font-normal"
+                                        className="block w-full rounded-full border border-white/30 px-6 py-3 text-center text-sm font-normal text-white transition-all duration-300 hover:bg-white hover:text-black"
                                     >
                                         Let's Connect
                                     </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { div } from "framer-motion/client";
 import { ExternalLink, Smartphone, Globe, Github } from "lucide-react";
 import Link from "next/link";
 
@@ -45,11 +46,14 @@ export function Projects() {
                     className="flex flex-col items-end justify-between border-b border-white/10 pb-8 md:flex-row"
                 >
                     <div>
-                        <h2 className="mb-4 font-heading text-4xl font-bold uppercase tracking-tighter md:text-6xl">
+                        <h2 className="font-heading mb-4 text-4xl font-bold uppercase tracking-tighter md:text-6xl">
                             Our Work
                         </h2>
-                        <p className="text-gray-400 font-light">
+                        <p className="font-light text-gray-400">
                             Selected projects that showcase our expertise
+                        </p>
+                        <p className="mt-2 text-sm font-semibold text-gray-300">
+                            Currently focusing on web development — reach out for availability on other services.
                         </p>
                     </div>
                     <span className="mb-2 text-sm font-light uppercase tracking-widest text-gray-500">
@@ -68,10 +72,10 @@ export function Projects() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.15, duration: 0.6 }}
                                 viewport={{ once: true }}
-                                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/50 to-black backdrop-blur-sm transition-all duration-500 hover:border-white/30 hover:shadow-2xl hover:shadow-purple-500/10"
+                                className="bg-linear-to-br group relative overflow-hidden rounded-2xl border border-white/10 from-zinc-900/50 to-black backdrop-blur-sm transition-all duration-500 hover:border-white/30 hover:shadow-2xl hover:shadow-purple-500/10"
                             >
                                 {/* Gradient Overlay on Hover */}
-                                <div className={`absolute inset-0 z-20 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-30`} />
+                                <div className={`bg-linear-to-br absolute inset-0 z-20 ${project.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-30`} />
 
                                 {/* Content */}
                                 <div className="relative z-30 p-8 md:p-10">
@@ -134,7 +138,7 @@ export function Projects() {
 
                                 {/* Hover Effect Border */}
                                 <div className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent" />
+                                    <div className="bg-linear-to-br absolute inset-0 rounded-2xl from-white/5 to-transparent" />
                                 </div>
                             </motion.div>
                         );
