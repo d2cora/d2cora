@@ -378,10 +378,11 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="mb-1 font-semibold">Phone</h3>
                                             <a
-                                                href="tel:+91 9635710104 / +91 8218116900"
+                                                href="tel:+91 9635710104 / +91 9548316900"
                                                 className="text-gray-400 transition-colors hover:text-white"
                                             >
-                                                +91 9635710104 / +91 8218116900
+                                                +91 9635710104 / +91 9548316900
+                                                
                                             </a>
                                         </div>
                                     </motion.div>
