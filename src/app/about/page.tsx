@@ -29,18 +29,18 @@ export default function AboutPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        <main className="bg-linear-to-br min-h-screen from-gray-900 via-black to-gray-900">
             {/* Hero Section */}
-            <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto">
+            <section className="px-4 pb-20 pt-32 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
+                        className="mb-16 text-center"
                     >
                         <motion.h1
-                            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
+                            className="bg-linear-to-r mb-6 from-white via-gray-200 to-gray-400 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
@@ -48,7 +48,7 @@ export default function AboutPage() {
                             About Chizel
                         </motion.h1>
                         <motion.p
-                            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+                            className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-400"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
@@ -63,10 +63,10 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="glass p-8 md:p-12 rounded-3xl mb-20"
+                        className="glass mb-20 rounded-3xl p-8 md:p-12"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Our Story</h2>
-                        <div className="space-y-4 text-gray-300 leading-relaxed">
+                        <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">Our Story</h2>
+                        <div className="space-y-4 leading-relaxed text-gray-300">
                             <p>
                                 Founded with a vision to bridge the gap between creativity and technology,
                                 Chizel has grown from a small startup to a trusted partner for businesses
@@ -93,10 +93,10 @@ export default function AboutPage() {
                         transition={{ duration: 0.8, delay: 0.8 }}
                         className="mb-20"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                        <h2 className="mb-12 text-center text-3xl font-bold text-white md:text-4xl">
                             What We Stand For
                         </h2>
-                        <div className="grid md:grid-cols-2 gap-6">
+                        <div className="grid gap-6 md:grid-cols-2">
                             {values.map((value, index) => {
                                 const Icon = value.icon;
                                 return (
@@ -105,15 +105,15 @@ export default function AboutPage() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
-                                        className="glass p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
+                                        className="glass group rounded-2xl p-8 transition-all duration-300 hover:bg-white/10"
                                     >
-                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                            <Icon className="w-6 h-6 text-white" />
+                                        <div className="bg-linear-to-br mb-4 flex h-12 w-12 items-center justify-center rounded-full from-blue-500 to-purple-600 transition-transform group-hover:scale-110">
+                                            <Icon className="h-6 w-6 text-white" />
                                         </div>
-                                        <h3 className="text-xl font-semibold text-white mb-3">
+                                        <h3 className="mb-3 text-xl font-semibold text-white">
                                             {value.title}
                                         </h3>
-                                        <p className="text-gray-400 leading-relaxed">
+                                        <p className="leading-relaxed text-gray-400">
                                             {value.description}
                                         </p>
                                     </motion.div>
@@ -129,18 +129,18 @@ export default function AboutPage() {
                         transition={{ duration: 0.8, delay: 1.3 }}
                         className="text-center"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                        <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
                             Ready to Work Together?
                         </h2>
-                        <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+                        <p className="mx-auto mb-8 max-w-2xl text-gray-400">
                             Let's collaborate to bring your vision to life and create something extraordinary.
                         </p>
                         <Link
                             href="/contact"
-                            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full hover:bg-gray-100 transition-all duration-300 font-medium group"
+                            className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-medium text-black transition-all duration-300 hover:bg-gray-100"
                         >
                             Get in Touch
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Link>
                     </motion.div>
                 </div>

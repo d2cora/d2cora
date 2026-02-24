@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -102,10 +103,14 @@ export function Navbar() {
                         className="z-50 flex items-center gap-2 text-white transition-opacity hover:opacity-90"
                         onClick={handleLinkClick}
                     >
-                        <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-white">
-                            <span className="text-lg font-bold text-black">C</span>
-                        </div>
-                        <span className="text-lg font-semibold">Chizel</span>
+                        <Image
+                            src="/assets/ChizelLabs.svg"
+                            alt="ChizelLabs Logo"
+                            width={32}
+                            height={32}
+                            className="h-8 w-8"
+                        />
+                        <span className="text-lg font-semibold">ChizelLabs</span>
                     </Link>
 
                     {/* Mobile Menu Button */}
@@ -174,14 +179,14 @@ export function Navbar() {
                             }`}
                             onClick={handleLinkClick}
                         >
-                            <div className={`flex h-7 w-7 items-center justify-center rounded-sm transition-colors md:h-8 md:w-8 ${
-                                isDarkBackground ? "bg-white" : "bg-black"
-                            }`}>
-                                <span className={`text-base font-bold md:text-lg ${
-                                    isDarkBackground ? "text-black" : "text-white"
-                                }`}>C</span>
-                            </div>
-                            <span className="text-base font-semibold md:text-lg">Chizel</span>
+                            <Image
+                                src="/assets/ChizelLabs.svg"
+                                alt="ChizelLabs Logo"
+                                width={32}
+                                height={32}
+                                className="h-7 w-7 md:h-8 md:w-8"
+                            />
+                            <span className="text-base font-semibold md:text-lg">ChizelLabs</span>
                         </Link>
 
                         {/* Desktop Navigation - Centered */}

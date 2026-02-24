@@ -1,4 +1,4 @@
-# Chizel
+# ChizelLabs
 
 > **From interface to application. Done right.**
 
@@ -6,7 +6,7 @@ Premium apps crafted for bold brands.
 
 ## Who We Are
 
-Chizel is a modern web development agency that transforms your vision into scalable, high-performance digital products. We specialize in creating clean, elegant interfaces that don't just look beautiful—they work flawlessly.
+ChizelLabs is a modern web development agency that transforms your vision into scalable, high-performance digital products. We specialize in creating clean, elegant interfaces that don't just look beautiful—they work flawlessly.
 
 ## What We Do
 
@@ -68,7 +68,7 @@ We work with industry-leading tools and technologies:
 - **AI/ML**: TensorFlow
 - **Collaboration**: Notion
 
-## Why Choose Chizel?
+## Why Choose ChizelLabs?
 
 - **Quality First**: We don't compromise on quality. Every pixel matters.
 - **Performance Obsessed**: Fast, optimized, and scalable solutions.
@@ -84,4 +84,4 @@ Ready to build something exceptional?
 
 ---
 
-**Chizel** — Interfaces That Scale
+**ChizelLabs** — Interfaces That Scale

@@ -462,8 +462,19 @@ export default function ContactPage() {
                 </motion.div>
             </div>
 
-            <footer className="mt-24 text-center text-[10px] uppercase tracking-[0.2em] text-gray-600">
-                © {new Date().getFullYear()} Chizel. All rights reserved.
+            <footer className="mt-24 text-center">
+                <div className="mb-4 flex flex-wrap justify-center gap-4 text-xs uppercase tracking-wider text-gray-500">
+                    <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                        Privacy Policy
+                    </Link>
+                    <span className="text-gray-700">|</span>
+                    <Link href="/terms-and-conditions" className="hover:text-white transition-colors">
+                        Terms & Conditions
+                    </Link>
+                </div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-gray-600">
+                    © {new Date().getFullYear()} ChizelLabs. All rights reserved.
+                </p>
             </footer>
         </main>
     );

@@ -13,6 +13,7 @@ const Contact = dynamic(() => import("@/components/sections/Contact").then(mod =
 });
 const Technologies = dynamic(() => import("@/components/sections/Technologies").then(mod => ({ default: mod.Technologies })));
 const Services = dynamic(() => import("@/components/sections/Services").then(mod => ({ default: mod.Services })));
+const Industries = dynamic(() => import("@/components/sections/Industries").then(mod => ({ default: mod.Industries })));
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       
       <Technologies />
       <Services />
+      <Industries />
       <Projects />
       <Process />
       <Contact />
