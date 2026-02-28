@@ -5,6 +5,10 @@ interface ServiceCategoryType {
     id: number;
     category: string;
     items: string[];
+    overview: string;
+    problems: string[];
+    outcomes: string;
+    bestFor: string;
 }
 
 interface ServiceCategoryProps {
@@ -37,7 +41,7 @@ export const ServiceCategory = React.memo(({
         >
             <div className="space-y-10 md:space-y-14">
                 {/* Category Title with typewriter animation */}
-                <motion.div className="overflow-hidden">
+                <motion.div className="overflow-hidden pb-4 md:pb-6">
                     <motion.h2
                         className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer"
                         style={{ color: textColor }}
@@ -63,17 +67,29 @@ export const ServiceCategory = React.memo(({
                     </motion.h2>
                 </motion.div>
 
-                {/* Service Items */}
-                <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-lg md:text-xl">
-                    {category.items.map((item, itemIndex) => (
-                        <motion.span
-                            key={itemIndex}
-                            className="opacity-70 hover:opacity-100 transition-opacity duration-200"
-                            style={{ color: textColor }}
-                        >
-                            {item}
-                        </motion.span>
-                    ))}
+                {/* Service Items & Link */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-lg md:text-xl">
+                        {category.items.map((item, itemIndex) => (
+                            <motion.span
+                                key={itemIndex}
+                                className="opacity-70 hover:opacity-100 transition-opacity duration-200"
+                                style={{ color: textColor }}
+                            >
+                                {item}
+                            </motion.span>
+                        ))}
+                    </div>
+                    <motion.a
+                        href={`/services/${category.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
+                        className="group inline-flex items-center gap-2 font-medium text-lg whitespace-nowrap mt-4 md:mt-0 opacity-70 hover:opacity-100 transition-opacity"
+                        style={{ color: textColor }}
+                    >
+                        Learn More
+                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </motion.a>
                 </div>
             </div>
 

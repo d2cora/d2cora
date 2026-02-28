@@ -83,6 +83,7 @@ export const Navbar = React.memo(function Navbar() {
 
     const navLinks = useMemo(() => [
         { href: "/", label: "Home" },
+        { href: "/about", label: "About Us" },
         { href: "/#services", label: "Services" },
         { href: "/#projects", label: "Our Work" },
         { href: "/blogs", label: "Blogs" },
@@ -96,7 +97,7 @@ export const Navbar = React.memo(function Navbar() {
     return (
         <>
             {/* Mobile Navbar - Simple flat design */}
-            <div className="fixed left-0 right-0 top-0 z-50 bg-black/80 backdrop-blur-md md:hidden">
+            <div className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 md:hidden ${scrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent'}`}>
                 <div className="flex h-16 items-center justify-between px-4">
                     {/* Logo */}
                     <Link
@@ -104,6 +105,9 @@ export const Navbar = React.memo(function Navbar() {
                         className="z-50 flex items-center gap-2 text-white transition-opacity hover:opacity-90"
                         onClick={handleLinkClick}
                     >
+                        <span className="font-heading font-bold text-xl tracking-wide">
+                            ChizelLabs
+                        </span>
                     </Link>
 
                     {/* Mobile Menu Button */}
@@ -138,21 +142,25 @@ export const Navbar = React.memo(function Navbar() {
                     initial={{ y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                    className={`relative w-full overflow-hidden px-4 transition-all duration-500 lg:px-8 ${isDarkBackground
-                        ? "bg-black/60"
-                        : "bg-white/60"
-                        } ${scrolled
-                            ? "backdrop-blur-2xl"
-                            : "backdrop-blur-xl"
+                    className={`relative w-full overflow-hidden px-4 transition-all duration-500 lg:px-8 ${!scrolled
+                        ? "bg-transparent"
+                        : isDarkBackground
+                            ? "bg-black/60 backdrop-blur-2xl"
+                            : "bg-white/60 backdrop-blur-2xl"
                         }`}
-                    style={{
-                        backdropFilter: 'blur(20px) saturate(180%)',
-                        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                    }}
+                    style={
+                        scrolled
+                            ? {
+                                backdropFilter: "blur(20px) saturate(180%)",
+                                WebkitBackdropFilter: "blur(20px) saturate(180%)",
+                            }
+                            : {}
+                    }
                 >
                     {/* Grain texture overlay */}
                     <div
-                        className="pointer-events-none absolute inset-0 opacity-10"
+                        className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${scrolled ? "opacity-10" : "opacity-0"
+                            }`}
                         style={{
                             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                             backgroundSize: '100px 100px',
@@ -160,10 +168,10 @@ export const Navbar = React.memo(function Navbar() {
                         }}
                     />
                     <div className="mx-auto relative z-10 flex h-16 max-w-7xl items-center justify-between lg:h-20">
-                        {/* Empty Space / Logo Placeholder (if keeping structure for spacing) */}
-                        <div className="flex items-center gap-1.5 md:gap-2 min-w-8">
-                            {/* Desktop Navigation - Moved to left side */}
-                            <div className="hidden items-center space-x-4 md:flex lg:space-x-10">
+                        {/* Left Side & Navigation */}
+                        <div className="flex items-center z-20">
+                            {/* Navigation */}
+                            <div className="hidden md:flex items-center space-x-4 lg:space-x-10">
                                 {navLinks.map((link) => (
                                     <Link
                                         key={link.href}
@@ -236,7 +244,26 @@ export const Navbar = React.memo(function Navbar() {
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
                             className="w-70 fixed bottom-0 right-0 top-0 z-50 border-l border-white/10 bg-black/95 backdrop-blur-xl md:hidden"
                         >
-                            <div className="flex h-full flex-col px-6 pt-24">
+                            <div className="flex h-full flex-col px-6 pt-24 relative">
+                                {/* Close Menu Button */}
+                                <button
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="absolute right-6 top-6 text-white/70 p-2 transition-colors hover:text-white"
+                                    aria-label="Close menu"
+                                >
+                                    <svg
+                                        className="h-6 w-6"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+
                                 {/* Navigation Links */}
                                 <nav className="flex flex-col gap-2">
                                     {navLinks.map((link, index) => (

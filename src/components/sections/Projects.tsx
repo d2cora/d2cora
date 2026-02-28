@@ -22,15 +22,12 @@ export function Projects() {
                     viewport={{ once: true }}
                     className="flex flex-col items-end justify-between border-b border-white/10 pb-8 md:flex-row"
                 >
-                    <div>
-                        <h2 className="font-heading mb-4 text-4xl font-bold uppercase tracking-tighter md:text-6xl">
-                            Our Work
+                    <div className="max-w-xl">
+                        <h2 className="font-heading mb-4 text-4xl font-bold uppercase tracking-tighter md:text-5xl lg:text-6xl text-white">
+                            Proof of Performance.
                         </h2>
-                        <p className="font-light text-gray-400">
-                            Selected projects that showcase our expertise
-                        </p>
-                        <p className="mt-2 text-sm font-semibold text-gray-300">
-                            Currently focused on landing pages and small business websites.
+                        <p className="font-light text-gray-400 text-lg md:text-xl">
+                            We don't just talk about growth; we engineer it. A look at the digital products and systems we've built.
                         </p>
                     </div>
                     <span className="mb-2 text-sm font-light uppercase tracking-widest text-gray-500">

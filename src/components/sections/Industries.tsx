@@ -108,11 +108,14 @@ export function Industries() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center mb-8 relative z-10"
+                className="text-center mb-16 relative z-10 px-4"
             >
-                <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-4" style={{ color: "#A8A296" }}>
-                    industries we serve
+                <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6 text-[#222]">
+                    Deep Expertise Across the Board.
                 </h2>
+                <p className="text-xl font-light max-w-2xl mx-auto text-[#666] leading-relaxed">
+                    We adapt our proven growth systems to fit the unique challenges of your industry.
+                </p>
             </motion.div>
 
             <motion.div

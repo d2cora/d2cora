@@ -1,56 +1,67 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { memo, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
 const HeroContent = memo(() => {
-  const text = "ChizelLabs";
-
   return (
-    <div className="w-full z-40 relative animate-fade-in pl-0 md:pl-2 lg:pl-4 mt-20 md:mt-24">
-      <div className="">
-        <h1 className="text-4xl sm:text-7xl md:text-9xl lg:text-[11.5rem] tracking-tight leading-none relative flex items-center font-heading font-bold text-white overflow-hidden pb-4">
-          {text.split("").map((char, index) => (
-            <motion.span
-              key={index}
-              initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{
-                duration: 0.6,
-                ease: [0.2, 0.65, 0.3, 0.9],
-                delay: index * 0.08,
-              }}
-              className="inline-block"
-            >
-              {char}
-            </motion.span>
-          ))}
-        </h1>
+    <div className="w-full h-full z-40 relative flex flex-col justify-center items-start text-left px-4 md:px-12 lg:px-20">
+      <motion.div
+        className="w-full max-w-5xl flex flex-col items-start justify-center -mt-16 md:-mt-32"
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden md:block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[11.5rem] font-heading font-bold text-white tracking-tight leading-[1.05] pb-9"
+        >
+          ChizelLabs
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-5xl sm:text-6xl md:text-2xl lg:text-3xl xl:text-4xl font-heading font-bold md:font-semibold text-white md:text-white/90 tracking-tight md:tracking-widest mb-4 md:mb-6"
+        >
+          Build Smart<br />Grow Fast
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="text-lg sm:text-l lg:text-xl text-white/50 font-light tracking-wide mb-10 max-w-2xl leading-relaxed"
+        >
+          We turn good businesses into visible, scalable digital brands. Stop managing fragmented vendors—get strategy, design, and execution under one roof.
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="max-w-4xl space-y-6 pt-4 md:pt-8"
+          transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-row flex-wrap items-center justify-start gap-3 sm:gap-6"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-medium text-white/90 leading-tight">
-            Digital systems for real growth
-          </h2>
+          <Link href="/contact" className="w-auto">
+            <button className="group relative w-auto px-6 py-3 md:px-8 md:py-4 bg-white text-black rounded-full font-medium text-sm lg:text-base overflow-hidden transition-transform hover:scale-[1.03] active:scale-[0.98] duration-300">
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Start Your Project
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </span>
+              <div className="absolute inset-0 bg-neutral-200 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0" />
+            </button>
+          </Link>
 
-          <p className="text-xl sm:text-2xl text-gray-400 font-light leading-relaxed max-w-3xl">
-            Websites, performance marketing, and apps built to convert and scale.
-          </p>
-
-          <div className="pt-8 flex items-center gap-4">
-            <div className="h-[1px] w-12 bg-gray-700/80" />
-            <p className="text-[11px] sm:text-xs text-gray-500 font-light tracking-[0.2em] uppercase">
-              Built for startups, founders, and growing brands
-            </p>
-          </div>
+          <Link href="/#services" className="w-auto">
+            <button className="group relative w-auto px-6 py-3 md:px-8 md:py-4 bg-transparent border border-white/20 text-white rounded-full font-medium text-sm lg:text-base overflow-hidden transition-all hover:scale-[1.03] active:scale-[0.98] hover:border-white/40 hover:bg-white/5 duration-300">
+              <span className="relative z-10">Explore Services</span>
+            </button>
+          </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 });
@@ -70,9 +81,8 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden flex flex-col justify-start items-start text-left pt-24 pb-8 w-full px-4 lg:px-8">
-
-      {/* Background Videos with Blur & Gradient Overlay */}
+    <section className="relative h-[100svh] min-h-[600px] w-full bg-[#0a0a0a] overflow-hidden flex flex-col items-center justify-center text-center">
+      {/* Background Videos with Blur & Deep Dark Gradient Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video
           key={videos[currentVideoIndex]}
@@ -80,30 +90,32 @@ export function Hero() {
           muted
           playsInline
           onEnded={handleVideoEnd}
-          className="absolute inset-0 w-full h-full object-cover opacity-60 blur-sm mix-blend-screen"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 blur-[6px] mix-blend-screen scale-105"
         >
           <source src={videos[currentVideoIndex]} type="video/mp4" />
         </video>
 
-        {/* Gradient Overlay: Black on left/bottom fading to transparent */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-black/30" />
+        {/* Cinematic Dark Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      {/* Simplified grain texture */}
+      {/* High-end cinematic grain texture */}
       <div
-        className="absolute inset-0 pointer-events-none z-20 opacity-30"
+        className="absolute inset-0 pointer-events-none z-10 opacity-[0.15]"
         style={{
           backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E\")",
-          filter: "contrast(170%) brightness(1000%)",
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E\")",
           mixBlendMode: "overlay",
         }}
       />
 
-      {/* Subtle Grid Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none opacity-20" />
+      {/* Very Subtle Grid Overlay for tech/system feel */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-50 z-10" />
+
+      {/* Accent glow behind text */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 blur-[120px] rounded-full pointer-events-none z-20" />
 
       <HeroContent />
     </section>
