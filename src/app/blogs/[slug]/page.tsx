@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
+import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 
 // Pre-render the blog routes
 export async function generateStaticParams() {
@@ -89,6 +90,10 @@ export default async function BlogPost({ params }: Props) {
                     <div className="prose prose-lg prose-invert max-w-none">
                         {/* We pass our custom mapped Tailwind components to the compiled Remote tree */}
                         <MDXRemote source={content} components={MDXComponents} />
+                    </div>
+
+                    <div className="mt-20 pt-16 border-t border-white/10">
+                        <NewsletterSignup />
                     </div>
                 </article>
             </main>

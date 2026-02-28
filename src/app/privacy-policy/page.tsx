@@ -228,10 +228,10 @@ export default function PrivacyPolicy() {
                                 <p className="text-gray-300 mb-2">
                                     📧 Email:{" "}
                                     <a
-                                        href="mailto:chizel.dev@gmail.com"
+                                        href="mailto:info@chizellabs.com"
                                         className="text-white hover:underline"
                                     >
-                                        chizel.dev@gmail.com
+                                        info@chizellabs.com
                                     </a>
                                 </p>
                                 <p className="text-gray-300">📍 Location: Roorkee, India</p>

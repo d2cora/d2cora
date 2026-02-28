@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-export function Navbar() {
+import React, { useCallback, useMemo } from 'react';
+
+export const Navbar = React.memo(function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isDarkBackground, setIsDarkBackground] = useState(true);
@@ -80,17 +81,17 @@ export function Navbar() {
         };
     }, [mobileMenuOpen]);
 
-    const navLinks = [
+    const navLinks = useMemo(() => [
         { href: "/", label: "Home" },
         { href: "/#services", label: "Services" },
         { href: "/#projects", label: "Our Work" },
         { href: "/blogs", label: "Blogs" },
         { href: "/contact", label: "Contact us" },
-    ];
+    ], []);
 
-    const handleLinkClick = () => {
+    const handleLinkClick = useCallback(() => {
         setMobileMenuOpen(false);
-    };
+    }, []);
 
     return (
         <>
@@ -103,14 +104,6 @@ export function Navbar() {
                         className="z-50 flex items-center gap-2 text-white transition-opacity hover:opacity-90"
                         onClick={handleLinkClick}
                     >
-                        <Image
-                            src="/assets/ChizelLabs.svg"
-                            alt="ChizelLabs Logo"
-                            width={32}
-                            height={32}
-                            className="h-8 w-8"
-                        />
-                        <span className="text-lg font-semibold">ChizelLabs</span>
                     </Link>
 
                     {/* Mobile Menu Button */}
@@ -139,68 +132,51 @@ export function Navbar() {
                 </div>
             </div>
 
-            {/* Desktop Navbar - Capsule design */}
-            <div className="fixed left-0 right-0 top-0 z-50 hidden justify-center px-3 pt-3 md:flex md:px-4 md:pt-4 lg:px-8">
+            {/* Desktop Navbar - Seamless Full Width */}
+            <div className="fixed left-0 right-0 top-0 z-50 hidden w-full md:block">
                 <motion.nav
-                    initial={{ y: -100, opacity: 0, scale: 0.95 }}
-                    animate={{ y: 0, opacity: 1, scale: 1 }}
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                    className={`relative w-full max-w-7xl overflow-hidden rounded-full border px-3 backdrop-blur-md transition-all duration-500 md:px-4 lg:px-8 ${isDarkBackground
-                            ? "border-white/30 bg-white/5"
-                            : "border-black/30 bg-black/5"
+                    className={`relative w-full overflow-hidden px-4 transition-all duration-500 lg:px-8 ${isDarkBackground
+                        ? "bg-black/60"
+                        : "bg-white/60"
                         } ${scrolled
-                            ? "backdrop-blur-lg"
-                            : ""
+                            ? "backdrop-blur-2xl"
+                            : "backdrop-blur-xl"
                         }`}
                     style={{
                         backdropFilter: 'blur(20px) saturate(180%)',
                         WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                        boxShadow: isDarkBackground
-                            ? '0 4px 24px rgba(0, 0, 0, 0.3)'
-                            : '0 4px 24px rgba(0, 0, 0, 0.1)',
                     }}
                 >
                     {/* Grain texture overlay */}
                     <div
-                        className="pointer-events-none absolute inset-0 rounded-full opacity-10"
+                        className="pointer-events-none absolute inset-0 opacity-10"
                         style={{
                             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                             backgroundSize: '100px 100px',
                             mixBlendMode: 'overlay',
                         }}
                     />
-                    <div className="relative z-10 flex h-16 items-center justify-between lg:h-20">
-                        {/* Logo */}
-                        <Link
-                            href="/"
-                            className={`z-50 flex items-center gap-1.5 transition-all duration-300 hover:opacity-90 md:gap-2 ${isDarkBackground ? "text-white" : "text-black"
-                                }`}
-                            onClick={handleLinkClick}
-                        >
-                            <Image
-                                src="/assets/ChizelLabs.svg"
-                                alt="ChizelLabs Logo"
-                                width={32}
-                                height={32}
-                                className="h-7 w-7 md:h-8 md:w-8"
-                            />
-                            <span className="text-base font-semibold md:text-lg">ChizelLabs</span>
-                        </Link>
-
-                        {/* Desktop Navigation - Centered */}
-                        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center space-x-4 md:flex lg:space-x-10">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className={`text-xs font-normal transition-colors duration-300 md:text-sm ${isDarkBackground
+                    <div className="mx-auto relative z-10 flex h-16 max-w-7xl items-center justify-between lg:h-20">
+                        {/* Empty Space / Logo Placeholder (if keeping structure for spacing) */}
+                        <div className="flex items-center gap-1.5 md:gap-2 min-w-8">
+                            {/* Desktop Navigation - Moved to left side */}
+                            <div className="hidden items-center space-x-4 md:flex lg:space-x-10">
+                                {navLinks.map((link) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`text-xs font-normal transition-colors duration-300 md:text-sm ${isDarkBackground
                                             ? "text-white/80 hover:text-white"
                                             : "text-black/80 hover:text-black"
-                                        }`}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
+                                            }`}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
 
                         {/* Right Side - WhatsApp & CTA */}
@@ -211,8 +187,8 @@ export function Navbar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-green-500 hover:text-white md:h-10 md:w-10 ${isDarkBackground
-                                        ? "bg-white/10 text-white"
-                                        : "bg-black/10 text-black"
+                                    ? "bg-white/10 text-white"
+                                    : "bg-black/10 text-black"
                                     }`}
                                 aria-label="WhatsApp"
                             >
@@ -224,8 +200,8 @@ export function Navbar() {
                             <Link
                                 href="/contact"
                                 className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-normal backdrop-blur-sm transition-all duration-300 md:px-4 md:py-2.5 md:text-sm lg:gap-2 lg:px-5 ${isDarkBackground
-                                        ? "border-white/30 bg-white/10 text-white hover:bg-white hover:text-black"
-                                        : "border-black/30 bg-black/10 text-black hover:bg-black hover:text-white"
+                                    ? "border-white/30 bg-white/10 text-white hover:bg-white hover:text-black"
+                                    : "border-black/30 bg-black/10 text-black hover:bg-black hover:text-white"
                                     }`}
                             >
                                 <span>Get Started</span>
@@ -318,4 +294,4 @@ export function Navbar() {
             </AnimatePresence>
         </>
     );
-}
+});

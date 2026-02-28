@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Mail, Linkedin, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 
-export function Contact() {
+import React from 'react';
+
+export const Contact = React.memo(function Contact() {
     return (
         <section id="contact" className="relative overflow-hidden bg-black px-4 py-24">
             <div className="mx-auto max-w-md space-y-8 text-center">
@@ -15,14 +18,14 @@ export function Contact() {
                     viewport={{ once: true }}
                 >
                     <h2 className="font-heading mb-4 text-3xl font-bold uppercase tracking-tighter">Ready to build?</h2>
-                    <p className="mb-8 font-light text-gray-400">Let's turn your idea into a reality.</p>
+                    <p className="mb-8 font-light text-gray-400">Let&apos;s turn your idea into a reality.</p>
 
                     <div className="space-y-4">
 
 
                         <Button size="lg" className="w-full rounded-none border border-white transition-all hover:bg-white hover:text-black" asChild>
-                            <a href="mailto:chizel.dev@gmail.com">
-                                <Mail className="mr-2 h-4 w-4" /> chizel.dev@gmail.com
+                            <a href="mailto:info@chizellabs.com">
+                                <Mail className="mr-2 h-4 w-4" /> info@chizellabs.com
                             </a>
                         </Button>
 
@@ -42,6 +45,10 @@ export function Contact() {
                 </motion.div>
             </div>
 
+            <div className="mt-32 pt-20 border-t border-white/10 mx-auto max-w-2xl px-4">
+                <NewsletterSignup />
+            </div>
+
             <footer className="mt-24 text-center">
                 <div className="mb-4 flex flex-wrap justify-center gap-4 text-xs uppercase tracking-wider text-gray-500">
                     <Link href="/privacy-policy" className="hover:text-white transition-colors">
@@ -58,4 +65,4 @@ export function Contact() {
             </footer>
         </section>
     );
-}
+});

@@ -88,7 +88,7 @@ export default function ContactPage() {
             form.append("email", formData.email);
             form.append("message", formData.message);
             form.append("subject", formData.subject || "New Inquiry from Website");
-            
+
             if (formData.whatsapp) {
                 form.append("phone", formData.whatsapp);
             }
@@ -115,18 +115,18 @@ export default function ContactPage() {
                         }
                     });
                 }
-                
+
                 // Redirect to thank you page
                 router.push('/thank-you');
             } else {
                 console.error("Failed to send message:", result);
                 const errorMessage = result.message || "Something went wrong";
-                alert(`${errorMessage}. Please try again or email us directly at chizel.dev@gmail.com`);
+                alert(`${errorMessage}. Please try again or email us directly at info@chizellabs.com`);
             }
         } catch (error) {
             console.error("Error sending message:", error);
             const errorMsg = error instanceof Error ? error.message : "Unknown error";
-            alert(`Connection error: ${errorMsg}. Please try again or email us directly at chizel.dev@gmail.com`);
+            alert(`Connection error: ${errorMsg}. Please try again or email us directly at info@chizellabs.com`);
         } finally {
             setIsSending(false);
         }
@@ -177,134 +177,134 @@ export default function ContactPage() {
                         className="group relative"
                     >
                         {/* Contact Form Card */}
-                        <div 
+                        <div
                             className="relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 shadow-xl md:p-10"
                             data-form-type="contact"
                         >
                             <motion.form
-                                    onSubmit={handleSubmit}
-                                    className="space-y-6"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 1.0 }}
-                                    data-form-name="contact_form"
-                                    id="contact-form"
-                                >
-                                    <div className="space-y-6">
-                                        <motion.div
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 1.33 }}
-                                        >
-                                            <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-300">
-                                                Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="name"
-                                                name="name"
-                                                value={formData.name}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
-                                                placeholder="Your name"
-                                            />
-                                        </motion.div>
-
-                                        <motion.div
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 1.67 }}
-                                        >
-                                            <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
-                                                Email
-                                            </label>
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                name="email"
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
-                                                placeholder="your@email.com"
-                                            />
-                                        </motion.div>
-
-                                        <motion.div
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 1.8 }}
-                                        >
-                                            <label htmlFor="whatsapp" className="mb-2 block text-sm font-medium text-gray-300">
-                                                WhatsApp Number
-                                            </label>
-                                            <input
-                                                type="tel"
-                                                id="whatsapp"
-                                                name="whatsapp"
-                                                value={formData.whatsapp}
-                                                onChange={handleChange}
-                                                className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
-                                                placeholder="+1 (555) 000-0000"
-                                            />
-                                        </motion.div>
-
-                                        <motion.div
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 2.0 }}
-                                        >
-                                            <label htmlFor="subject" className="mb-2 block text-sm font-medium text-gray-300">
-                                                Subject
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="subject"
-                                                name="subject"
-                                                value={formData.subject}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
-                                                placeholder="Project inquiry"
-                                            />
-                                        </motion.div>
-
-                                        <motion.div
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 2.33 }}
-                                        >
-                                            <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-300">
-                                                Message
-                                            </label>
-                                            <textarea
-                                                id="message"
-                                                name="message"
-                                                value={formData.message}
-                                                onChange={handleChange}
-                                                required
-                                                rows={6}
-                                                className="w-full resize-none rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
-                                                placeholder="Tell us about your project..."
-                                            />
-                                        </motion.div>
-                                    </div>
-
-                                    <motion.button
-                                        type="submit"
-                                        disabled={isSending}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 2.67 }}
-                                        whileHover={{ scale: isSending ? 1 : 1.02 }}
-                                        whileTap={{ scale: isSending ? 1 : 0.98 }}
-                                        className={`bg-linear-to-r group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl from-white via-white to-gray-100 px-8 py-4 font-medium text-black transition-all duration-1000 hover:shadow-2xl hover:shadow-white/20 ${isSending ? 'cursor-wait opacity-70' : ''}`}
+                                onSubmit={handleSubmit}
+                                className="space-y-6"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 1.0 }}
+                                data-form-name="contact_form"
+                                id="contact-form"
+                            >
+                                <div className="space-y-6">
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 1.33 }}
                                     >
-                                        <Send className={`relative z-10 h-5 w-5 ${!isSending && 'group-hover:translate-x-1'} transition-transform`} />
-                                        <span className="relative z-10">{isSending ? "Sending..." : "Send Message"}</span>
-                                    </motion.button>
-                                </motion.form>
+                                        <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-300">
+                                            Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
+                                            placeholder="Your name"
+                                        />
+                                    </motion.div>
+
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 1.67 }}
+                                    >
+                                        <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
+                                            placeholder="your@email.com"
+                                        />
+                                    </motion.div>
+
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 1.8 }}
+                                    >
+                                        <label htmlFor="whatsapp" className="mb-2 block text-sm font-medium text-gray-300">
+                                            WhatsApp Number
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            id="whatsapp"
+                                            name="whatsapp"
+                                            value={formData.whatsapp}
+                                            onChange={handleChange}
+                                            className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
+                                            placeholder="+1 (555) 000-0000"
+                                        />
+                                    </motion.div>
+
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 2.0 }}
+                                    >
+                                        <label htmlFor="subject" className="mb-2 block text-sm font-medium text-gray-300">
+                                            Subject
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="subject"
+                                            name="subject"
+                                            value={formData.subject}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
+                                            placeholder="Project inquiry"
+                                        />
+                                    </motion.div>
+
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 2.33 }}
+                                    >
+                                        <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-300">
+                                            Message
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            required
+                                            rows={6}
+                                            className="w-full resize-none rounded-xl border border-white/20 bg-white/5 px-4 py-3 transition-all duration-1000 focus:border-white/40 focus:bg-white/10 focus:outline-none"
+                                            placeholder="Tell us about your project..."
+                                        />
+                                    </motion.div>
+                                </div>
+
+                                <motion.button
+                                    type="submit"
+                                    disabled={isSending}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 2.67 }}
+                                    whileHover={{ scale: isSending ? 1 : 1.02 }}
+                                    whileTap={{ scale: isSending ? 1 : 0.98 }}
+                                    className={`bg-linear-to-r group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl from-white via-white to-gray-100 px-8 py-4 font-medium text-black transition-all duration-1000 hover:shadow-2xl hover:shadow-white/20 ${isSending ? 'cursor-wait opacity-70' : ''}`}
+                                >
+                                    <Send className={`relative z-10 h-5 w-5 ${!isSending && 'group-hover:translate-x-1'} transition-transform`} />
+                                    <span className="relative z-10">{isSending ? "Sending..." : "Send Message"}</span>
+                                </motion.button>
+                            </motion.form>
                         </div>
                     </motion.div>
 
@@ -357,10 +357,10 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="mb-1 font-semibold">Email</h3>
                                             <a
-                                                href="mailto:chizel.dev@gmail.com"
+                                                href="mailto:info@chizellabs.com"
                                                 className="text-gray-400 transition-colors hover:text-white"
                                             >
-                                                chizel.dev@gmail.com
+                                                info@chizellabs.com
                                             </a>
                                         </div>
                                     </motion.div>
@@ -382,7 +382,7 @@ export default function ContactPage() {
                                                 className="text-gray-400 transition-colors hover:text-white"
                                             >
                                                 +91 9635710104 / +91 9548316900
-                                                
+
                                             </a>
                                         </div>
                                     </motion.div>

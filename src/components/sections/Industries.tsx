@@ -2,43 +2,23 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import {
-    Briefcase,
-    Shirt,
-    Tractor,
-    Trophy,
-    ShoppingBag,
-    Gem,
-    HeartPulse,
-    Utensils,
-    Stethoscope,
-    Sparkles,
-    Package,
-    GraduationCap,
-    Scissors,
-    Music,
-    Coffee
-} from "lucide-react";
+import { blockClusters } from "@/lib/constants/industries";
+import { IndustryCluster } from "./industries/IndustryCluster";
 
-// The 15 geometric clusters representing exactly the user's requested industries
-// Perfectly arrayed into a clean circular perimeter
-const blockClusters = [
-    { id: 0, blocks: [[0, 0, 2]], name: "Business", icon: Briefcase, labelPos: { x: 40, y: -320 } },
-    { id: 1, blocks: [[1, 0, 2]], name: "Fashion", icon: Shirt, labelPos: { x: 200, y: -250 } },
-    { id: 2, blocks: [[2, 0, 2]], name: "Agriculture", icon: Tractor, labelPos: { x: 320, y: -150 } },
-    { id: 3, blocks: [[2, 0, 1]], name: "Sports", icon: Trophy, labelPos: { x: 400, y: -30 } },
-    { id: 4, blocks: [[2, 0, 0]], name: "Apparel", icon: ShoppingBag, labelPos: { x: 400, y: 80 } },
-    { id: 5, blocks: [[2, 1, 0]], name: "Jewellery", icon: Gem, labelPos: { x: 320, y: 190 } },
-    { id: 6, blocks: [[2, 2, 0]], name: "Healthcare", icon: HeartPulse, labelPos: { x: 200, y: 290 } },
-    { id: 7, blocks: [[2, 2, 1]], name: "Food", icon: Utensils, labelPos: { x: 40, y: 350 } },
-    { id: 8, blocks: [[2, 2, 2]], name: "Doctor Clinics", icon: Stethoscope, labelPos: { x: -140, y: 310 } },
-    { id: 9, blocks: [[1, 2, 2]], name: "Beauty", icon: Sparkles, labelPos: { x: -280, y: 220 } },
-    { id: 10, blocks: [[0, 2, 2]], name: "Consumer Products", icon: Package, labelPos: { x: -400, y: 110 } },
-    { id: 11, blocks: [[0, 2, 1]], name: "Education", icon: GraduationCap, labelPos: { x: -430, y: -10 } },
-    { id: 12, blocks: [[0, 2, 0]], name: "Salons", icon: Scissors, labelPos: { x: -400, y: -130 } },
-    { id: 13, blocks: [[0, 1, 0]], name: "Musical Industries", icon: Music, labelPos: { x: -280, y: -240 } },
-    { id: 14, blocks: [[0, 0, 0], [0, 0, 1]], name: "Hospitality", icon: Coffee, labelPos: { x: -140, y: -320 } },
-];
+export type BlockType = {
+    x: number;
+    y: number;
+    z: number;
+    clusterId: number;
+    vx: number;
+    vy: number;
+    depth: number;
+    isFirstInCluster: boolean;
+    visualCenterX: number;
+    visualCenterY: number;
+    clusterData: typeof blockClusters[0];
+    explosionMultiplier: number;
+};
 
 export function Industries() {
     const [isHovered, setIsHovered] = useState(false);
@@ -104,35 +84,18 @@ export function Industries() {
     const beforeSphere = sortedBlocks.slice(0, insertSphereIndex);
     const afterSphere = sortedBlocks.slice(insertSphereIndex);
 
-    const renderBlock = (block: any) => {
-        const { x, y, z, cx, cy, explosionMultiplier } = { ...block, ...getCenter(block.x, block.y, block.z) };
-        const color = "#BAB2A8";
-        const fill = "#F7F6F3";
-
-        const top = [cx, ",", cy - s, " ", cx + dx, ",", cy - dy, " ", cx, ",", cy, " ", cx - dx, ",", cy - dy].join("");
-        const left = [cx - dx, ",", cy - dy, " ", cx, ",", cy, " ", cx, ",", cy + s, " ", cx - dx, ",", cy + s - dy].join("");
-        const right = [cx, ",", cy, " ", cx + dx, ",", cy - dy, " ", cx + dx, ",", cy + s - dy, " ", cx, ",", cy + s].join("");
-
-        const showTop = !checkCull(x, y, z + 1, block.clusterId);
-        const showLeft = !checkCull(x, y + 1, z, block.clusterId);
-        const showRight = !checkCull(x + 1, y, z, block.clusterId);
-
-        return (
-            <motion.g
-                key={x + "-" + y + "-" + z}
-                initial={false}
-                animate={{
-                    x: isHovered ? block.vx * s * explosionMultiplier : 0,
-                    y: isHovered ? block.vy * s * explosionMultiplier : 0
-                }}
-                transition={{ type: "spring", stiffness: 100, damping: 14 }}
-            >
-                {showTop && <polygon points={top} fill={fill} stroke={color} strokeWidth="2" strokeDasharray="6 4" strokeLinejoin="round" />}
-                {showLeft && <polygon points={left} fill={fill} stroke={color} strokeWidth="2" strokeDasharray="6 4" strokeLinejoin="round" />}
-                {showRight && <polygon points={right} fill={fill} stroke={color} strokeWidth="2" strokeDasharray="6 4" strokeLinejoin="round" />}
-            </motion.g>
-        );
-    };
+    const renderBlock = (block: BlockType) => (
+        <IndustryCluster
+            key={block.x + "-" + block.y + "-" + block.z}
+            block={block}
+            isHovered={isHovered}
+            checkCull={checkCull}
+            getCenter={getCenter}
+            s={s}
+            dx={dx}
+            dy={dy}
+        />
+    );
 
     return (
         <section

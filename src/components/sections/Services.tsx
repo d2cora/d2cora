@@ -3,28 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef } from "react";
 
-const serviceCategories = [
-    {
-        id: 1,
-        category: "Brand Design",
-        items: ["Identity Design", "Product Design", "Brand Assets", "Packaging"],
-    },
-    {
-        id: 2,
-        category: "Video Ads & Motion Content",
-        items: ["AI Video Ads", "Short-Form Video Creation", "AI UGC-Style Video Ads", "Product Demo & Explainer Videos"],
-    },
-    {
-        id: 3,
-        category: "UI/UX",
-        items: ["User Research", "UI/UX Design", "Micro Interaction", "Prototyping"],
-    },
-    {
-        id: 4,
-        category: "Web",
-        items: ["Website Development", "App Development", "Interactive Design", "E- commerce"],
-    },
-];
+import { serviceCategories } from "@/lib/constants/services";
+import { ServiceCategory } from "./services/ServiceCategory";
 
 export function Services() {
     const [hoveredCategory, setHoveredCategory] = useState<number | null>(null);
@@ -105,7 +85,7 @@ export function Services() {
                     viewport={{ once: true }}
                     className="text-center mb-12"
                 >
-                    <motion.p 
+                    <motion.p
                         className="text-sm font-semibold"
                         style={{ color: textColor }}
                     >
@@ -116,69 +96,15 @@ export function Services() {
                 {/* Services Categories */}
                 <div className="space-y-0">
                     {serviceCategories.map((category, categoryIndex) => (
-                        <motion.div
+                        <ServiceCategory
                             key={category.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: categoryIndex * 0.1 }}
-                            className="relative py-12 md:py-16 border-b"
-                            style={{ borderColor }}
-                            onMouseEnter={() => setHoveredCategory(category.id)}
-                            onMouseLeave={() => setHoveredCategory(null)}
-                        >
-                            <div className="space-y-10 md:space-y-14">
-                                {/* Category Title with typewriter animation */}
-                                <motion.div className="overflow-hidden">
-                                    <motion.h2
-                                        className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer"
-                                        style={{ color: textColor }}
-                                        initial={{ opacity: 0 }}
-                                        whileInView={{ opacity: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.3, delay: categoryIndex * 0.1 }}
-                                    >
-                                        {category.category.split("").map((char, charIndex) => (
-                                            <motion.span
-                                                key={charIndex}
-                                                initial={{ opacity: 0 }}
-                                                whileInView={{ opacity: 1 }}
-                                                viewport={{ once: true }}
-                                                transition={{
-                                                    duration: 0.1,
-                                                    delay: categoryIndex * 0.2 + charIndex * 0.08
-                                                }}
-                                            >
-                                                {char}
-                                            </motion.span>
-                                        ))}
-                                    </motion.h2>
-                                </motion.div>
-
-                                {/* Service Items */}
-                                <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-lg md:text-xl">
-                                    {category.items.map((item, itemIndex) => (
-                                        <motion.span
-                                            key={itemIndex}
-                                            className="opacity-70 hover:opacity-100 transition-opacity duration-200"
-                                            style={{ color: textColor }}
-                                        >
-                                            {item}
-                                        </motion.span>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Animated yellow line overlapping the border at bottom on hover */}
-                            <motion.div
-                                className="absolute bottom-0 left-0 h-0.5 bg-yellow-500 z-15"
-                                initial={{ width: 0 }}
-                                animate={{
-                                    width: hoveredCategory === category.id ? "100%" : 0
-                                }}
-                                transition={{ duration: 0.4, ease: "easeInOut" }}
-                            />
-                        </motion.div>
+                            category={category}
+                            categoryIndex={categoryIndex}
+                            hoveredCategory={hoveredCategory}
+                            setHoveredCategory={setHoveredCategory}
+                            textColor={textColor}
+                            borderColor={borderColor}
+                        />
                     ))}
                 </div>
             </div>

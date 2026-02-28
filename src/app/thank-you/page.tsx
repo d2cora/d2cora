@@ -18,7 +18,7 @@ export default function ThankYouPage() {
     }, []);
 
     return (
-        <main 
+        <main
             className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black text-white"
             data-page-type="thank-you"
             data-conversion="true"
@@ -48,10 +48,10 @@ export default function ThankYouPage() {
                         <motion.div
                             initial={{ scale: 1, opacity: 0.5 }}
                             animate={{ scale: 1.5, opacity: 0 }}
-                            transition={{ 
-                                duration: 1.5, 
+                            transition={{
+                                duration: 1.5,
                                 repeat: Infinity,
-                                ease: "easeOut" 
+                                ease: "easeOut"
                             }}
                             className="absolute inset-0 rounded-full border-2 border-green-500"
                         />
@@ -112,7 +112,7 @@ export default function ThankYouPage() {
                         Continue to Website
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
-                    
+
                     <Link
                         href="/contact"
                         className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3 font-medium transition-all hover:border-white/40 hover:bg-white/10"
@@ -128,11 +128,11 @@ export default function ThankYouPage() {
                     className="mt-12 text-sm text-gray-500"
                 >
                     Need immediate assistance? Email us at{" "}
-                    <a 
-                        href="mailto:chizel.dev@gmail.com" 
+                    <a
+                        href="mailto:info@chizellabs.com"
                         className="text-gray-400 underline transition-colors hover:text-white"
                     >
-                        chizel.dev@gmail.com
+                        info@chizellabs.com
                     </a>
                 </motion.p>
             </div>

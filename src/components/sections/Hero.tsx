@@ -2,64 +2,94 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-const HeroContent = memo(() => (
-  <div className="space-y-12 max-w-6xl z-40 relative animate-fade-in">
-    <span className="ext-2xl md:text-4xl lg:text-xl leading-[0.95] relative block mb-16">
-      Interfaces That Scale
-    </span>
+const HeroContent = memo(() => {
+  const text = "ChizelLabs";
 
-    <div className="space-y-2">
-      <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.95] relative">
-        <span className="font-heading font-bold tracking-tighter text-white uppercase">
-          From{" "}
-        </span>
-        <span className="font-serif italic font-light text-white tracking-tight">
-          interface
-        </span>
-      </h1>
-      <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.95] relative">
-        <span className="font-serif italic font-light text-white tracking-tight">
-          to{" "}
-        </span>
-        <span className="font-heading font-bold tracking-tighter text-white uppercase">
-          application.
-        </span>
-      </h1>
-      <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.95] relative">
-        <span className="font-heading font-bold tracking-tighter text-white uppercase">
-          Done{" "}
-        </span>
-        <span className="font-serif italic font-light text-white tracking-tight">
-          right.
-        </span>
-      </h1>
+  return (
+    <div className="w-full z-40 relative animate-fade-in pl-0 md:pl-2 lg:pl-4 mt-20 md:mt-24">
+      <div className="">
+        <h1 className="text-4xl sm:text-7xl md:text-9xl lg:text-[11.5rem] tracking-tight leading-none relative flex items-center font-heading font-bold text-white overflow-hidden pb-4">
+          {text.split("").map((char, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{
+                duration: 0.6,
+                ease: [0.2, 0.65, 0.3, 0.9],
+                delay: index * 0.08,
+              }}
+              className="inline-block"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="max-w-4xl space-y-6 pt-4 md:pt-8"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-medium text-white/90 leading-tight">
+            Digital systems for real growth
+          </h2>
+
+          <p className="text-xl sm:text-2xl text-gray-400 font-light leading-relaxed max-w-3xl">
+            Websites, performance marketing, and apps built to convert and scale.
+          </p>
+
+          <div className="pt-8 flex items-center gap-4">
+            <div className="h-[1px] w-12 bg-gray-700/80" />
+            <p className="text-[11px] sm:text-xs text-gray-500 font-light tracking-[0.2em] uppercase">
+              Built for startups, founders, and growing brands
+            </p>
+          </div>
+        </motion.div>
+      </div>
     </div>
-
-    <h2 className="text-xl md:text-2xl text-gray-300 font-bold-200 tracking-wide max-w-3xl mx-auto pt-4">
-      Premium Apps crafted for bold brands.
-    </h2>
-
-    <div className="flex flex-col sm:flex-row gap-6 justify-center pt-12 animate-fade-in-delay">
-      <Button
-        size="lg"
-        className="rounded-full border border-white/40 bg-white text-black hover:bg-white/90 transition-all duration-300 text-sm px-10 h-14 font-medium"
-        asChild
-      >
-        <Link href="/contact">Get in touch</Link>
-      </Button>
-
-    </div>
-  </div>
-));
-
-HeroContent.displayName = 'HeroContent';
+  );
+});
 
 export function Hero() {
-  return (
-    <section className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center text-center px-4 pt-16">
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videos = [
+    "/assets/hero-bg-1.mp4",
+    "/assets/hero-bg-2.mp4",
+    "/assets/hero-bg-3.mp4",
+    "/assets/hero-bg-4.mp4",
+    "/assets/hero-bg-5.mp4",
+  ];
 
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+  };
+
+  return (
+    <section className="relative min-h-screen bg-black overflow-hidden flex flex-col justify-start items-start text-left pt-24 pb-8 w-full px-4 lg:px-8">
+
+      {/* Background Videos with Blur & Gradient Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <video
+          key={videos[currentVideoIndex]}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+          className="absolute inset-0 w-full h-full object-cover opacity-60 blur-sm mix-blend-screen"
+        >
+          <source src={videos[currentVideoIndex]} type="video/mp4" />
+        </video>
+
+        {/* Gradient Overlay: Black on left/bottom fading to transparent */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
 
       {/* Simplified grain texture */}
       <div

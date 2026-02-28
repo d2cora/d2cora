@@ -285,10 +285,10 @@ export default function TermsAndConditions() {
                                 <p className="mb-2 text-gray-300">
                                     📧 Email:{" "}
                                     <a
-                                        href="mailto:chizel.dev@gmail.com"
+                                        href="mailto:info@chizellabs.com"
                                         className="text-white hover:underline"
                                     >
-                                        chizel.dev@gmail.com
+                                        info@chizellabs.com
                                     </a>
                                 </p>
                                 <p className="text-gray-300">📍 Location: Roorkee, India</p>
