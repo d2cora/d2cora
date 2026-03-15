@@ -9,6 +9,8 @@ interface ServiceCategoryType {
     problems: string[];
     outcomes: string;
     bestFor: string;
+    quote?: string;
+    images?: string[];
 }
 
 interface ServiceCategoryProps {
@@ -34,41 +36,94 @@ export const ServiceCategory = React.memo(({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: categoryIndex * 0.1 }}
-            className="relative py-12 md:py-16 border-b"
+            className="relative py-12 md:py-16 border-b overflow-hidden"
             style={{ borderColor }}
             onMouseEnter={() => setHoveredCategory(category.id)}
             onMouseLeave={() => setHoveredCategory(null)}
         >
+            {/* Floating Background Images */}
+            {category.images && category.images.map((src, i) => (
+                <div
+                    key={i}
+                    className="absolute top-0 bottom-0 pointer-events-none z-0"
+                    style={{
+                        right: i === 0 ? '1%' : 'auto',
+                        left: i === 1 
+                            ? (category.id === 3 ? '52%' : (category.id === 1 ? '45%' : '28%')) 
+                            : (i === 2 ? '8%' : 'auto'),
+                        width: category.id === 1 ? '20%' : '22%',
+                        maxWidth: category.id === 1 ? '280px' : '300px',
+                    }}
+                >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={src}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-full h-full object-contain opacity-[0.15] select-none"
+                        style={{ filter: 'drop-shadow(0 8px 32px rgba(255,87,34,0.15))' }}
+                    />
+                </div>
+            ))}
             <div className="space-y-10 md:space-y-14">
-                {/* Category Title with typewriter animation */}
-                <motion.div className="overflow-hidden pb-4 md:pb-6">
-                    <motion.h2
-                        className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer"
-                        style={{ color: textColor }}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: categoryIndex * 0.1 }}
-                    >
-                        {category.category.split("").map((char, charIndex) => (
-                            <motion.span
-                                key={charIndex}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{
-                                    duration: 0.1,
-                                    delay: categoryIndex * 0.2 + charIndex * 0.08
+                {/* Category Title & Quote */}
+                <div className="flex flex-col gap-4 md:gap-6">
+                    <motion.div className="overflow-hidden pb-2 md:pb-4">
+                        <motion.h2
+                            className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer"
+                            style={{ color: textColor }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.3, delay: categoryIndex * 0.1 }}
+                        >
+                            {category.category.split("").map((char, charIndex) => (
+                                <motion.span
+                                    key={charIndex}
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.1,
+                                        delay: categoryIndex * 0.2 + charIndex * 0.08
+                                    }}
+                                >
+                                    {char}
+                                </motion.span>
+                            ))}
+                        </motion.h2>
+                    </motion.div>
+
+                    {/* Premium, Minimalist Quote Design */}
+                    {category.quote && (
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: categoryIndex * 0.1 + 0.4 }}
+                            className="pl-4 md:pl-6 border-l-2 max-w-3xl mt-4"
+                            style={{ borderColor }}
+                        >
+                            <motion.p 
+                                className="text-xl md:text-2xl font-light italic leading-relaxed opacity-90"
+                                style={{ 
+                                    fontFamily: 'var(--font-space-grotesk)',
+                                    color: textColor 
                                 }}
                             >
-                                {char}
-                            </motion.span>
-                        ))}
-                    </motion.h2>
-                </motion.div>
+                                "{category.quote.split(/(\*.*?\*)/g).map((part, i) => {
+                                    if (part.startsWith('*') && part.endsWith('*')) {
+                                        return <span key={i} className="text-[#FF5722] font-medium not-italic">{part.slice(1, -1)}</span>;
+                                    }
+                                    return <span key={i}>{part}</span>;
+                                })}"
+                            </motion.p>
+                        </motion.div>
+                    )}
+                </div>
 
                 {/* Service Items & Link */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
                     <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-lg md:text-xl">
                         {category.items.map((item, itemIndex) => (
                             <motion.span

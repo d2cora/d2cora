@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -9,7 +11,7 @@ import React, { useCallback, useMemo } from 'react';
 export const Navbar = React.memo(function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [isDarkBackground, setIsDarkBackground] = useState(true);
+    const [isDarkBackground, setIsDarkBackground] = useState(false);
 
     useEffect(() => {
         const detectBackgroundBrightness = () => {
@@ -167,37 +169,44 @@ export const Navbar = React.memo(function Navbar() {
                             mixBlendMode: 'overlay',
                         }}
                     />
-                    <div className="mx-auto relative z-10 flex h-16 max-w-7xl items-center justify-between lg:h-20">
-                        {/* Left Side & Navigation */}
-                        <div className="flex items-center z-20">
-                            {/* Navigation */}
-                            <div className="hidden md:flex items-center space-x-4 lg:space-x-10">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        className={`text-xs font-normal transition-colors duration-300 md:text-sm ${isDarkBackground
-                                            ? "text-white/80 hover:text-white"
-                                            : "text-black/80 hover:text-black"
-                                            }`}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                ))}
-                            </div>
+                    <div className="mx-auto relative z-10 flex h-16 max-w-7xl items-center lg:h-20">
+
+                        {/* Left — d2cora Logo */}
+                        <div className="flex-1 flex items-center">
+                            <Image
+                                src="/assets/d2cora full.svg"
+                                alt="d2cora"
+                                width={120}
+                                height={120}
+                                className="rounded-full"
+                                priority
+                            />
                         </div>
 
-                        {/* Right Side - WhatsApp & CTA */}
-                        <div className="hidden items-center gap-2 md:flex lg:gap-4">
+                        {/* Centre — Navigation links */}
+                        <div className="hidden md:flex items-center space-x-4 lg:space-x-10">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={`text-xs font-normal transition-colors duration-300 md:text-sm ${isDarkBackground
+                                        ? "text-white/80 hover:text-white"
+                                        : "text-black/80 hover:text-black"
+                                        }`}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
+
+                        {/* Right — WhatsApp + CTA */}
+                        <div className="flex-1 hidden items-center justify-end gap-3 md:flex lg:gap-4">
                             {/* WhatsApp Icon */}
                             <a
                                 href="https://wa.me/919548316900"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-green-500 hover:text-white md:h-10 md:w-10 ${isDarkBackground
-                                    ? "bg-white/10 text-white"
-                                    : "bg-black/10 text-black"
-                                    }`}
+                                className="flex h-9 w-9 items-center justify-center rounded-full bg-green-500 text-white transition-all duration-300 hover:bg-green-600 md:h-10 md:w-10"
                                 aria-label="WhatsApp"
                             >
                                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

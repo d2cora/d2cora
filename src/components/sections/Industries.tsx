@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 import { blockClusters } from "@/lib/constants/industries";
 import { IndustryCluster } from "./industries/IndustryCluster";
 
@@ -21,7 +21,16 @@ export type BlockType = {
 };
 
 export function Industries() {
-    const [isHovered, setIsHovered] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, {
+        margin: "-30% 0px -30% 0px", // Trigger when the element is well within the viewport
+    });
+
+    // Auto-trigger expanded state based on scroll
+    useEffect(() => {
+        setIsExpanded(isInView);
+    }, [isInView]);
 
     const s = 65; // Scale of the cubes
     const dx = s * Math.sqrt(3) / 2;
@@ -75,7 +84,7 @@ export function Industries() {
         allBlocks.some(b => b.x === x && b.y === y && b.z === z);
 
     const checkCull = (x: number, y: number, z: number, clusterId: number) =>
-        isHovered ? hasCubeInSameCluster(x, y, z, clusterId) : hasCube(x, y, z);
+        isExpanded ? hasCubeInSameCluster(x, y, z, clusterId) : hasCube(x, y, z);
 
     // Render pass
     const sortedBlocks = [...allBlocks].sort((a, b) => a.depth - b.depth);
@@ -88,7 +97,7 @@ export function Industries() {
         <IndustryCluster
             key={block.x + "-" + block.y + "-" + block.z}
             block={block}
-            isHovered={isHovered}
+            isHovered={isExpanded} // Passing isExpanded down as isHovered
             checkCull={checkCull}
             getCenter={getCenter}
             s={s}
@@ -119,14 +128,15 @@ export function Industries() {
             </motion.div>
 
             <motion.div
+                ref={containerRef}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.2 }}
                 className="relative z-0 w-full max-w-6xl flex justify-center items-center cursor-pointer"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                onClick={() => setIsHovered(!isHovered)}
+                onMouseEnter={() => setIsExpanded(true)}
+                onMouseLeave={() => setIsExpanded(false)}
+                onClick={() => setIsExpanded(!isExpanded)}
                 // We move the entire group a bit upward (-40px) as requested
                 style={{ transform: "translateY(-40px)" }}
             >
@@ -153,8 +163,8 @@ export function Industries() {
                             fill="url(#orange-glow)"
                             initial={false}
                             animate={{
-                                scale: isHovered ? 1 : 0.8,
-                                opacity: isHovered ? 1 : 0
+                                scale: isExpanded ? 1 : 0.8,
+                                opacity: isExpanded ? 1 : 0
                             }}
                             transition={{ type: "spring", stiffness: 100, damping: 15 }}
                         />
@@ -174,8 +184,8 @@ export function Industries() {
                                 <motion.g
                                     key={`label-${clusterData.id}`}
                                     initial={{ opacity: 0 }}
-                                    animate={{ opacity: isHovered ? 1 : 0 }}
-                                    transition={{ duration: 0.3, delay: isHovered ? 0.2 : 0 }}
+                                    animate={{ opacity: isExpanded ? 1 : 0 }}
+                                    transition={{ duration: 0.3, delay: isExpanded ? 0.2 : 0 }}
                                     className="pointer-events-none"
                                 >
                                     <line
@@ -199,22 +209,36 @@ export function Industries() {
 
                                     <foreignObject
                                         x={isLeft ? endX - 210 : endX + 10}
-                                        y={labelPos.y - 14}
+                                        y={clusterData.subNiches ? labelPos.y - 14 : labelPos.y - 14}
                                         width="200"
-                                        height="30"
+                                        height={clusterData.subNiches ? "150" : "30"}
                                         className="overflow-visible"
                                     >
-                                        <div className={`flex items-center gap-2 w-full h-full ${isLeft ? 'justify-end' : 'justify-start'}`}>
-                                            {isLeft ? (
-                                                <>
-                                                    <span className="text-[14px] font-medium tracking-wide whitespace-nowrap text-[#444]">{name}</span>
-                                                    <Icon size={16} strokeWidth={1.5} className="text-[#666]" />
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Icon size={16} strokeWidth={1.5} className="text-[#666]" />
-                                                    <span className="text-[14px] font-medium tracking-wide whitespace-nowrap text-[#444]">{name}</span>
-                                                </>
+                                        <div className={`flex flex-col w-full h-full ${isLeft ? 'items-end' : 'items-start'}`}>
+                                            <div className={`flex items-center gap-2 ${isLeft ? 'justify-end' : 'justify-start'}`}>
+                                                {isLeft ? (
+                                                    <>
+                                                        <span className="text-[14px] font-bold tracking-wide whitespace-nowrap text-[#222]">{name}</span>
+                                                        <Icon size={16} strokeWidth={2} className="text-[#e2501a]" />
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Icon size={16} strokeWidth={2} className="text-[#e2501a]" />
+                                                        <span className="text-[14px] font-bold tracking-wide whitespace-nowrap text-[#222]">{name}</span>
+                                                    </>
+                                                )}
+                                            </div>
+                                            
+                                            {clusterData.subNiches && (
+                                                <ul className={`mt-2 flex flex-col gap-1 text-[11px] text-[#666] font-medium tracking-wide ${isLeft ? 'items-end text-right' : 'items-start text-left'}`}>
+                                                    {clusterData.subNiches.map((niche, nIdx) => (
+                                                        <li key={nIdx} className="opacity-80 flex items-center gap-1.5">
+                                                            {!isLeft && <span className="w-1 h-1 rounded-full bg-[#ccc]" />}
+                                                            {niche}
+                                                            {isLeft && <span className="w-1 h-1 rounded-full bg-[#ccc]" />}
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                             )}
                                         </div>
                                     </foreignObject>

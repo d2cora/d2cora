@@ -48,6 +48,27 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
                     </p>
                 </motion.div>
 
+                {/* Service Images Gallery */}
+                {service.images && service.images.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-6"
+                    >
+                        {service.images.map((src, i) => (
+                            <div key={i} className="relative aspect-[16/9] overflow-hidden rounded-3xl group border border-white/10">
+                                <img
+                                    src={src}
+                                    alt={`${service.category} visual ${i + 1}`}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none" />
+                            </div>
+                        ))}
+                    </motion.div>
+                )}
+
                 {/* Main Content Grid */}
                 <div className="grid md:grid-cols-2 gap-12 lg:gap-20 mb-24">
                     {/* Left Column */}
@@ -85,7 +106,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
                         className="space-y-16"
                     >
                         <div className="glass rounded-3xl p-8 border border-white/10">
-                            <h2 className="text-2xl font-bold text-white tracking-tight mb-6">What's Included</h2>
+                            <h2 className="text-2xl font-bold text-white tracking-tight mb-6">What&apos;s Included</h2>
                             <ul className="space-y-4">
                                 {service.items.map((item, i) => (
                                     <li key={i} className="flex items-center gap-3 text-gray-300 text-lg font-light">
@@ -97,7 +118,7 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
                         </div>
 
                         <div>
-                            <h2 className="text-2xl font-bold text-white tracking-tight mb-6">Who It's Best For</h2>
+                            <h2 className="text-2xl font-bold text-white tracking-tight mb-6">Who It&apos;s Best For</h2>
                             <p className="text-lg text-gray-300 font-light leading-relaxed">
                                 {service.bestFor}
                             </p>

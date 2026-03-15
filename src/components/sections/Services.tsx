@@ -78,20 +78,7 @@ export function Services() {
             </div>
 
             <div className="px-6 md:px-16 relative z-10">
-                {/* Note */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <motion.p
-                        className="text-sm font-semibold"
-                        style={{ color: textColor }}
-                    >
-                        Currently focused on landing pages and small business websites.
-                    </motion.p>
-                </motion.div>
+
 
                 {/* Services Categories */}
                 <div className="space-y-0">

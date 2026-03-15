@@ -1,35 +1,62 @@
 import {
-    Briefcase,
-    Shirt,
-    Tractor,
-    Trophy,
-    ShoppingBag,
-    Gem,
-    HeartPulse,
-    Utensils,
+    ShoppingCart,
+    User,
+    MapPin,
+    Cloud,
+    Building,
     Stethoscope,
-    Sparkles,
-    Package,
     GraduationCap,
-    Scissors,
-    Music,
-    Coffee
 } from "lucide-react";
 
 export const blockClusters = [
-    { id: 0, blocks: [[0, 0, 2]], name: "Business", icon: Briefcase, labelPos: { x: 40, y: -320 } },
-    { id: 1, blocks: [[1, 0, 2]], name: "Fashion", icon: Shirt, labelPos: { x: 200, y: -250 } },
-    { id: 2, blocks: [[2, 0, 2]], name: "Agriculture", icon: Tractor, labelPos: { x: 320, y: -150 } },
-    { id: 3, blocks: [[2, 0, 1]], name: "Sports", icon: Trophy, labelPos: { x: 400, y: -30 } },
-    { id: 4, blocks: [[2, 0, 0]], name: "Apparel", icon: ShoppingBag, labelPos: { x: 400, y: 80 } },
-    { id: 5, blocks: [[2, 1, 0]], name: "Jewellery", icon: Gem, labelPos: { x: 320, y: 190 } },
-    { id: 6, blocks: [[2, 2, 0]], name: "Healthcare", icon: HeartPulse, labelPos: { x: 200, y: 290 } },
-    { id: 7, blocks: [[2, 2, 1]], name: "Food", icon: Utensils, labelPos: { x: 40, y: 350 } },
-    { id: 8, blocks: [[2, 2, 2]], name: "Doctor Clinics", icon: Stethoscope, labelPos: { x: -140, y: 310 } },
-    { id: 9, blocks: [[1, 2, 2]], name: "Beauty", icon: Sparkles, labelPos: { x: -280, y: 220 } },
-    { id: 10, blocks: [[0, 2, 2]], name: "Consumer Products", icon: Package, labelPos: { x: -400, y: 110 } },
-    { id: 11, blocks: [[0, 2, 1]], name: "Education", icon: GraduationCap, labelPos: { x: -430, y: -10 } },
-    { id: 12, blocks: [[0, 2, 0]], name: "Salons", icon: Scissors, labelPos: { x: -400, y: -130 } },
-    { id: 13, blocks: [[0, 1, 0]], name: "Musical Industries", icon: Music, labelPos: { x: -280, y: -240 } },
-    { id: 14, blocks: [[0, 0, 0], [0, 0, 1]], name: "Hospitality", icon: Coffee, labelPos: { x: -140, y: -320 } },
+    { 
+        id: 0, 
+        blocks: [[0, 0, 2], [1, 0, 2], [2, 0, 2]], 
+        name: "D2C / E-commerce Brands", 
+        icon: ShoppingCart, 
+        labelPos: { x: -350, y: -220 },
+        subNiches: ["Fashion & apparel", "Skincare / beauty", "Supplements", "Jewelry", "Pet products"]
+    },
+    { 
+        id: 1, 
+        blocks: [[2, 0, 1], [2, 0, 0]], 
+        name: "Personal Brands & Coaches", 
+        icon: User, 
+        labelPos: { x: 350, y: -150 } 
+    },
+    { 
+        id: 2, 
+        blocks: [[2, 1, 0], [2, 2, 0]], 
+        name: "Local Service Businesses", 
+        icon: MapPin, 
+        labelPos: { x: 350, y: 150 } 
+    },
+    { 
+        id: 3, 
+        blocks: [[2, 2, 1], [2, 2, 2]], 
+        name: "SaaS Companies", 
+        icon: Cloud, 
+        labelPos: { x: 50, y: 350 } 
+    },
+    { 
+        id: 4, 
+        blocks: [[1, 2, 2], [0, 2, 2]], 
+        name: "Real Estate Developers", 
+        icon: Building, 
+        labelPos: { x: -250, y: 330 } 
+    },
+    { 
+        id: 5, 
+        blocks: [[0, 2, 1], [0, 2, 0]], 
+        name: "Healthcare Clinics", 
+        icon: Stethoscope, 
+        labelPos: { x: -400, y: 120 } 
+    },
+    { 
+        id: 6, 
+        blocks: [[0, 1, 0], [0, 0, 0], [0, 0, 1]], 
+        name: "High-Ticket Education", 
+        icon: GraduationCap, 
+        labelPos: { x: 200, y: -280 } 
+    },
 ];
