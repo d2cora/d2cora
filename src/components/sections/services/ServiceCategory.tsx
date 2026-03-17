@@ -70,7 +70,7 @@ export const ServiceCategory = React.memo(({
                 <div className="flex flex-col gap-4 md:gap-6">
                     <motion.div className="overflow-hidden pb-2 md:pb-4">
                         <motion.h2
-                            className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer"
+                            className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer text-[#1a1a1a]"
                             
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -124,7 +124,7 @@ export const ServiceCategory = React.memo(({
 
                 {/* Service Items & Link */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
-                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-lg md:text-xl">
+                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-lg md:text-xl text-[#1a1a1a]">
                         {category.items.map((item, itemIndex) => (
                             <motion.span
                                 key={itemIndex}
@@ -137,7 +137,7 @@ export const ServiceCategory = React.memo(({
                     </div>
                     <motion.a
                         href={`/services/${category.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
-                        className="group inline-flex items-center gap-2 font-medium text-lg whitespace-nowrap mt-4 md:mt-0 opacity-70 hover:opacity-100 transition-opacity"
+                        className="group inline-flex items-center gap-2 font-medium text-lg whitespace-nowrap mt-4 md:mt-0 opacity-70 hover:opacity-100 transition-opacity text-[#1a1a1a]"
                         
                     >
                         Learn More
