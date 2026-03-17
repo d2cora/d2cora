@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import React, { useCallback, useMemo } from 'react';
@@ -86,9 +87,7 @@ export const Navbar = React.memo(function Navbar() {
     const navLinks = useMemo(() => [
         { href: "/", label: "Home" },
         { href: "/about", label: "About Us" },
-        { href: "/#services", label: "Services" },
-        { href: "/#projects", label: "Our Work" },
-        { href: "/blogs", label: "Blogs" },
+        { href: "/services", label: "Services" },
         { href: "/contact", label: "Contact us" },
     ], []);
 
@@ -108,7 +107,7 @@ export const Navbar = React.memo(function Navbar() {
                         onClick={handleLinkClick}
                     >
                         <span className="font-heading font-bold text-xl tracking-wide">
-                            ChizelLabs
+                            d2cora
                         </span>
                     </Link>
 
@@ -173,14 +172,16 @@ export const Navbar = React.memo(function Navbar() {
 
                         {/* Left — d2cora Logo */}
                         <div className="flex-1 flex items-center">
-                            <Image
-                                src="/assets/d2cora full.svg"
-                                alt="d2cora"
-                                width={120}
-                                height={120}
-                                className="rounded-full"
-                                priority
-                            />
+                            <Link href="/">
+                                <Image
+                                    src="/assets/d2cora full.svg"
+                                    alt="d2cora"
+                                    width={130}
+                                    height={130}
+                                    className="rounded-full cursor-pointer hover:opacity-90 transition-opacity"
+                                    priority
+                                />
+                            </Link>
                         </div>
 
                         {/* Centre — Navigation links */}
@@ -213,6 +214,17 @@ export const Navbar = React.memo(function Navbar() {
                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                                 </svg>
                             </a>
+                            {/* Blog Icon */}
+                            <Link
+                                href="/blogs"
+                                className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 md:h-10 md:w-10 ${isDarkBackground
+                                        ? "bg-white/10 text-white hover:bg-white hover:text-black"
+                                        : "bg-black/10 text-black hover:bg-black hover:text-white"
+                                    }`}
+                                aria-label="Blogs"
+                            >
+                                <BookOpen className="h-4 w-4" />
+                            </Link>
                             {/* CTA Button */}
                             <Link
                                 href="/contact"

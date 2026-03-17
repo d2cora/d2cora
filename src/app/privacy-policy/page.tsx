@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-    title: "Privacy Policy | ChizelLabs",
-    description: "Privacy policy for ChizelLabs - Learn how we collect, use, and protect your data.",
+    title: "Privacy Policy | d2cora",
+    description: "Privacy policy for d2cora - Learn how we collect, use, and protect your data.",
 };
 
 export default function PrivacyPolicy() {
@@ -40,7 +40,7 @@ export default function PrivacyPolicy() {
                 <div className="max-w-4xl">
                     <div className="prose prose-invert prose-lg max-w-none">
                         <p className="text-gray-300 leading-relaxed mb-8">
-                            At ChizelLabs ("we", "our", "us"), we respect your privacy and are committed to
+                            At d2cora ("we", "our", "us"), we respect your privacy and are committed to
                             protecting the personal information you share with us. This Privacy Policy explains
                             how we collect, use, disclose, and safeguard your information when you visit our
                             website or use our services.
@@ -224,14 +224,14 @@ export default function PrivacyPolicy() {
                                 your data, contact us at:
                             </p>
                             <div className="bg-white/5 border border-white/10 rounded-lg p-6">
-                                <p className="text-white font-semibold text-lg mb-4">ChizelLabs</p>
+                                <p className="text-white font-semibold text-lg mb-4">d2cora</p>
                                 <p className="text-gray-300 mb-2">
                                     📧 Email:{" "}
                                     <a
-                                        href="mailto:info@chizellabs.com"
+                                        href="mailto:info@d2cora.com"
                                         className="text-white hover:underline"
                                     >
-                                        info@chizellabs.com
+                                        info@d2cora.com
                                     </a>
                                 </p>
                                 <p className="text-gray-300">📍 Location: Roorkee, India</p>

@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-    title: "Terms & Conditions | ChizelLabs",
-    description: "Terms and conditions for using ChizelLabs services.",
+    title: "Terms & Conditions | d2cora",
+    description: "Terms and conditions for using d2cora services.",
 };
 
 export default function TermsAndConditions() {
@@ -42,7 +42,7 @@ export default function TermsAndConditions() {
                 <div className="max-w-4xl">
                     <div className="prose prose-invert prose-lg max-w-none">
                         <p className="mb-12 leading-relaxed text-gray-300">
-                            Welcome to ChizelLabs ("we", "our", "us"). By accessing our website or using our
+                            Welcome to d2cora ("we", "our", "us"). By accessing our website or using our
                             services, you agree to comply with and be bound by these Terms & Conditions. If you
                             do not agree, please do not use our website or services.
                         </p>
@@ -53,7 +53,7 @@ export default function TermsAndConditions() {
                         <section className="mb-12">
                             <h2 className="mb-6 text-2xl font-bold text-white md:text-3xl">1. Services</h2>
                             <p className="mb-4 text-gray-300">
-                                ChizelLabs provides services including but not limited to:
+                                d2cora provides services including but not limited to:
                             </p>
                             <ul className="mb-6 list-disc space-y-2 pl-6 text-gray-300">
                                 <li>Website development</li>
@@ -138,11 +138,11 @@ export default function TermsAndConditions() {
                                     client, unless otherwise agreed
                                 </li>
                                 <li>
-                                    ChizelLabs retains the right to showcase completed work in portfolios, case
+                                    d2cora retains the right to showcase completed work in portfolios, case
                                     studies, and marketing materials
                                 </li>
                                 <li>
-                                    Any pre-existing tools, frameworks, or code owned by ChizelLabs remain our
+                                    Any pre-existing tools, frameworks, or code owned by d2cora remain our
                                     intellectual property
                                 </li>
                             </ul>
@@ -203,7 +203,7 @@ export default function TermsAndConditions() {
                             <p className="mb-4 text-gray-300">To the maximum extent permitted by law:</p>
                             <ul className="mb-4 list-disc space-y-2 pl-6 text-gray-300">
                                 <li>
-                                    ChizelLabs is not liable for indirect, incidental, or consequential damages
+                                    d2cora is not liable for indirect, incidental, or consequential damages
                                 </li>
                                 <li>
                                     We do not guarantee specific business results such as rankings, revenue, or
@@ -281,14 +281,14 @@ export default function TermsAndConditions() {
                                 For questions regarding these Terms & Conditions, contact:
                             </p>
                             <div className="rounded-lg border border-white/10 bg-white/5 p-6">
-                                <p className="mb-4 text-lg font-semibold text-white">ChizelLabs</p>
+                                <p className="mb-4 text-lg font-semibold text-white">d2cora</p>
                                 <p className="mb-2 text-gray-300">
                                     📧 Email:{" "}
                                     <a
-                                        href="mailto:info@chizellabs.com"
+                                        href="mailto:info@d2cora.com"
                                         className="text-white hover:underline"
                                     >
-                                        info@chizellabs.com
+                                        info@d2cora.com
                                     </a>
                                 </p>
                                 <p className="text-gray-300">📍 Location: Roorkee, India</p>

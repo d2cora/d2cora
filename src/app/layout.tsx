@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -17,9 +17,13 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 export const metadata: Metadata = {
-  title: "Chizel | Modern Web Development Agency",
+  title: "d2cora | Modern Web Development Agency",
   description: "We build clean, scalable web products. Web • Apps • UI",
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

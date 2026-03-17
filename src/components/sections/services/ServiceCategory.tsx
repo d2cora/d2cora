@@ -18,8 +18,8 @@ interface ServiceCategoryProps {
     categoryIndex: number;
     hoveredCategory: number | null;
     setHoveredCategory: (id: number | null) => void;
-    textColor: MotionValue<string>;
-    borderColor: MotionValue<string>;
+    
+    
 }
 
 export const ServiceCategory = React.memo(({
@@ -27,8 +27,8 @@ export const ServiceCategory = React.memo(({
     categoryIndex,
     hoveredCategory,
     setHoveredCategory,
-    textColor,
-    borderColor
+    
+    
 }: ServiceCategoryProps) => {
     return (
         <motion.div
@@ -36,8 +36,8 @@ export const ServiceCategory = React.memo(({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: categoryIndex * 0.1 }}
-            className="relative py-12 md:py-16 border-b overflow-hidden"
-            style={{ borderColor }}
+            className="relative py-12 md:py-16 border-b border-black/15 overflow-hidden"
+            style={{  }}
             onMouseEnter={() => setHoveredCategory(category.id)}
             onMouseLeave={() => setHoveredCategory(null)}
         >
@@ -71,7 +71,7 @@ export const ServiceCategory = React.memo(({
                     <motion.div className="overflow-hidden pb-2 md:pb-4">
                         <motion.h2
                             className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer"
-                            style={{ color: textColor }}
+                            
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
@@ -102,13 +102,13 @@ export const ServiceCategory = React.memo(({
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: categoryIndex * 0.1 + 0.4 }}
                             className="pl-4 md:pl-6 border-l-2 max-w-3xl mt-4"
-                            style={{ borderColor }}
+                            style={{  }}
                         >
                             <motion.p 
                                 className="text-xl md:text-2xl font-light italic leading-relaxed opacity-90"
                                 style={{ 
                                     fontFamily: 'var(--font-space-grotesk)',
-                                    color: textColor 
+                                    color: "#1a1a1a" 
                                 }}
                             >
                                 "{category.quote.split(/(\*.*?\*)/g).map((part, i) => {
@@ -129,7 +129,7 @@ export const ServiceCategory = React.memo(({
                             <motion.span
                                 key={itemIndex}
                                 className="opacity-70 hover:opacity-100 transition-opacity duration-200"
-                                style={{ color: textColor }}
+                                
                             >
                                 {item}
                             </motion.span>
@@ -138,7 +138,7 @@ export const ServiceCategory = React.memo(({
                     <motion.a
                         href={`/services/${category.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
                         className="group inline-flex items-center gap-2 font-medium text-lg whitespace-nowrap mt-4 md:mt-0 opacity-70 hover:opacity-100 transition-opacity"
-                        style={{ color: textColor }}
+                        
                     >
                         Learn More
                         <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

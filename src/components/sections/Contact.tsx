@@ -24,8 +24,8 @@ export const Contact = React.memo(function Contact() {
 
 
                         <Button size="lg" className="w-full rounded-none border border-white transition-all hover:bg-white hover:text-black" asChild>
-                            <a href="mailto:info@chizellabs.com">
-                                <Mail className="mr-2 h-4 w-4" /> info@chizellabs.com
+                            <a href="mailto:info@d2cora.com">
+                                <Mail className="mr-2 h-4 w-4" /> info@d2cora.com
                             </a>
                         </Button>
 
@@ -33,7 +33,7 @@ export const Contact = React.memo(function Contact() {
                     </div>
 
                     <div className="mt-12 flex justify-center gap-6 text-sm uppercase tracking-widest text-gray-400">
-                        <a href="https://www.linkedin.com/company/chizel-dev/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-b border-transparent transition-colors hover:border-white hover:text-white">
+                        <a href="https://www.linkedin.com/company/d2cora/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-b border-transparent transition-colors hover:border-white hover:text-white">
                             <Linkedin className="h-4 w-4" />
                             LinkedIn
                         </a>
@@ -60,7 +60,7 @@ export const Contact = React.memo(function Contact() {
                     </Link>
                 </div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-gray-600">
-                    © {new Date().getFullYear()} ChizelLabs. All rights reserved.
+                    © {new Date().getFullYear()} d2cora. All rights reserved.
                 </p>
             </footer>
         </section>

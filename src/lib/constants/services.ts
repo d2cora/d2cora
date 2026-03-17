@@ -14,10 +14,11 @@ export const serviceCategories = [
         outcomes: "Scalable revenue streams, lowered acquisition costs, clear attribution, and predictable profit margins.",
         bestFor: "E-commerce brands and SaaS companies ready to aggressively scale their user acquisition with data-backed spending.",
         images: [
-            "/assets/services/MÃO_SEGURANDO_PILHA_DE_NOTAS_DE_DINHEIRO_VETORIZADA-removebg-preview.png",
+            "/assets/services/hand_holding_money-removebg-preview.png",
             "/assets/services/Ideas-removebg-preview.png",
             "/assets/services/_-removebg-preview.png"
-        ]
+        ],
+        templateImage: "/assets/services pemplates/Performance marketing.png"
     },
     {
         id: 2,
@@ -36,7 +37,8 @@ export const serviceCategories = [
             "Failure to clearly articulate value proposition"
         ],
         outcomes: "Increased brand authority, higher user engagement, improved brand recall, and a loyal community of advocates.",
-        bestFor: "Brands looking to establish thought leadership and build a deeply engaged audience through storytelling."
+        bestFor: "Brands looking to establish thought leadership and build a deeply engaged audience through storytelling.",
+        templateImage: "/assets/services pemplates/Content marketing.png"
     },
     {
         id: 3,
@@ -55,6 +57,7 @@ export const serviceCategories = [
             "Inability to capitalize on current trends"
         ],
         outcomes: "Exponential growth in followers, high engagement rates, increased brand awareness, and culturally relevant positioning.",
-        bestFor: "B2C brands aiming to dominate social conversations and D2C companies wanting to build viral brand loyalty."
+        bestFor: "B2C brands aiming to dominate social conversations and D2C companies wanting to build viral brand loyalty.",
+        templateImage: "/assets/services pemplates/Social media marketing.png"
     },
 ];

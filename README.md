@@ -1,4 +1,4 @@
-# ChizelLabs
+# d2cora
 
 > **From interface to application. Done right.**
 
@@ -6,7 +6,7 @@ Premium apps crafted for bold brands.
 
 ## Who We Are
 
-ChizelLabs is a modern web development agency that transforms your vision into scalable, high-performance digital products. We specialize in creating clean, elegant interfaces that don't just look beautiful—they work flawlessly.
+d2cora is a modern web development agency that transforms your vision into scalable, high-performance digital products. We specialize in creating clean, elegant interfaces that don't just look beautiful—they work flawlessly.
 
 ## What We Do
 
@@ -68,7 +68,7 @@ We work with industry-leading tools and technologies:
 - **AI/ML**: TensorFlow
 - **Collaboration**: Notion
 
-## Why Choose ChizelLabs?
+## Why Choose d2cora?
 
 - **Quality First**: We don't compromise on quality. Every pixel matters.
 - **Performance Obsessed**: Fast, optimized, and scalable solutions.
@@ -79,9 +79,9 @@ We work with industry-leading tools and technologies:
 
 Ready to build something exceptional?
 
-[Contact us to discuss your project](https://chizel-blush.vercel.app/contact)  
-[Visit our website](https://chizel-blush.vercel.app/)
+[Contact us to discuss your project](https://d2cora.vercel.app/contact)  
+[Visit our website](https://d2cora.vercel.app/)
 
 ---
 
-**ChizelLabs** — Interfaces That Scale
+**d2cora** — Interfaces That Scale

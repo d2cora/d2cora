@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import { Hero } from "@/components/sections/Hero";
-import { Projects } from "@/components/sections/Projects";
 
 // Lazy load heavy components
 
@@ -12,12 +11,7 @@ const VisionSection = dynamic(() => import("@/components/sections/VisionSection"
 const GraphicPortfolio = dynamic(() => import("@/components/sections/GraphicPortfolio").then(mod => ({ default: mod.GraphicPortfolio })));
 
 import { TrustSignal } from "@/components/sections/TrustSignal";
-import { WhoWeHelp } from "@/components/sections/WhoWeHelp";
-import { TheProblem } from "@/components/sections/TheProblem";
-import { WhyChizelLabs } from "@/components/sections/WhyChizelLabs";
-import { OurProcess } from "@/components/sections/OurProcess";
-import { OurPhilosophy } from "@/components/sections/OurPhilosophy";
-import { CTA } from "@/components/sections/CTA";
+import { FAQ } from "@/components/sections/FAQ";
 
 export default function Home() {
   return (
@@ -28,13 +22,7 @@ export default function Home() {
       <VisionSection />
       <GraphicPortfolio />
       <Services />
-      <WhoWeHelp />
-      <TheProblem />
-      <WhyChizelLabs />
-      <Projects />
-      <OurProcess />
-      <OurPhilosophy />
-      <CTA />
+      <FAQ />
     </main>
   );
 }

@@ -86,7 +86,7 @@ export function NewsletterSignup() {
                         </svg>
                     </div>
                     <label htmlFor="newsletter-consent" className="text-xs text-gray-400 cursor-pointer leading-relaxed select-none">
-                        I agree to receive emails from ChizelLabs. You can unsubscribe at any time.
+                        I agree to receive emails from d2cora. You can unsubscribe at any time.
                     </label>
                 </div>
 

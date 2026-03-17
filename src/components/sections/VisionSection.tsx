@@ -52,11 +52,26 @@ export function VisionSection() {
                     className="relative z-10 w-full max-w-7xl px-4 md:px-12 text-center flex flex-col items-center justify-center gap-6"
                     style={{ opacity, y: textY }}
                 >
-                    <motion.h2 
-                        className="text-4xl md:text-6xl lg:text-[5.5rem] font-serif font-light tracking-tight leading-tight lg:leading-[1.1] text-balance text-white"
-                    >
-                        Discover <span className="italic font-light opacity-90">timeless ideas</span> that inspire authentic brands and transform execution into market leading dominance.
-                    </motion.h2>
+                    <h2 className="text-4xl md:text-6xl lg:text-[5.5rem] font-serif font-light tracking-tight leading-tight lg:leading-[1.1] text-balance text-white">
+                        {"Discover timeless ideas that inspire authentic brands and transform execution into market leading dominance.".split(" ").map((word, i) => (
+                            <motion.span
+                                key={i}
+                                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                transition={{ 
+                                    duration: 0.8, 
+                                    delay: i * 0.05,
+                                    ease: [0.16, 1, 0.3, 1] 
+                                }}
+                                viewport={{ once: true }}
+                                className={`inline-block mr-[0.2em] ${
+                                    (word === "timeless" || word === "ideas") ? "italic font-light opacity-90" : ""
+                                }`}
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
+                    </h2>
                 </motion.div>
 
             </div>
