@@ -102,12 +102,17 @@ export const Navbar = React.memo(function Navbar() {
                     {/* Logo */}
                     <Link
                         href="/"
-                        className="z-50 flex items-center gap-2 text-white transition-opacity hover:opacity-90"
+                        className="z-50 flex items-center transition-opacity hover:opacity-90"
                         onClick={handleLinkClick}
                     >
-                        <span className="font-heading font-bold text-xl tracking-wide">
-                            d2cora
-                        </span>
+                        <Image
+                            src="/assets/d2cora full.svg"
+                            alt="d2cora"
+                            width={110}
+                            height={110}
+                            className="cursor-pointer"
+                            priority
+                        />
                     </Link>
 
                     {/* Mobile Menu Button */}

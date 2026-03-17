@@ -142,12 +142,21 @@ function StarryBackground() {
 function FloatingSketches() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const springConfig = { stiffness: 40, damping: 20 };
   const smoothX = useTransform(useSpring(mouseX, springConfig), (v) => -v);
   const smoothY = useTransform(useSpring(mouseY, springConfig), (v) => -v);
 
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     let rafId: number;
     const handleMouseMove = (e: MouseEvent) => {
       cancelAnimationFrame(rafId);
@@ -156,43 +165,46 @@ function FloatingSketches() {
         mouseY.set((e.clientY / window.innerHeight - 0.5) * 50);
       });
     };
-
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(rafId);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
+
+  const maskStyle = isMobile
+    ? {}
+    : {
+        maskImage: "linear-gradient(to right, transparent 0%, black 20%, black 100%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%, black 100%)",
+      };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5, delay: 0.5 }}
-      style={{ maskImage: "linear-gradient(to right, transparent 0%, black 20%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%, black 100%)" }}
-      className="pointer-events-auto absolute bottom-0 right-0 top-0 hidden w-full overflow-hidden mix-blend-screen lg:block lg:w-[65%]"
+      style={maskStyle}
+      className="pointer-events-auto absolute bottom-0 right-0 top-0 block w-full overflow-hidden mix-blend-screen lg:w-[65%]"
     >
       <StarryBackground />
 
       {/* Floating parallax container guided by mouse position */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 h-full w-full"
         style={{ x: smoothX, y: smoothY }}
       >
-        {/* You need to save those 4 attachments inside /public/assets/services/ with these exact names! */}
-        
         {/* 1. Camera - Bottom Left */}
-        <DrawnElement src="/assets/services/content_marketing_camera-removebg-preview.png" className="w-75 h-75 bottom-[10%] left-[5%]" delay={1.2} rotationOffset={-12} />
-        
+        <DrawnElement src="/assets/services/content_marketing_camera-removebg-preview.png" className="h-36 w-36 bottom-[10%] left-[5%] lg:h-75 lg:w-75" delay={1.2} rotationOffset={-12} />
+
         {/* 2. Megaphone - Top Left */}
-        <DrawnElement src="/assets/services/mic_social_media__1_-removebg-preview.png" className="h-65 w-65 left-[20%] top-[10%]" delay={1.8} rotationOffset={15} />
-        
+        <DrawnElement src="/assets/services/mic_social_media__1_-removebg-preview.png" className="h-28 w-28 left-[20%] top-[10%] lg:h-65 lg:w-65" delay={1.8} rotationOffset={15} />
+
         {/* 3. Money Hand - Top Right */}
-        <DrawnElement src="/assets/services/Untitled_design-removebg-preview.png" className="h-150 w-150 right-[5%] top-[15%]" delay={2.5} rotationOffset={-5} />
+        <DrawnElement src="/assets/services/Untitled_design-removebg-preview.png" className="h-52 w-52 right-[5%] top-[15%] lg:h-150 lg:w-150" delay={2.5} rotationOffset={-5} />
 
         {/* 4. Speaker Guy - Bottom Right */}
-        <DrawnElement src="/assets/services/speaker_social_marketing-removebg-preview.png" className="h-70 w-70 bottom-[5%] right-[20%]" delay={3.0} rotationOffset={8} />
-
+        <DrawnElement src="/assets/services/speaker_social_marketing-removebg-preview.png" className="h-36 w-36 bottom-[5%] right-[20%] lg:h-70 lg:w-70" delay={3.0} rotationOffset={8} />
       </motion.div>
       <div className="bg-linear-to-t pointer-events-none absolute inset-0 z-30 from-black/80 via-transparent to-transparent" />
     </motion.div>
