@@ -17,8 +17,8 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 export const metadata: Metadata = {
-  title: "d2cora | Modern Web Development Agency",
-  description: "We build clean, scalable web products. Web • Apps • UI",
+  title: "d2cora | Digital Marketing Agency for D2C Brands",
+  description: "d2cora — Performance marketing, CRO, and growth for D2C brands.",
 };
 
 export const viewport: Viewport = {
