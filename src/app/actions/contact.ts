@@ -17,7 +17,7 @@ export async function submitContactForm(formData: FormData) {
             console.error("Server: RESEND_API_KEY not found");
             return {
                 success: false,
-                message: "Email service not configured. Please contact us directly at info@d2cora.com"
+                message: "Email service not configured. Please contact us directly at hello@d2cora.com"
             };
         }
 
@@ -26,8 +26,8 @@ export async function submitContactForm(formData: FormData) {
         console.log("Server: Sending email via Resend:", { name, email, hasPhone: !!phone });
 
         const { data, error } = await resend.emails.send({
-            from: 'd2cora Contact Form <info@d2cora.com>',
-            to: ['info@d2cora.com'],
+            from: 'onboarding@resend.dev',
+            to: ['d2cora22@gmail.com'],
             subject: `${subject} - from ${name}`,
             replyTo: email,
             html: `

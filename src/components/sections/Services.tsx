@@ -12,15 +12,15 @@ export function Services() {
     return (
         <section
             id="services"
-            className="pt-0 pb-20 relative overflow-hidden bg-[#f4f0e6]"
+            className="relative overflow-hidden bg-[#f4f0e6] pb-20 pt-0"
         >
             {/* Top separator line */}
             <div
-                className="absolute top-0 left-0 right-0 h-0.5 bg-black/15"
+                className="bg-black/15 absolute left-0 right-0 top-0 h-0.5"
             />
 
             {/* Animated marquee text at top */}
-            <div className="overflow-hidden whitespace-nowrap mb-20 relative">
+            <div className="relative mb-20 overflow-hidden whitespace-nowrap">
                 <motion.div
                     className="inline-block"
                     animate={{ x: [0, -1000] }}
@@ -30,23 +30,23 @@ export function Services() {
                         ease: "linear",
                     }}
                 >
-                    <span className="text-[120px] md:text-[200px] font-light tracking-tight">
-                        <span className="font-bold opacity-100 text-[#1a1a1a]">©</span>
-                        <span className="opacity-10 text-[#1a1a1a]"> services </span>
-                        <span className="font-bold opacity-100 text-[#1a1a1a]">©</span>
-                        <span className="opacity-10 text-[#1a1a1a]"> services </span>
-                        <span className="font-bold opacity-100 text-[#1a1a1a]">©</span>
-                        <span className="opacity-10 text-[#1a1a1a]"> services</span>
+                    <span className="text-[120px] font-light tracking-tight md:text-[200px]">
+                        <span className="font-bold text-[#1a1a1a] opacity-100">©</span>
+                        <span className="text-[#1a1a1a] opacity-10"> services </span>
+                        <span className="font-bold text-[#1a1a1a] opacity-100">©</span>
+                        <span className="text-[#1a1a1a] opacity-10"> services </span>
+                        <span className="font-bold text-[#1a1a1a] opacity-100">©</span>
+                        <span className="text-[#1a1a1a] opacity-10"> services</span>
                     </span>
                 </motion.div>
 
                 {/* Bottom line for marquee section */}
                 <div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-black/15"
+                    className="bg-black/15 absolute bottom-0 left-0 right-0 h-0.5"
                 />
             </div>
 
-            <div className="px-6 md:px-16 relative z-10">
+            <div className="relative z-10 px-6 md:px-16">
                 {/* Services Categories */}
                 <div className="space-y-0">
                     {serviceCategories.map((category, categoryIndex) => (

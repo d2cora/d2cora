@@ -228,10 +228,10 @@ export default function PrivacyPolicy() {
                                 <p className="text-gray-300 mb-2">
                                     📧 Email:{" "}
                                     <a
-                                        href="mailto:info@d2cora.com"
+                                        href="mailto:hello@d2cora.com"
                                         className="text-white hover:underline"
                                     >
-                                        info@d2cora.com
+                                        hello@d2cora.com
                                     </a>
                                 </p>
                                 <p className="text-gray-300">📍 Location: Roorkee, India</p>
