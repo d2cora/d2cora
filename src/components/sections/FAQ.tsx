@@ -97,8 +97,8 @@ export function FAQ() {
       </div>
 
       {/* Background Decorative Elements */}
-      <div className="pointer-events-none absolute -right-1/4 top-1/4 h-96 w-96 rounded-full bg-white/5 blur-[100px]" />
-      <div className="pointer-events-none absolute -left-1/4 bottom-0 h-96 w-96 rounded-full bg-white/5 blur-[100px]" />
+      <div className="pointer-events-none absolute -right-1/4 top-1/4 hidden h-96 w-96 rounded-full bg-white/5 blur-[100px] md:block" />
+      <div className="pointer-events-none absolute -left-1/4 bottom-0 hidden h-96 w-96 rounded-full bg-white/5 blur-[100px] md:block" />
     </section>
   );
 }

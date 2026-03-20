@@ -80,8 +80,7 @@ function DrawnElement({ src, className, delay, rotationOffset }: DrawnProps) {
             width="500" 
             height="500" 
             mask={`url(#revealMask-${uniqueId})`} 
-            className="object-contain opacity-80" 
-            style={{ filter: `grayscale(100%) drop-shadow(0px 10px 15px rgba(0,0,0,0.5))` }}
+            className="object-contain opacity-80 grayscale drop-shadow-md md:drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]" 
           />
         </svg>
 
@@ -89,11 +88,10 @@ function DrawnElement({ src, className, delay, rotationOffset }: DrawnProps) {
         {/* After the pencil mask finishes drawing, the original image blooms into its full color */}
         <motion.img 
           src={src}
-          className="absolute inset-0 h-full w-full object-contain"
+          className="absolute inset-0 h-full w-full object-contain drop-shadow-lg md:drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2.0, delay: delay + 4.5, ease: "easeOut" }}
-          style={{ filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.8))" }}
         />
       </div>
     </motion.div>
@@ -104,7 +102,11 @@ function StarryBackground() {
   const [stars, setStars] = useState<Array<{ cx: string; cy: string; r: number; fill: string; duration: number }>>([]);
 
   useEffect(() => {
-    setStars(Array.from({ length: 150 }).map(() => ({
+    // Reduce star count on mobile for performance
+    const isMobile = window.innerWidth < 768;
+    const starCount = isMobile ? 40 : 150;
+    
+    setStars(Array.from({ length: starCount }).map(() => ({
       cx: `${Math.random() * 100}%`,
       cy: `${Math.random() * 100}%`,
       r: Math.random() * 1.5 + 0.5,

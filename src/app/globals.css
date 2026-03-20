@@ -75,6 +75,12 @@ body {
     pointer-events: none;
 }
 
+@media (max-width: 768px) {
+    .blob {
+        display: none !important;
+    }
+}
+
 .blob-1 {
     width: 600px;
     height: 600px;

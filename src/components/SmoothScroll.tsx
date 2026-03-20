@@ -9,6 +9,12 @@ export function SmoothScroll() {
 
         // Dynamically import Lenis to avoid SSR issues
         (async () => {
+            // Disable Lenis on touch devices for better mobile performance
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            if (isTouchDevice) {
+                return;
+            }
+
             const Lenis = (await import("lenis")).default;
 
             lenisInstance = new Lenis({

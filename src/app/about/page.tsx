@@ -61,7 +61,7 @@ export default function AboutPage() {
                     
                     {/* Benefits Card Info-graphic */}
                     <div className="bg-[#1a1a2e] rounded-[40px] p-8 md:p-12 text-white shadow-2xl overflow-hidden relative">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[50px] md:blur-[100px] opacity-20 -mr-20 -mt-20"></div>
                         <h3 className="text-2xl font-bold mb-8">This integrated approach allows our clients to:</h3>
                         <div className="space-y-6 relative z-10">
                             {[
@@ -258,7 +258,7 @@ export default function AboutPage() {
                             transition={{ delay: 0.2 }}
                             className="bg-[#1a1a2e] rounded-[40px] p-10 md:p-12 border border-white/5 relative overflow-hidden"
                         >
-                            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#3366FF]/20 rounded-full blur-[80px]"></div>
+                            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#3366FF]/20 rounded-full blur-[40px] md:blur-[80px]"></div>
                             <Users className="w-12 h-12 text-[#3366FF] mb-8" />
                             <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-8 text-white">Our Vision</h2>
                             <div className="space-y-6 text-gray-300 font-medium text-lg relative z-10">
