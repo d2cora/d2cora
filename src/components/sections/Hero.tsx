@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const DARK = "#1524ca";
 const LIGHT = "#afccfb";
@@ -20,123 +20,87 @@ interface DrawnProps {
   rotationOffset: number;
 }
 
+// Simplified floating element — single image that fades in and float-bobs continuously.
+// Removed the heavy dual-SVG-mask path animation and infinite rotation loop.
 function DrawnElement({ src, className, delay, rotationOffset }: DrawnProps) {
-  // A deliberately chaotic SVG scribble that loops back and forth to fill the 500x500 space
-  // With a fat stroke-width, this acts as an eraser/revealer that paints the image
-  const scribblePath1 = "M 50 100 L 450 120 L 30 180 L 480 230 L 20 300 L 460 360 L 40 430 L 450 480 L 10 520";
-  const scribblePath2 = "M 480 80 L 20 150 L 460 210 L 40 280 L 450 340 L 30 400 L 470 460 L 20 500";
-  const uniqueId = src.replace(/[^a-zA-Z0-9]/g, '');
-
   return (
     <motion.div
-      className={`absolute drop-shadow-2xl ${className}`}
+      className={`absolute drop-shadow-xl ${className}`}
+      style={{ rotate: rotationOffset, willChange: "transform" }}
       initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ 
-        opacity: 1, 
+      animate={{
+        opacity: 1,
         scale: 1,
-        y: [0, -15, 0], 
-        rotate: [rotationOffset, rotationOffset + 3, rotationOffset - 3, rotationOffset] 
+        y: [0, -14, 0],
       }}
       transition={{
-        opacity: { duration: 0.5, delay },
+        opacity: { duration: 0.6, delay },
         scale: { duration: 0.8, delay, type: "spring" },
-        // Use delay property to create pseudo-random but deterministic animations so no hydration errors
-        y: { duration: 6 + (delay % 2) * 4, repeat: Infinity, ease: "easeInOut" },
-        rotate: { duration: 8 + (delay % 1.5) * 3, repeat: Infinity, ease: "easeInOut" }
+        y: { duration: 6 + delay % 2 * 3, repeat: Infinity, ease: "easeInOut", delay: delay * 0.5 },
       }}
     >
-      <div className="relative h-full w-full">
-        {/* Layer 1: Sketch stroke reveal using SVG Mask */}
-        <svg viewBox="0 0 500 500" className="absolute inset-0 h-full w-full overflow-visible">
-          <defs>
-            <mask id={`revealMask-${uniqueId}`}>
-              <motion.path
-                d={scribblePath1}
-                fill="none"
-                stroke="white"
-                strokeWidth="100"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 3.5, delay: delay + 0.2, ease: "easeInOut" }}
-              />
-              <motion.path
-                d={scribblePath2}
-                fill="none"
-                stroke="white"
-                strokeWidth="120"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 3.5, delay: delay + 1.2, ease: "easeInOut" }}
-              />
-            </mask>
-          </defs>
-          
-          <image 
-            href={src} 
-            width="500" 
-            height="500" 
-            mask={`url(#revealMask-${uniqueId})`} 
-            className="object-contain opacity-80 grayscale drop-shadow-md md:drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]" 
-          />
-        </svg>
-
-        {/* Layer 2: Full Color Fade In */}
-        {/* After the pencil mask finishes drawing, the original image blooms into its full color */}
-        <motion.img 
-          src={src}
-          className="absolute inset-0 h-full w-full object-contain drop-shadow-lg md:drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.0, delay: delay + 4.5, ease: "easeOut" }}
-        />
-      </div>
+      <motion.img
+        src={src}
+        alt=""
+        className="h-full w-full object-contain opacity-85"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.85 }}
+        transition={{ duration: 1.2, delay: delay + 0.3, ease: "easeOut" }}
+        loading="eager"
+      />
     </motion.div>
   );
 }
 
+// StarryBackground: static SVG stars + subtle CSS pulse — no JS-driven continuous animation.
 function StarryBackground() {
-  const [stars, setStars] = useState<Array<{ cx: string; cy: string; r: number; fill: string; duration: number }>>([]);
+  const [stars, setStars] = useState<
+    Array<{ cx: string; cy: string; r: number; fill: string; duration: number }>
+  >([]);
 
   useEffect(() => {
-    // Reduce star count on mobile for performance
     const isMobile = window.innerWidth < 768;
-    const starCount = isMobile ? 40 : 150;
-    
-    setStars(Array.from({ length: starCount }).map(() => ({
-      cx: `${Math.random() * 100}%`,
-      cy: `${Math.random() * 100}%`,
-      r: Math.random() * 1.5 + 0.5,
-      fill: Math.random() > 0.8 ? "#fca311" : "#ffffff",
-      duration: Math.random() * 3 + 2,
-    })));
+    // Reduced counts: 20 mobile / 60 desktop (was 40/150)
+    const starCount = isMobile ? 20 : 60;
+
+    setStars(
+      Array.from({ length: starCount }).map(() => ({
+        cx: `${Math.random() * 100}%`,
+        cy: `${Math.random() * 100}%`,
+        r: Math.random() * 1.5 + 0.5,
+        fill: Math.random() > 0.8 ? "#fca311" : "#ffffff",
+        duration: Math.random() * 3 + 2,
+      }))
+    );
   }, []);
 
   return (
     <>
       <div className="absolute inset-0 bg-[#02000a] opacity-90 mix-blend-multiply transition-colors duration-1000" />
-      <div 
-        className="absolute inset-0 opacity-10" 
-        style={{ backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} 
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
       />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-blue-900/40 via-transparent to-transparent" />
-      <motion.div className="pointer-events-none absolute inset-0" animate={{ y: [0, -30, 0] }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }}>
-        <svg className="absolute inset-0 h-[150%] w-full">
-          {stars.map((star, i) => (
-            <circle
-              key={i} cx={star.cx} cy={star.cy} r={star.r}
-              fill={star.fill}
-              style={{
-                animation: `starPulse ${star.duration}s infinite ease-in-out`,
-                animationDelay: `${i % 5}s`
-              }}
-            />
-          ))}
-        </svg>
-      </motion.div>
+      {/* Stars rendered as plain SVG — no JS animation loop, only lightweight CSS keyframe */}
+      <svg className="pointer-events-none absolute inset-0 h-full w-full">
+        {stars.map((star, i) => (
+          <circle
+            key={i}
+            cx={star.cx}
+            cy={star.cy}
+            r={star.r}
+            fill={star.fill}
+            style={{
+              animation: `starPulse ${star.duration}s infinite ease-in-out`,
+              animationDelay: `${i % 5}s`,
+            }}
+          />
+        ))}
+      </svg>
     </>
   );
 }
@@ -186,7 +150,7 @@ function FloatingSketches() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5, delay: 0.5 }}
-      style={maskStyle}
+      style={{ ...maskStyle, willChange: "opacity" }}
       className="pointer-events-auto absolute bottom-0 right-0 top-0 block w-full overflow-hidden mix-blend-screen lg:w-[65%]"
     >
       <StarryBackground />
@@ -194,7 +158,7 @@ function FloatingSketches() {
       {/* Floating parallax container guided by mouse position */}
       <motion.div
         className="absolute inset-0 h-full w-full"
-        style={{ x: smoothX, y: smoothY }}
+        style={{ x: smoothX, y: smoothY, willChange: "transform" }}
       >
         {/* 1. Camera - Bottom Left */}
         <DrawnElement src="/assets/services/content_marketing_camera-removebg-preview.png" className="h-36 w-36 bottom-[10%] left-[5%] lg:h-75 lg:w-75" delay={1.2} rotationOffset={-12} />
@@ -218,14 +182,13 @@ export function Hero() {
   const { scrollY } = useScroll();
   const [isCentered, setIsCentered] = useState(true);
 
-  // We use direct `scrollY` instead of `useSpring` to perfectly sync with the scrollbar.
+  // GPU-composited transform only — no layout thrash
   const y = useTransform(scrollY, [0, 1000], [0, -400], { clamp: false });
 
   useEffect(() => {
-    // Initial reveal in center, then move to position after a short delay
     const timer = setTimeout(() => {
       setIsCentered(false);
-    }, 1800); // 1.8s delay to allow for the reveal animation to breath in center
+    }, 1800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -259,24 +222,24 @@ export function Hero() {
       <FloatingSketches />
 
       {/* Typography Container */}
-      <motion.div 
+      <motion.div
         layout
-        transition={{ 
-          duration: 2, 
-          ease: [0.16, 1, 0.3, 1]
+        transition={{
+          duration: 2,
+          ease: [0.16, 1, 0.3, 1],
         }}
         className={`relative z-10 flex w-full items-center px-6 md:px-14 lg:px-20 ${
           isCentered ? "justify-center" : "justify-start"
         }`}
       >
-        <motion.div 
-          layout 
+        <motion.div
+          layout
           className={`flex flex-col ${
             isCentered ? "items-center text-center" : "items-start text-left"
           }`}
-          transition={{ 
-            duration: 2, 
-            ease: [0.16, 1, 0.3, 1]
+          transition={{
+            duration: 2,
+            ease: [0.16, 1, 0.3, 1],
           }}
         >
           <motion.div className="flex items-baseline gap-[0.15em] leading-none" {...fadeUp(0.2)}>

@@ -10,18 +10,21 @@ export function TrustSignal() {
         offset: ["start 80%", "start 20%"]
     });
 
-    const backgroundColor = useTransform(
-        scrollYProgress,
-        [0, 1],
-        ["#FDFBF7", "#86c6a6ff"] // Warm White to Light Mint Green
-    );
+    // Use opacity on a composited overlay instead of animating backgroundColor
+    // (backgroundColor changes trigger style recalculations on every scroll tick)
+    const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
     return (
-        <motion.section 
+        <section
             ref={containerRef}
             className="relative z-10 w-full overflow-hidden border-b border-black/5 py-16 md:py-24"
-            style={{ backgroundColor }}
+            style={{ backgroundColor: "#FDFBF7" }}
         >
+            {/* Mint green overlay — opacity-animated = GPU composited, zero repaint cost */}
+            <motion.div
+                className="pointer-events-none absolute inset-0 z-0"
+                style={{ backgroundColor: "#86c6a6", opacity: overlayOpacity, willChange: "opacity" }}
+            />
             {/* Subtle Grain Overlay */}
             <div
                 className="pointer-events-none absolute inset-0 opacity-[0.3]"
@@ -87,25 +90,25 @@ export function TrustSignal() {
                     </div>
 
                     {/* Metric Scorecards */}
-                    <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4 whitespace-nowrap">
+                    <div className="mb-8 grid grid-cols-2 gap-4 whitespace-nowrap lg:grid-cols-4">
                         <div className="flex flex-col border-b-2 border-blue-500 pb-3">
-                            <span className="flex items-center gap-1.5 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-gray-500">
                                 Clicks <span className="inline-block h-2 w-2 rounded-full bg-blue-500"></span>
                             </span>
                             <span className="mt-2 flex items-baseline gap-2 text-2xl font-bold text-gray-900">
                                 45.2K <span className="text-xs font-medium text-emerald-500">+12%</span>
                             </span>
                         </div>
-                        <div className="flex flex-col border-b-2 border-transparent pb-3 opacity-70 transition-opacity hover:opacity-100 cursor-default">
-                            <span className="flex items-center gap-1.5 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex cursor-default flex-col border-b-2 border-transparent pb-3 opacity-70 transition-opacity hover:opacity-100">
+                            <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-gray-500">
                                 Impressions
                             </span>
                             <span className="mt-2 flex items-baseline gap-2 text-2xl font-bold text-gray-900">
                                 1.2M <span className="text-xs font-medium text-emerald-500">+8%</span>
                             </span>
                         </div>
-                        <div className="flex flex-col border-b-2 border-transparent pb-3 opacity-70 transition-opacity hover:opacity-100 cursor-default">
-                            <span className="flex items-center gap-1.5 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex cursor-default flex-col border-b-2 border-transparent pb-3 opacity-70 transition-opacity hover:opacity-100">
+                            <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-gray-500">
                                 Avg. CPC
                             </span>
                             <span className="mt-2 flex items-baseline gap-2 text-2xl font-bold text-gray-900">
@@ -113,7 +116,7 @@ export function TrustSignal() {
                             </span>
                         </div>
                         <div className="flex flex-col border-b-2 border-orange-500 pb-3">
-                            <span className="flex items-center gap-1.5 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-gray-500">
                                 Conversions <span className="inline-block h-2 w-2 rounded-full bg-orange-500"></span>
                             </span>
                             <span className="mt-2 flex items-baseline gap-2 text-2xl font-bold text-gray-900">
@@ -123,7 +126,7 @@ export function TrustSignal() {
                     </div>
 
                     {/* Chart Area */}
-                    <div className="relative mt-auto flex min-h-[220px] w-full flex-1 items-end">
+                    <div className="min-h-55 relative mt-auto flex w-full flex-1 items-end">
                         {/* Y-axis labels */}
                         <div className="absolute left-0 top-0 z-10 flex h-full w-8 flex-col justify-between py-4 text-[10px] font-medium text-gray-400">
                             <span>4k</span>
@@ -134,14 +137,14 @@ export function TrustSignal() {
                         </div>
                         
                         {/* Grid lines */}
-                        <div className="absolute inset-0 z-0 flex flex-col justify-between pl-8 py-5">
+                        <div className="absolute inset-0 z-0 flex flex-col justify-between py-5 pl-8">
                             {[...Array(5)].map((_, i) => (
                                 <div key={i} className="h-0 w-full border-t border-dashed border-gray-200" />
                             ))}
                         </div>
 
                         {/* Chart SVG */}
-                        <div className="absolute inset-0 z-20 overflow-hidden pl-8 pb-5 pt-5">
+                        <div className="absolute inset-0 z-20 overflow-hidden pb-5 pl-8 pt-5">
                             <svg className="h-full w-full" preserveAspectRatio="none" viewBox="0 0 500 200">
                                 {/* Gradient Fills */}
                                 <defs>
@@ -212,6 +215,6 @@ export function TrustSignal() {
                     </div>
                 </motion.div>
             </div>
-        </motion.section>
+        </section>
     );
 }

@@ -13,26 +13,26 @@ export default function AboutPage() {
     return (
         <main className="min-h-screen bg-white pb-20">
             {/* Header Section */}
-            <section className="max-w-350 mx-auto px-6 pb-12 pt-40 md:px-12 lg:px-20 text-center">
+            <section className="max-w-350 mx-auto px-6 pb-12 pt-40 text-center md:px-12 lg:px-20">
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={fadeUp}
-                    className="max-w-5xl mx-auto"
+                    className="mx-auto max-w-5xl"
                 >
                     <h1 className="mb-8 text-5xl font-black leading-[0.9] tracking-tighter text-black md:text-7xl lg:text-[80px]">
                         We Build Digital Systems for <span className="text-[#3366FF]">Real Growth</span>
                     </h1>
-                    <div className="space-y-6 text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-4xl mx-auto text-balance">
+                    <div className="text-balance mx-auto max-w-4xl space-y-6 text-xl font-medium leading-relaxed text-gray-600 md:text-2xl">
                         <p>
-                            <span className="text-black font-bold">d2cora</span> was founded on a simple belief: most businesses don't fail online because of lack of effort — they fail because their digital growth is fragmented, slow, and poorly executed.
+                            <span className="font-bold text-black">d2cora</span> was founded on a simple belief: most businesses don't fail online because of lack of effort — they fail because their digital growth is fragmented, slow, and poorly executed.
                         </p>
-                        <div className="py-6 px-4 md:px-10 my-8 border-l-4 border-[#3366FF] bg-blue-50/50 rounded-r-3xl text-left italic text-gray-700">
+                        <div className="my-8 rounded-r-3xl border-l-4 border-[#3366FF] bg-blue-50/50 px-4 py-6 text-left italic text-gray-700 md:px-10">
                             <p className="mb-2">Websites are built without strategy.</p>
                             <p className="mb-2">Marketing runs without conversion thinking.</p>
                             <p>Technology scales without clarity.</p>
                         </div>
-                        <p className="text-black font-bold text-2xl">
+                        <p className="text-2xl font-bold text-black">
                             d2cora exists to bring focus, ownership, and execution into digital growth.
                         </p>
                     </div>
@@ -46,24 +46,24 @@ export default function AboutPage() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={fadeUp}
-                    className="grid lg:grid-cols-2 gap-16 items-center"
+                    className="grid items-center gap-16 lg:grid-cols-2"
                 >
                     <div>
-                        <h2 className="text-4xl md:text-6xl font-black text-black tracking-tighter mb-8 leading-[1.1]">
+                        <h2 className="mb-8 text-4xl font-black leading-[1.1] tracking-tighter text-black md:text-6xl">
                             From Idea to Scale — <br /><span className="text-[#FF5722]">Under One Roof</span>
                         </h2>
-                        <div className="space-y-6 text-gray-600 text-lg md:text-xl font-medium">
+                        <div className="space-y-6 text-lg font-medium text-gray-600 md:text-xl">
                             <p>We are a digital growth agency specializing in website development, app development, and performance marketing.</p>
-                            <p className="text-black font-bold">But more importantly, we build complete digital systems — not isolated services.</p>
+                            <p className="font-bold text-black">But more importantly, we build complete digital systems — not isolated services.</p>
                             <p>From strategy and UX to development, SEO, paid marketing, and ongoing maintenance, everything we do is designed around one goal: helping businesses grow faster, smarter, and more predictably.</p>
                         </div>
                     </div>
                     
                     {/* Benefits Card Info-graphic */}
-                    <div className="bg-[#1a1a2e] rounded-[40px] p-8 md:p-12 text-white shadow-2xl overflow-hidden relative">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[50px] md:blur-[100px] opacity-20 -mr-20 -mt-20"></div>
-                        <h3 className="text-2xl font-bold mb-8">This integrated approach allows our clients to:</h3>
-                        <div className="space-y-6 relative z-10">
+                    <div className="relative overflow-hidden rounded-[40px] bg-[#1a1a2e] p-8 text-white shadow-2xl md:p-12">
+                        <div className="absolute right-0 top-0 -mr-20 -mt-20 h-64 w-64 rounded-full bg-blue-500 opacity-20 blur-[50px] md:blur-[100px]"></div>
+                        <h3 className="mb-8 text-2xl font-bold">This integrated approach allows our clients to:</h3>
+                        <div className="relative z-10 space-y-6">
                             {[
                                 "Launch faster without hiring a full internal team",
                                 "Reduce operational complexity",
@@ -75,9 +75,9 @@ export default function AboutPage() {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.2, duration: 0.5 }}
-                                    className="flex items-center gap-4 bg-white/10 p-5 rounded-2xl border border-white/5 backdrop-blur-sm"
+                                    className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/10 p-5 backdrop-blur-sm"
                                 >
-                                    <CheckCircle2 className="text-[#3366FF] w-8 h-8 shrink-0" />
+                                    <CheckCircle2 className="h-8 w-8 shrink-0 text-[#3366FF]" />
                                     <span className="text-lg font-medium">{item}</span>
                                 </motion.div>
                             ))}
@@ -87,20 +87,20 @@ export default function AboutPage() {
             </section>
 
             {/* Who We Work With */}
-            <section className="bg-gray-50 py-24 mt-12">
+            <section className="mt-12 bg-gray-50 py-24">
                 <div className="max-w-350 mx-auto px-6 md:px-12 lg:px-20">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={fadeUp}
-                        className="text-center mb-16"
+                        className="mb-16 text-center"
                     >
-                        <h2 className="text-4xl md:text-6xl font-black text-black tracking-tighter mb-6">Who We Work With</h2>
-                        <p className="text-xl text-gray-600 font-medium">We partner with ambitious teams to drive real results.</p>
+                        <h2 className="mb-6 text-4xl font-black tracking-tighter text-black md:text-6xl">Who We Work With</h2>
+                        <p className="text-xl font-medium text-gray-600">We partner with ambitious teams to drive real results.</p>
                     </motion.div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid gap-8 md:grid-cols-3">
                         {[
                             {
                                 icon: Target,
@@ -130,17 +130,17 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.6, delay: idx * 0.15 }}
-                                className={`${item.bg} rounded-4xl p-8 md:p-10 text-white relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 shadow-xl`}
+                                className={`${item.bg}rounded-4xl group relative overflow-hidden p-8 text-white shadow-xl transition-transform duration-300 hover:-translate-y-2 md:p-10`}
                             >
-                                <div className="absolute -right-6 -top-6 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
-                                    <item.icon className="w-48 h-48" />
+                                <div className="absolute -right-6 -top-6 transform opacity-10 transition-transform duration-500 group-hover:scale-110">
+                                    <item.icon className="h-48 w-48" />
                                 </div>
-                                <div className="relative z-10 h-full flex flex-col">
-                                    <div className="bg-white/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 backdrop-blur-md">
-                                        <item.icon className="w-8 h-8 text-white" />
+                                <div className="relative z-10 flex h-full flex-col">
+                                    <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
+                                        <item.icon className="h-8 w-8 text-white" />
                                     </div>
-                                    <h3 className="text-2xl font-black mb-4 leading-tight">{item.title}</h3>
-                                    <p className={`font-medium text-lg leading-relaxed ${item.textClass}`}>{item.desc}</p>
+                                    <h3 className="mb-4 text-2xl font-black leading-tight">{item.title}</h3>
+                                    <p className={`text-lg font-medium leading-relaxed ${item.textClass}`}>{item.desc}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -150,9 +150,9 @@ export default function AboutPage() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="mt-16 text-center max-w-3xl mx-auto bg-white p-8 rounded-3xl shadow-sm border border-gray-100"
+                        className="mx-auto mt-16 max-w-3xl rounded-3xl border border-gray-100 bg-white p-8 text-center shadow-sm"
                     >
-                        <p className="text-2xl font-bold text-black border-l-4 border-black pl-6 text-left inline-block">
+                        <p className="inline-block border-l-4 border-black pl-6 text-left text-2xl font-bold text-black">
                             No matter the business model, the problem is usually the same: <br className="hidden md:block" />
                             <span className="text-[#FF5722]">growth without structure doesn't scale.</span>
                         </p>
@@ -169,12 +169,12 @@ export default function AboutPage() {
                     variants={fadeUp}
                     className="mb-16 text-center"
                 >
-                    <h2 className="text-4xl md:text-6xl font-black text-black tracking-tighter mb-6">Our Approach</h2>
-                    <p className="text-2xl text-black font-bold mb-2">We believe clarity beats complexity.</p>
-                    <p className="text-xl text-gray-500 font-medium">Every project starts with:</p>
+                    <h2 className="mb-6 text-4xl font-black tracking-tighter text-black md:text-6xl">Our Approach</h2>
+                    <p className="mb-2 text-2xl font-bold text-black">We believe clarity beats complexity.</p>
+                    <p className="text-xl font-medium text-gray-500">Every project starts with:</p>
                 </motion.div>
 
-                <div className="max-w-5xl mx-auto">
+                <div className="mx-auto max-w-5xl">
                     <div className="space-y-6">
                         {[
                             { step: "1", title: "Strategy first", desc: "understanding business goals, users, and growth levers", icon: Lightbulb },
@@ -189,19 +189,19 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="flex flex-col md:flex-row gap-6 bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow group items-center md:items-start text-center md:text-left"
+                                className="group flex flex-col items-center gap-6 rounded-3xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md md:flex-row md:items-start md:p-8 md:text-left"
                             >
-                                <div className="w-16 h-16 rounded-2xl bg-gray-50 text-gray-900 flex items-center justify-center font-black text-2xl shrink-0 group-hover:bg-[#3366FF] group-hover:text-white transition-colors duration-300">
+                                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gray-50 text-2xl font-black text-gray-900 transition-colors duration-300 group-hover:bg-[#3366FF] group-hover:text-white">
                                     {item.step}
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="text-2xl font-bold text-black mb-2 flex flex-col md:flex-row items-center gap-3">
+                                    <h4 className="mb-2 flex flex-col items-center gap-3 text-2xl font-bold text-black md:flex-row">
                                         {item.title}
                                     </h4>
-                                    <p className="text-lg text-gray-600 font-medium">{item.desc}</p>
+                                    <p className="text-lg font-medium text-gray-600">{item.desc}</p>
                                 </div>
-                                <div className="hidden md:flex w-16 h-16 rounded-full bg-blue-50 items-center justify-center text-[#3366FF] shrink-0">
-                                    <item.icon className="w-7 h-7" />
+                                <div className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#3366FF] md:flex">
+                                    <item.icon className="h-7 w-7" />
                                 </div>
                             </motion.div>
                         ))}
@@ -211,10 +211,10 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="mt-16 p-8 bg-[#f8f9fa] rounded-3xl border border-gray-200 text-center"
+                        className="mt-16 rounded-3xl border border-gray-200 bg-[#f8f9fa] p-8 text-center"
                     >
-                        <p className="text-2xl font-black text-black mb-2">We don't just launch and leave.</p>
-                        <p className="text-xl text-gray-600 font-medium">We stay, optimize, and grow with our clients.</p>
+                        <p className="mb-2 text-2xl font-black text-black">We don't just launch and leave.</p>
+                        <p className="text-xl font-medium text-gray-600">We stay, optimize, and grow with our clients.</p>
                     </motion.div>
                 </div>
             </section>
@@ -222,14 +222,14 @@ export default function AboutPage() {
             {/* Why d2cora & Vision */}
             <section className="bg-black py-24 text-white">
                 <div className="max-w-350 mx-auto px-6 md:px-12 lg:px-20">
-                    <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+                    <div className="grid gap-16 md:grid-cols-2 lg:gap-24">
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
                             variants={fadeUp}
                         >
-                            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-10 text-white">Why d2cora</h2>
+                            <h2 className="mb-10 text-4xl font-black tracking-tighter text-white md:text-5xl">Why d2cora</h2>
                             <div className="space-y-4 text-white">
                                 {[
                                     "End-to-end digital execution under one roof",
@@ -237,13 +237,13 @@ export default function AboutPage() {
                                     "Speed without sacrificing quality",
                                     "Clear communication and measurable outcomes"
                                 ].map((point, idx) => (
-                                    <div key={idx} className="flex gap-4 items-start bg-white/5 p-5 rounded-2xl border border-white/10">
-                                        <Award className="w-6 h-6 text-[#3366FF] shrink-0 mt-0.5" />
+                                    <div key={idx} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
+                                        <Award className="mt-0.5 h-6 w-6 shrink-0 text-[#3366FF]" />
                                         <span className="text-lg font-medium">{point}</span>
                                     </div>
                                 ))}
                             </div>
-                            <div className="mt-8 pt-8 border-t border-white/10">
+                            <div className="mt-8 border-t border-white/10 pt-8">
                                 <p className="text-xl font-bold text-[#FF5722]">
                                     We act like partners, not vendors — because long-term growth requires accountability.
                                 </p>
@@ -256,12 +256,12 @@ export default function AboutPage() {
                             viewport={{ once: true }}
                             variants={fadeUp}
                             transition={{ delay: 0.2 }}
-                            className="bg-[#1a1a2e] rounded-[40px] p-10 md:p-12 border border-white/5 relative overflow-hidden"
+                            className="relative overflow-hidden rounded-[40px] border border-white/5 bg-[#1a1a2e] p-10 md:p-12"
                         >
-                            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#3366FF]/20 rounded-full blur-[40px] md:blur-[80px]"></div>
-                            <Users className="w-12 h-12 text-[#3366FF] mb-8" />
-                            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-8 text-white">Our Vision</h2>
-                            <div className="space-y-6 text-gray-300 font-medium text-lg relative z-10">
+                            <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[#3366FF]/20 blur-2xl md:blur-[80px]"></div>
+                            <Users className="mb-8 h-12 w-12 text-[#3366FF]" />
+                            <h2 className="mb-8 text-4xl font-black tracking-tighter text-white md:text-5xl">Our Vision</h2>
+                            <div className="relative z-10 space-y-6 text-lg font-medium text-gray-300">
                                 <p className="leading-relaxed">
                                     Our vision is to become a globally trusted digital growth partner for businesses that value speed, clarity, and results.
                                 </p>
@@ -276,25 +276,25 @@ export default function AboutPage() {
 
             {/* CTA Section */}
             <section className="py-24 md:py-32">
-                <div className="max-w-4xl mx-auto px-6 text-center">
+                <div className="mx-auto max-w-4xl px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-6 block bg-blue-50 px-4 py-2 rounded-full">Our Belief</span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-black leading-tight mb-8">
+                        <span className="mb-6 block rounded-full bg-blue-50 px-4 py-2 text-sm font-bold uppercase tracking-widest text-blue-600">Our Belief</span>
+                        <h2 className="mb-8 text-3xl font-bold leading-tight text-black md:text-5xl">
                             Growth is not about doing more.<br />
                             <span className="text-[#3366FF]">It's about doing the right things, consistently.</span>
                         </h2>
-                        <h3 className="text-6xl md:text-8xl font-black text-black tracking-tighter mb-12 uppercase leading-[0.9]">
+                        <h3 className="mb-12 text-6xl font-black uppercase leading-[0.9] tracking-tighter text-black md:text-8xl">
                             Build smart.<br />Grow fast.
                         </h3>
 
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-3 rounded-full bg-black px-10 py-5 font-bold text-white transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-2xl shadow-black/20 text-lg hover:bg-[#3366FF]"
+                            className="group inline-flex items-center gap-3 rounded-full bg-black px-10 py-5 text-lg font-bold text-white shadow-2xl shadow-black/20 transition-all duration-300 hover:scale-[1.03] hover:bg-[#3366FF] active:scale-[0.98]"
                         >
                             Start Your Project
                             <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />

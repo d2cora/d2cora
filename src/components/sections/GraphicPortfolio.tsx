@@ -77,25 +77,27 @@ function MarqueeRow({ items, baseVelocity }: { items: string[], baseVelocity: nu
   const x = useTransform(baseX, (v) => `${v}%`);
 
   return (
-    <motion.div 
-      className="flex gap-4 md:gap-6 w-max pl-4 md:pl-8"
-      style={{ x }}
-    >
-      {doubleItems.map((fileName, idx) => (
-        <div 
-          key={idx} 
-          className="relative w-[140px] md:w-[200px] lg:w-[260px] h-[190px] md:h-[280px] lg:h-[360px] flex-shrink-0 rounded-xl overflow-hidden group shadow-xl"
-        >
-          <Image
-            src={`/assets/Posters/${fileName}`}
-            alt={`Portfolio Poster ${idx}`}
-            fill
-            className="object-cover object-center grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-105"
-            sizes="(max-w-768px) 300px, 500px"
-          />
-        </div>
-      ))}
-    </motion.div>
+    <div style={{ overflow: "hidden", contain: "layout style" }}>
+      <motion.div 
+        className="flex gap-4 md:gap-6 w-max pl-4 md:pl-8"
+        style={{ x, willChange: "transform" }}
+      >
+        {doubleItems.map((fileName, idx) => (
+          <div 
+            key={idx} 
+            className="relative w-[140px] md:w-[200px] lg:w-[260px] h-[190px] md:h-[280px] lg:h-[360px] flex-shrink-0 rounded-xl overflow-hidden group shadow-xl"
+          >
+            <Image
+              src={`/assets/Posters/${fileName}`}
+              alt={`Portfolio Poster ${idx}`}
+              fill
+              className="object-cover object-center grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-105"
+              sizes="(max-w-768px) 300px, 500px"
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
