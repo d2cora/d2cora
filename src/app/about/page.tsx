@@ -130,7 +130,7 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.6, delay: idx * 0.15 }}
-                                className={`${item.bg}rounded-4xl group relative overflow-hidden p-8 text-white shadow-xl transition-transform duration-300 hover:-translate-y-2 md:p-10`}
+                                className={`${item.bg} rounded-4xl group relative overflow-hidden p-8 text-white shadow-xl transition-transform duration-300 hover:-translate-y-2 md:p-10`}
                             >
                                 <div className="absolute -right-6 -top-6 transform opacity-10 transition-transform duration-500 group-hover:scale-110">
                                     <item.icon className="h-48 w-48" />
