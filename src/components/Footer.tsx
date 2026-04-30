@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -19,21 +19,20 @@ export function Footer() {
         { name: "ABOUT US", href: "/about" },
         { name: "SERVICES", href: "/services" },
         { name: "OUR WORK", href: "/#projects" },
-        { name: "BLOGS", href: "/blogs" },
         { name: "CONTACT US", href: "/contact" },
     ];
 
 
 
     return (
-        <footer className="w-full bg-white pt-24 pb-12 px-6 md:px-12 lg:px-20 border-t border-gray-100 relative overflow-hidden">
-            <div className="max-w-[1400px] mx-auto">
-                <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 mb-24">
+        <footer className="relative w-full overflow-hidden border-t border-gray-100 bg-white px-6 pb-12 pt-24 md:px-12 lg:px-20">
+            <div className="max-w-350 mx-auto">
+                <div className="mb-24 flex flex-col justify-between gap-12 lg:flex-row lg:gap-8">
 
                     {/* Brand Column */}
-                    <div className="flex-shrink-0">
+                    <div className="shrink-0">
                         <Link href="/" className="group flex items-center gap-2">
-                            <div className="relative w-24 h-24 md:w-28 md:h-28 xl:w-32 xl:h-32">
+                            <div className="relative h-24 w-24 md:h-28 md:w-28 xl:h-32 xl:w-32">
                                 <Image
                                     src="/assets/d2cora.svg"
                                     alt="d2cora logo"
@@ -46,17 +45,17 @@ export function Footer() {
                     </div>
 
                     {/* Links & Social Container */}
-                    <div className="flex flex-col md:flex-row gap-12 lg:gap-16 xl:gap-24 pt-4">
+                    <div className="flex flex-col gap-12 pt-4 md:flex-row lg:gap-16 xl:gap-24">
 
                         {/* Products Column */}
                         <div>
-                            <h4 className="text-[#001A33] font-bold text-sm tracking-[0.15em] uppercase mb-6">Products</h4>
+                            <h4 className="mb-6 text-sm font-bold uppercase tracking-[0.15em] text-[#001A33]">Products</h4>
                             <ul className="space-y-3">
                                 {products.map((item) => (
                                     <li key={item.name}>
                                         <Link
                                             href={item.href}
-                                            className="text-[#001A33] hover:text-[#3366FF] transition-colors text-sm font-semibold tracking-wide"
+                                            className="text-sm font-semibold tracking-wide text-[#001A33] transition-colors hover:text-[#3366FF]"
                                         >
                                             {item.name}
                                         </Link>
@@ -67,13 +66,13 @@ export function Footer() {
 
                         {/* Quick Links Column */}
                         <div>
-                            <h4 className="text-[#001A33] font-bold text-sm tracking-[0.15em] uppercase mb-6">Quick Links</h4>
+                            <h4 className="mb-6 text-sm font-bold uppercase tracking-[0.15em] text-[#001A33]">Quick Links</h4>
                             <ul className="space-y-3">
                                 {quickLinks.map((item) => (
                                     <li key={item.name}>
                                         <Link
                                             href={item.href}
-                                            className="text-[#001A33] hover:text-[#3366FF] transition-colors text-sm font-semibold tracking-wide"
+                                            className="text-sm font-semibold tracking-wide text-[#001A33] transition-colors hover:text-[#3366FF]"
                                         >
                                             {item.name}
                                         </Link>
@@ -82,33 +81,24 @@ export function Footer() {
                             </ul>
                         </div>
 
-                        {/* Social & Tagline Column */}
-                        <div className="flex flex-col items-start">
-                            <p className="text-[#001A33] font-bold text-sm tracking-widest uppercase mb-6">
+                        {/* Address & Social Column */}
+                        <div className="flex max-w-sm flex-col items-start">
+                            <h4 className="mb-6 text-sm font-bold uppercase tracking-[0.15em] text-[#001A33]">Contact & Info</h4>
+                            <div className="mb-6 space-y-4 text-sm font-medium text-[#001A33]/80">
+                                <p>Head Office: Khatima, US Nagar, Uttarakhand</p>
+                                <p>Registered Office: C/O US Nagar, Uttarakhand 262308, India</p>
+                                <p>Udyam Registration No: UDYAM-UK-12-0072212</p>
+                            </div>
+                            
+                            <p className="mb-6 text-sm font-bold uppercase tracking-widest text-[#001A33]">
                                 IF IT'S D2C, IT'S d2cora
                             </p>
                             <div className="flex gap-4">
                                 <a
-                                    href="https://instagram.com/d2cora"
+                                    href="https://www.linkedin.com/company/113014979/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-9 h-9 rounded-full border border-blue-100 bg-blue-50/50 flex items-center justify-center text-[#001A33] hover:bg-[#001A33] hover:text-white transition-all duration-300"
-                                >
-                                    <Instagram size={15} />
-                                </a>
-                                <a
-                                    href="https://twitter.com/d2cora"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-9 h-9 rounded-full border border-blue-100 bg-blue-50/50 flex items-center justify-center text-[#001A33] hover:bg-[#001A33] hover:text-white transition-all duration-300"
-                                >
-                                    <Twitter size={15} />
-                                </a>
-                                <a
-                                    href="https://linkedin.com/company/d2cora"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-9 h-9 rounded-full border border-blue-100 bg-blue-50/50 flex items-center justify-center text-[#001A33] hover:bg-[#001A33] hover:text-white transition-all duration-300"
+                                    className="flex h-9 w-9 items-center justify-center rounded-full border border-blue-100 bg-blue-50/50 text-[#001A33] transition-all duration-300 hover:bg-[#001A33] hover:text-white"
                                 >
                                     <Linkedin size={15} />
                                 </a>
@@ -118,33 +108,25 @@ export function Footer() {
                 </div>
 
                 {/* Massive Brand Name */}
-                <div className="relative pointer-events-none select-none overflow-hidden py-4">
+                <div className="pointer-events-none relative flex select-none justify-center overflow-hidden py-4">
                     <motion.h2
-                        initial={{ opacity: 0, y: 100 }}
+                        initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: "circOut" }}
-                        className="text-[15vw] lg:text-[18vw] font-bold text-[#000d1a] opacity-[0.06] tracking-tighter leading-[0.8] text-center"
-                    >
-                        d2cora
-                    </motion.h2>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 100 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: "circOut" }}
-                        className="absolute inset-0 text-[15vw] lg:text-[18vw] font-bold text-[#001A33] opacity-[0.04] tracking-tighter leading-[0.8] text-center mt-4"
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="text-center text-[15vw] font-bold leading-[0.8] tracking-tighter text-[#000d1a] opacity-[0.06] lg:text-[18vw]"
                     >
                         d2cora
                     </motion.h2>
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-sm font-bold tracking-[0.2em] text-black uppercase">
+                <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-gray-100 pt-8 md:flex-row">
+                    <p className="text-sm font-bold uppercase tracking-[0.2em] text-black">
                         © {currentYear} d2cora. All rights reserved.
                     </p>
                     <div className="flex gap-8">
-                        <Link href="/privacy-policy" className="text-sm font-bold tracking-[0.2em] text-black hover:text-[#3366FF] transition-colors uppercase">Privacy Policy</Link>
-                        <Link href="/terms-and-conditions" className="text-sm font-bold tracking-[0.2em] text-black hover:text-[#3366FF] transition-colors uppercase">Terms & Conditions</Link>
+                        <Link href="/privacy-policy" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Privacy Policy</Link>
+                        <Link href="/terms-and-conditions" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Terms & Conditions</Link>
                     </div>
                 </div>
             </div>
