@@ -45,7 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-YF1V293K95"
+          src="https://www.googletagmanager.com/gtag/js?id=G-YSS004F4T1"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -53,7 +53,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-YF1V293K95');
+              gtag('config', 'G-YSS004F4T1');
             `,
           }}
         />
@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       >
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TGTVC3LZ"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WPXXFKVN"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
