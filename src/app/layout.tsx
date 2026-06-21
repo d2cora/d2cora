@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Lora } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/Navbar";
@@ -15,6 +15,11 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
 });
 export const metadata: Metadata = {
   title: "d2cora | Digital Marketing Agency for D2C Brands",
@@ -62,6 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         className={cn(
           inter.variable,
           spaceGrotesk.variable,
+          lora.variable,
           "min-h-screen font-sans antialiased selection:bg-white/20"
         )}
       >

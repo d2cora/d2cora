@@ -7,11 +7,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 import React, { useCallback, useMemo } from 'react';
+import { usePathname } from 'next/navigation';
 
 export const Navbar = React.memo(function Navbar() {
+    const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isDarkBackground, setIsDarkBackground] = useState(false);
+
+    if (pathname?.startsWith('/studio')) return null;
 
     useEffect(() => {
         const detectBackgroundBrightness = () => {
@@ -87,6 +91,7 @@ export const Navbar = React.memo(function Navbar() {
         { href: "/", label: "Home" },
         { href: "/about", label: "About Us" },
         { href: "/services", label: "Services" },
+        { href: "/blog", label: "Blog" },
         { href: "/contact", label: "Contact us" },
     ], []);
 

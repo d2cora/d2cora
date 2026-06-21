@@ -52,6 +52,7 @@ function StarryBackground() {
 
   useEffect(() => {
     // Only rendered on desktop (parent is hidden on mobile)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStars(
       Array.from({ length: 60 }).map(() => ({
         cx: `${Math.random() * 100}%`,
@@ -186,6 +187,7 @@ export function Hero() {
 
   // Only read isMobile once on mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMobile(window.innerWidth < 1024);
   }, []);
 

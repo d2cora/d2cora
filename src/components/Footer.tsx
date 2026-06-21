@@ -4,8 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export function Footer() {
+    const pathname = usePathname();
+    if (pathname?.startsWith('/studio')) return null;
+
     const currentYear = new Date().getFullYear();
 
     const products = [
@@ -19,6 +23,7 @@ export function Footer() {
         { name: "ABOUT US", href: "/about" },
         { name: "SERVICES", href: "/services" },
         { name: "OUR WORK", href: "/#projects" },
+        { name: "BLOG", href: "/blog" },
         { name: "CONTACT US", href: "/contact" },
     ];
 
