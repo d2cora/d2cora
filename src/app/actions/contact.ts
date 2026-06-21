@@ -17,7 +17,7 @@ export async function submitContactForm(formData: FormData) {
             console.error("Server: RESEND_API_KEY not found");
             return {
                 success: false,
-                message: "Email service not configured. Please contact us directly at hello@d2cora.com"
+                message: "Email service not configured. Please contact us directly at hellod2cora@gmail.com"
             };
         }
 
@@ -27,7 +27,7 @@ export async function submitContactForm(formData: FormData) {
 
         const { data, error } = await resend.emails.send({
             from: 'onboarding@resend.dev',
-            to: ['d2cora22@gmail.com'],
+            to: ['hellod2cora@gmail.com'],
             subject: `${subject} - from ${name}`,
             replyTo: email,
             html: `

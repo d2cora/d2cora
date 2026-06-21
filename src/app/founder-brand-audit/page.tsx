@@ -138,13 +138,13 @@ export default function FounderBrandAuditPage() {
             In 5 minutes, you'll see whether your brand is built like a creator's brand or a founder's brand — and what to fix first.
           </p>
           <a 
-            href="mailto:hello@d2cora.com"
+            href="mailto:hellod2cora@gmail.com"
             className="inline-block rounded-full bg-[#F7F9F5] px-10 py-5 text-xl font-bold text-[#1F331F] shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white"
           >
             Email us for the Audit 
           </a>
           <p className="mt-6 text-lg text-[#D8E2D1]">
-            Send your details to <a href="mailto:hello@d2cora.com" className="font-semibold text-[#A8D09E] hover:underline">hello@d2cora.com</a>
+            Send your details to <a href="mailto:hellod2cora@gmail.com" className="font-semibold text-[#A8D09E] hover:underline">hellod2cora@gmail.com</a>
           </p>
           <p className="mt-8 text-sm font-medium uppercase tracking-wide text-[#A8D09E] md:text-base">
             No fluff. No generic advice. Just a clear diagnosis of what's making your brand feel heavy.

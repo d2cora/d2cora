@@ -24,8 +24,8 @@ export const Contact = React.memo(function Contact() {
 
 
                         <Button size="lg" className="w-full rounded-none border border-white transition-all hover:bg-white hover:text-black" asChild>
-                            <a href="mailto:hello@d2cora.com">
-                                <Mail className="mr-2 h-4 w-4" /> hello@d2cora.com
+                            <a href="mailto:hellod2cora@gmail.com">
+                                <Mail className="mr-2 h-4 w-4" /> hellod2cora@gmail.com
                             </a>
                         </Button>
 

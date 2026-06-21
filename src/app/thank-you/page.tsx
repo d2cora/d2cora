@@ -129,10 +129,10 @@ export default function ThankYouPage() {
                 >
                     Need immediate assistance? Email us at{" "}
                     <a
-                        href="mailto:hello@d2cora.com"
+                        href="mailto:hellod2cora@gmail.com"
                         className="text-gray-400 underline transition-colors hover:text-white"
                     >
-                        hello@d2cora.com
+                        hellod2cora@gmail.com
                     </a>
                 </motion.p>
             </div>

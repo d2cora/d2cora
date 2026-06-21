@@ -285,10 +285,10 @@ export default function TermsAndConditions() {
                                 <p className="mb-2 text-gray-300">
                                     📧 Email:{" "}
                                     <a
-                                        href="mailto:hello@d2cora.com"
+                                        href="mailto:hellod2cora@gmail.com"
                                         className="text-white hover:underline"
                                     >
-                                        hello@d2cora.com
+                                        hellod2cora@gmail.com
                                     </a>
                                 </p>
                                 <p className="text-gray-300">📍 Location: Roorkee, India</p>

@@ -121,12 +121,12 @@ export default function ContactPage() {
             } else {
                 console.error("Failed to send message:", result);
                 const errorMessage = result.message || "Something went wrong";
-                alert(`${errorMessage}. Please try again or email us directly at hello@d2cora.com`);
+                alert(`${errorMessage}. Please try again or email us directly at hellod2cora@gmail.com`);
             }
         } catch (error) {
             console.error("Error sending message:", error);
             const errorMsg = error instanceof Error ? error.message : "Unknown error";
-            alert(`Connection error: ${errorMsg}. Please try again or email us directly at hello@d2cora.com`);
+            alert(`Connection error: ${errorMsg}. Please try again or email us directly at hellod2cora@gmail.com`);
         } finally {
             setIsSending(false);
         }
@@ -357,10 +357,10 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="mb-1 font-semibold">Email</h3>
                                             <a
-                                                href="mailto:hello@d2cora.com"
+                                                href="mailto:hellod2cora@gmail.com"
                                                 className="text-[#001A33]/70 transition-colors hover:text-[#001A33]"
                                             >
-                                                hello@d2cora.com
+                                                hellod2cora@gmail.com
                                             </a>
                                         </div>
                                     </motion.div>
