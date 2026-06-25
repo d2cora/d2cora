@@ -1,4 +1,12 @@
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
+
 import { Hero } from "@/components/sections/Hero";
 
 // Lazy load heavy components
