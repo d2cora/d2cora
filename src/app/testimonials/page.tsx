@@ -14,5 +14,12 @@ export default async function TestimonialsPage() {
     "imageUrl": image.asset->url
   }`)
 
-  return <TestimonialList testimonials={testimonials} />
+  return (
+    <>
+      <p className="sr-only">
+        Read testimonials from our satisfied clients. See how d2cora has helped D2C brands scale through expert performance marketing, conversion rate optimization, and comprehensive digital growth strategies. Our proven track record of ecommerce success speaks for itself.
+      </p>
+      <TestimonialList testimonials={testimonials} />
+    </>
+  )
 }

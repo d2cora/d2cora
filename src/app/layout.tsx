@@ -22,8 +22,9 @@ const lora = Lora({
   variable: "--font-lora",
 });
 export const metadata: Metadata = {
-  title: "d2cora | Digital Marketing Agency for D2C Brands",
-  description: "d2cora — Performance marketing, CRO, and growth for D2C brands.",
+  title: "d2cora | Top Digital Marketing Agency for D2C Brands & Ecommerce Growth",
+  description: "d2cora is a leading digital marketing agency for D2C brands, specializing in performance marketing, conversion rate optimization (CRO), and ecommerce growth strategies. Partner with us to scale your business and boost your revenue today.",
+  keywords: ["digital marketing agency", "D2C brands", "performance marketing", "CRO", "ecommerce growth", "d2c marketing"],
 };
 
 export const viewport: Viewport = {

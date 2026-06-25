@@ -154,6 +154,9 @@ export default function ContactPage() {
                     <p className="mx-auto max-w-2xl text-lg text-[#001A33]/70">
                         Have a project in mind? Let's discuss how we can bring your vision to life.
                     </p>
+                    <p className="sr-only">
+                        Contact d2cora today to partner with a top digital marketing agency for D2C brands. We specialize in performance marketing, conversion rate optimization (CRO), and ecommerce growth strategies. Reach out to our team of experts to scale your business and increase your revenue.
+                    </p>
                 </motion.div>
 
                 <div className="grid items-start gap-12 md:grid-cols-2">

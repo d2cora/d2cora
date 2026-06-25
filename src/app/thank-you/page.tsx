@@ -66,6 +66,10 @@ export default function ThankYouPage() {
                 >
                     Thank You!
                 </motion.h1>
+                
+                <p className="sr-only">
+                    Thank you for reaching out to d2cora, your premier digital marketing agency. Whether you are looking for conversion rate optimization, performance marketing, or an overarching ecommerce growth strategy, our team is ready to help your D2C brand succeed.
+                </p>
 
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}

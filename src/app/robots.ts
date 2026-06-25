@@ -39,7 +39,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/studio/', '/api/'],
       },
     ],
-    sitemap: 'https://d2cora.com/sitemap.xml',
-    host: 'https://d2cora.com',
+    sitemap: 'https://www.d2cora.com/sitemap.xml',
+    host: 'https://www.d2cora.com',
   }
 }
