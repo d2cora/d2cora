@@ -46,7 +46,111 @@ export const postType = defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{type: 'block'}, {type: 'image'}],
+      of: [
+        {type: 'block'},
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text',
+            },
+          ],
+        },
+        {
+          type: 'object',
+          name: 'imageWithText',
+          title: 'Image with Text',
+          fields: [
+            {
+              name: 'heading',
+              title: 'Heading',
+              type: 'string',
+              description: 'Optional section heading shown above the text.',
+            },
+            {
+              name: 'text',
+              title: 'Text',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  lists: [],
+                  marks: {
+                    decorators: [
+                      { title: 'Bold', value: 'strong' },
+                      { title: 'Italic', value: 'em' },
+                    ],
+                    annotations: [
+                      {
+                        name: 'link',
+                        type: 'object',
+                        title: 'Link',
+                        fields: [
+                          {
+                            name: 'href',
+                            type: 'url',
+                            title: 'URL',
+                            validation: (rule: any) =>
+                              rule.uri({ scheme: ['http', 'https', 'mailto'] }),
+                          },
+                          {
+                            name: 'blank',
+                            type: 'boolean',
+                            title: 'Open in new tab',
+                            initialValue: true,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                {
+                  name: 'alt',
+                  type: 'string',
+                  title: 'Alternative text',
+                },
+              ],
+            },
+            {
+              name: 'imagePosition',
+              title: 'Image Position',
+              type: 'string',
+              initialValue: 'right',
+              options: {
+                list: [
+                  { title: 'Right (text left, image right)', value: 'right' },
+                  { title: 'Left (image left, text right)', value: 'left' },
+                ],
+                layout: 'radio',
+              },
+            },
+          ],
+          preview: {
+            select: {
+              title: 'heading',
+              media: 'image',
+            },
+            prepare({ title, media }: any) {
+              return {
+                title: title || 'Image with Text',
+                media,
+              }
+            },
+          },
+        },
+      ],
     }),
     defineField({
       name: 'publishedAt',

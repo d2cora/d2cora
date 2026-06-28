@@ -7,7 +7,27 @@ import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
 import { ArrowLeft, Calendar, Clock } from 'lucide-react'
 
+// Lightweight portable text components used inside imageWithText blocks
+const inlineTextComponents = {
+  block: {
+    normal: ({children}: any) => <p className="font-serif text-[19px] font-normal leading-[1.85] text-[#1a1a1a] mb-5">{children}</p>,
+  },
+  marks: {
+    strong: ({children}: any) => <strong className="font-bold text-gray-900">{children}</strong>,
+    em: ({children}: any) => <em className="italic text-gray-800">{children}</em>,
+    link: ({children, value}: any) => {
+      const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+      return (
+        <a href={value.href} rel={rel} className="text-blue-700 hover:text-blue-900 underline underline-offset-2 transition-colors">
+          {children}
+        </a>
+      )
+    },
+  },
+}
+
 const ptComponents = {
+
   types: {
     image: ({ value }: any) => {
       if (!value?.asset?._ref) {
@@ -27,8 +47,48 @@ const ptComponents = {
           {value.alt && <figcaption className="mt-3 text-center text-sm text-gray-500 italic font-serif">{value.alt}</figcaption>}
         </figure>
       )
-    }
+    },
+    imageWithText: ({ value }: any) => {
+      if (!value) return null
+      const isRight = value.imagePosition !== 'left'
+      const hasImage = value.image?.asset?._ref
+
+      return (
+        <div className={`flex flex-col ${isRight ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 my-10 items-start`}>
+          {/* Text side */}
+          <div className="flex-1 min-w-0">
+            {value.heading && (
+              <h2 className="font-serif text-2xl md:text-3xl font-bold mb-4 text-gray-900 leading-snug">
+                {value.heading}
+              </h2>
+            )}
+            {value.text && (
+              <PortableText value={value.text} components={inlineTextComponents} />
+            )}
+          </div>
+
+          {/* Image side */}
+          {hasImage && (
+            <div className="w-full md:w-[42%] shrink-0">
+              <div className="relative w-full overflow-hidden bg-gray-100" style={{ aspectRatio: '4/3' }}>
+                <Image
+                  alt={value.image.alt || ''}
+                  src={urlFor(value.image).fit('max').auto('format').url() as string}
+                  fill
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </div>
+              {value.image.alt && (
+                <p className="mt-2 text-center text-sm text-gray-500 italic font-serif">{value.image.alt}</p>
+              )}
+            </div>
+          )}
+        </div>
+      )
+    },
   },
+
   block: {
     h1: ({children}: any) => <h1 className="font-serif text-3xl md:text-4xl font-bold mt-10 mb-5 text-gray-900 leading-tight">{children}</h1>,
     h2: ({children}: any) => <h2 className="font-serif text-2xl md:text-3xl font-bold mt-10 mb-4 text-gray-900 leading-snug">{children}</h2>,

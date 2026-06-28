@@ -3,46 +3,31 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
 
-export type FaqItem = {
-  _id: string;
-  question: string;
-  answer: unknown; // Portable Text block array
-};
-
-// Portable Text renderer for FAQ answers — supports bold, italic, links
-const portableTextComponents: PortableTextComponents = {
-  marks: {
-    strong: ({ children }) => (
-      <strong className="font-semibold text-white/90">{children}</strong>
-    ),
-    em: ({ children }) => (
-      <em className="italic text-white/70">{children}</em>
-    ),
-    link: ({ children, value }) => (
-      <a
-        href={value?.href}
-        target={value?.blank ? "_blank" : "_self"}
-        rel={value?.blank ? "noopener noreferrer" : undefined}
-        className="underline underline-offset-2 text-white/80 hover:text-white transition-colors duration-200"
-      >
-        {children}
-      </a>
-    ),
+const faqs = [
+  {
+    question: "How will digital marketing help grow my business?",
+    answer: "Digital marketing increases your brand's visibility and reach by targeting the right audience through tailored channels. By implementing data-driven strategies across search engines, social media, and paid ads, we help you generate high-quality leads and drive sustainable sales growth."
   },
-  block: {
-    normal: ({ children }) => (
-      <p className="text-lg leading-relaxed text-white/60">{children}</p>
-    ),
+  {
+    question: "How long does it take to see results?",
+    answer: "The timeline varies by strategy. Paid advertising (PPC) can deliver immediate traffic and leads within days. Organic growth, such as SEO and content marketing, typically requires 3 to 6 months to build momentum and deliver long-lasting, compounding results."
   },
-};
+  {
+    question: "What makes your agency different from other digital marketing agencies?",
+    answer: "We move beyond just 'running ads.' Our strategy-first approach involves a deep analysis of your market and competitors to make data-driven decisions. We focus on measurable ROI and sustainable long-term growth, ensuring every dollar spent contributes to your bottom line."
+  },
+  {
+    question: "How do you measure the success of a campaign?",
+    answer: "We define success through clear, measurable KPIs tailored to your goals. This includes tracking lead generation, conversion rates, organic traffic growth, and overall Return on Investment (ROI). We provide transparent reports so you always know exactly how your campaigns are performing."
+  },
+  {
+    question: "How much do your services cost?",
+    answer: "Our pricing is flexible and customized to your specific needs, goals, and budget. We don't believe in one-size-fits-all packages. Instead, we propose a strategy that maximizes value for your investment, ensuring you get the best possible outcome for your business."
+  }
+];
 
-interface FAQProps {
-  faqs?: FaqItem[];
-}
-
-export function FAQ({ faqs }: FAQProps) {
+export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -64,9 +49,9 @@ export function FAQ({ faqs }: FAQProps) {
         </motion.div>
 
         <div className="max-w-4xl">
-          {(faqs ?? []).map((faq, index) => (
+          {faqs.map((faq, index) => (
             <motion.div
-              key={faq._id}
+              key={index}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -85,11 +70,7 @@ export function FAQ({ faqs }: FAQProps) {
                   <span className="text-xl font-medium text-white/90 md:text-2xl">
                     {faq.question}
                   </span>
-                  <div
-                    className={`shrink-0 transition-transform duration-300 ${
-                      openIndex === index ? "rotate-180 text-white" : "text-white/40"
-                    }`}
-                  >
+                  <div className={`shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180 text-white" : "text-white/40"}`}>
                     {openIndex === index ? <Minus size={24} /> : <Plus size={24} />}
                   </div>
                 </div>
@@ -103,11 +84,8 @@ export function FAQ({ faqs }: FAQProps) {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-6 space-y-2">
-                        <PortableText
-                          value={faq.answer as any}
-                          components={portableTextComponents}
-                        />
+                      <div className="pt-6 text-lg leading-relaxed text-white/60">
+                        {faq.answer}
                       </div>
                     </motion.div>
                   )}
