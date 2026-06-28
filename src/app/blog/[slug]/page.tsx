@@ -50,6 +50,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description,
     publishedAt,
     content,
+    faqs,
     "imageUrl": thumbnail.asset->url,
     "authorName": author->name,
     "authorImage": author->image.asset->url
@@ -78,12 +79,42 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     }]
   }
 
+  // Extract plain text from a Portable Text block array for JSON-LD
+  const toPlainText = (blocks: any[]): string => {
+    if (!blocks || !Array.isArray(blocks)) return ''
+    return blocks
+      .map((block) => {
+        if (block._type !== 'block' || !block.children) return ''
+        return block.children.map((child: any) => child.text ?? '').join('')
+      })
+      .join('\n')
+  }
+
+  const faqSchema = post.faqs && post.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faqs.map((faq: any) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: toPlainText(faq.answer)
+      }
+    }))
+  } : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <BlogPost post={post} recentPosts={recentPosts} />
     </>
   )

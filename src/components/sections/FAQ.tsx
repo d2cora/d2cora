@@ -3,37 +3,52 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 
-const faqs = [
-  {
-    question: "How will digital marketing help grow my business?",
-    answer: "Digital marketing increases your brand's visibility and reach by targeting the right audience through tailored channels. By implementing data-driven strategies across search engines, social media, and paid ads, we help you generate high-quality leads and drive sustainable sales growth."
-  },
-  {
-    question: "How long does it take to see results?",
-    answer: "The timeline varies by strategy. Paid advertising (PPC) can deliver immediate traffic and leads within days. Organic growth, such as SEO and content marketing, typically requires 3 to 6 months to build momentum and deliver long-lasting, compounding results."
-  },
-  {
-    question: "What makes your agency different from other digital marketing agencies?",
-    answer: "We move beyond just 'running ads.' Our strategy-first approach involves a deep analysis of your market and competitors to make data-driven decisions. We focus on measurable ROI and sustainable long-term growth, ensuring every dollar spent contributes to your bottom line."
-  },
-  {
-    question: "How do you measure the success of a campaign?",
-    answer: "We define success through clear, measurable KPIs tailored to your goals. This includes tracking lead generation, conversion rates, organic traffic growth, and overall Return on Investment (ROI). We provide transparent reports so you always know exactly how your campaigns are performing."
-  },
-  {
-    question: "How much do your services cost?",
-    answer: "Our pricing is flexible and customized to your specific needs, goals, and budget. We don't believe in one-size-fits-all packages. Instead, we propose a strategy that maximizes value for your investment, ensuring you get the best possible outcome for your business."
-  }
-];
+export type FaqItem = {
+  _id: string;
+  question: string;
+  answer: unknown; // Portable Text block array
+};
 
-export function FAQ() {
+// Portable Text renderer for FAQ answers — supports bold, italic, links
+const portableTextComponents: PortableTextComponents = {
+  marks: {
+    strong: ({ children }) => (
+      <strong className="font-semibold text-white/90">{children}</strong>
+    ),
+    em: ({ children }) => (
+      <em className="italic text-white/70">{children}</em>
+    ),
+    link: ({ children, value }) => (
+      <a
+        href={value?.href}
+        target={value?.blank ? "_blank" : "_self"}
+        rel={value?.blank ? "noopener noreferrer" : undefined}
+        className="underline underline-offset-2 text-white/80 hover:text-white transition-colors duration-200"
+      >
+        {children}
+      </a>
+    ),
+  },
+  block: {
+    normal: ({ children }) => (
+      <p className="text-lg leading-relaxed text-white/60">{children}</p>
+    ),
+  },
+};
+
+interface FAQProps {
+  faqs?: FaqItem[];
+}
+
+export function FAQ({ faqs }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section id="faq" className="relative overflow-hidden bg-black py-24">
       <div className="container relative z-10 mx-auto px-6 md:px-16">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -49,9 +64,9 @@ export function FAQ() {
         </motion.div>
 
         <div className="max-w-4xl">
-          {faqs.map((faq, index) => (
+          {(faqs ?? []).map((faq, index) => (
             <motion.div
-              key={index}
+              key={faq._id}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -61,8 +76,8 @@ export function FAQ() {
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className={`w-full rounded-2xl border p-6 text-left transition-all duration-300 md:p-8 ${
-                  openIndex === index 
-                    ? "border-white/20 bg-white/5" 
+                  openIndex === index
+                    ? "border-white/20 bg-white/5"
                     : "border-white/10 bg-transparent hover:border-white/20"
                 }`}
               >
@@ -70,11 +85,15 @@ export function FAQ() {
                   <span className="text-xl font-medium text-white/90 md:text-2xl">
                     {faq.question}
                   </span>
-                  <div className={`shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180 text-white" : "text-white/40"}`}>
+                  <div
+                    className={`shrink-0 transition-transform duration-300 ${
+                      openIndex === index ? "rotate-180 text-white" : "text-white/40"
+                    }`}
+                  >
                     {openIndex === index ? <Minus size={24} /> : <Plus size={24} />}
                   </div>
                 </div>
-                
+
                 <AnimatePresence>
                   {openIndex === index && (
                     <motion.div
@@ -84,8 +103,11 @@ export function FAQ() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-6 text-lg leading-relaxed text-white/60">
-                        {faq.answer}
+                      <div className="pt-6 space-y-2">
+                        <PortableText
+                          value={faq.answer as any}
+                          components={portableTextComponents}
+                        />
                       </div>
                     </motion.div>
                   )}

@@ -140,6 +140,22 @@ export default function BlogPost({ post, recentPosts }: { post: any, recentPosts
             ) : (
               <p className="font-serif text-lg text-gray-600">No content available.</p>
             )}
+
+            {post.faqs && post.faqs.length > 0 && (
+              <div className="mt-16 pt-10 border-t border-gray-200">
+                <h2 className="font-serif text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions</h2>
+                <div className="space-y-6">
+                  {post.faqs.map((faq: any, index: number) => (
+                    <div key={index} className="bg-gray-50 rounded-2xl p-6 md:p-8">
+                      <h3 className="font-serif text-xl font-bold text-gray-900 mb-3">{faq.question}</h3>
+                      <div className="font-serif text-lg text-gray-700 leading-relaxed [&_p]:mb-3 [&_p:last-child]:mb-0">
+                        <PortableText value={faq.answer} components={ptComponents} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
 

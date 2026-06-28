@@ -1,5 +1,9 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { client } from '@/sanity/lib/client';
+import { Hero } from '@/components/sections/Hero';
+import { TrustSignal } from '@/components/sections/TrustSignal';
+import { FAQ, FaqItem } from '@/components/sections/FAQ';
 
 export const metadata: Metadata = {
   alternates: {
@@ -7,31 +11,71 @@ export const metadata: Metadata = {
   },
 };
 
-import { Hero } from "@/components/sections/Hero";
+// Revalidate home page every hour to pick up new FAQs from Sanity
+export const revalidate = 3600;
 
 // Lazy load heavy components
+const Services = dynamic(() => import('@/components/sections/Services').then(mod => ({ default: mod.Services })));
+const Industries = dynamic(() => import('@/components/sections/Industries').then(mod => ({ default: mod.Industries })));
+const VisionSection = dynamic(() => import('@/components/sections/VisionSection').then(mod => ({ default: mod.VisionSection })));
+const GraphicPortfolio = dynamic(() => import('@/components/sections/GraphicPortfolio').then(mod => ({ default: mod.GraphicPortfolio })));
 
+/** Extracts plain text from a Portable Text block array for JSON-LD */
+function toPlainText(blocks: any[]): string {
+  if (!blocks || !Array.isArray(blocks)) return '';
+  return blocks
+    .map((block) => {
+      if (block._type !== 'block' || !block.children) return '';
+      return block.children.map((child: any) => child.text ?? '').join('');
+    })
+    .join('\n');
+}
 
-// Lazy load components
-const Services = dynamic(() => import("@/components/sections/Services").then(mod => ({ default: mod.Services })));
-const Industries = dynamic(() => import("@/components/sections/Industries").then(mod => ({ default: mod.Industries })));
-const VisionSection = dynamic(() => import("@/components/sections/VisionSection").then(mod => ({ default: mod.VisionSection })));
-const GraphicPortfolio = dynamic(() => import("@/components/sections/GraphicPortfolio").then(mod => ({ default: mod.GraphicPortfolio })));
+export default async function Home() {
+  // Fetch FAQs from Sanity, ordered by the 'order' field
+  const faqs: FaqItem[] = await client.fetch(
+    `*[_type == "faq"] | order(order asc, _createdAt asc) {
+      _id,
+      question,
+      answer
+    }`
+  );
 
-import { TrustSignal } from "@/components/sections/TrustSignal";
-import { FAQ } from "@/components/sections/FAQ";
+  // Build FAQPage JSON-LD from live Sanity data
+  const faqJsonLd =
+    faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: toPlainText(faq.answer as any[]),
+            },
+          })),
+        }
+      : null;
 
-export default function Home() {
   return (
     <main className="w-full">
-      <h1 className="sr-only">d2cora: Leading Digital Marketing Agency for D2C Brands & Ecommerce Growth</h1>
+      {/* FAQ JSON-LD structured data — built from live Sanity content */}
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+
+      <h1 className="sr-only">d2cora: Leading Digital Marketing Agency for D2C Brands &amp; Ecommerce Growth</h1>
       <Hero />
       <TrustSignal />
       <Industries />
       <VisionSection />
       <GraphicPortfolio />
       <Services />
-      
+
       {/* SEO Copy Section */}
       <section className="bg-black py-16 px-6 md:px-16 text-white/70">
         <div className="container mx-auto max-w-4xl text-center">
@@ -45,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-      <FAQ />
+      <FAQ faqs={faqs} />
     </main>
   );
 }
