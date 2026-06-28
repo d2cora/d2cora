@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import BlogPost from './BlogPost'
 
-export const revalidate = 3600
+// Revalidate every 60 seconds so new posts appear quickly
+export const revalidate = 60
 
 export async function generateStaticParams() {
   const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`)

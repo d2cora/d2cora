@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next'
 import { client } from '@/sanity/lib/client'
 import { serviceCategories } from '@/lib/constants/services'
 
-// Regenerate the sitemap at most once per hour via ISR
-export const revalidate = 3600
+// Regenerate the sitemap within 60 seconds of a new post being published
+export const revalidate = 60
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.d2cora.com'

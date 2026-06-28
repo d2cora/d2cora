@@ -1,8 +1,8 @@
 import { client } from '@/sanity/lib/client'
 import BlogList from './BlogList'
 
-// Revalidate every hour
-export const revalidate = 3600
+// Revalidate every 60 seconds so new posts appear quickly
+export const revalidate = 60
 
 export const metadata = {
   title: "Blog & Insights | d2cora",
