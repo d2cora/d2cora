@@ -1,11 +1,49 @@
 "use client"
+import React from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
-import { ArrowLeft, Calendar, Clock } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, ChevronDown } from 'lucide-react'
+
+function FaqAccordion({ faqs }: { faqs: any[] }) {
+  const [openIndex, setOpenIndex] = React.useState<number | null>(null)
+
+  return (
+    <div className="mt-16 pt-10 border-t border-gray-200">
+      <h2 className="font-serif text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions</h2>
+      <div className="space-y-3">
+        {faqs.map((faq: any, index: number) => {
+          const isOpen = openIndex === index
+          return (
+            <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-gray-50 transition-colors"
+                aria-expanded={isOpen}
+              >
+                <span className="font-serif text-lg font-bold text-gray-900 leading-snug">{faq.question}</span>
+                <ChevronDown
+                  className={`w-5 h-5 text-gray-500 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              <div
+                className="overflow-hidden transition-all duration-300 ease-in-out"
+                style={{ maxHeight: isOpen ? '1000px' : '0px' }}
+              >
+                <div className="px-6 pb-6 pt-1 font-serif text-[17px] text-gray-700 leading-relaxed [&_p]:mb-3 [&_p:last-child]:mb-0 border-t border-gray-100">
+                  <PortableText value={faq.answer} components={inlineTextComponents} />
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 // Lightweight portable text components used inside imageWithText blocks
 const inlineTextComponents = {
@@ -202,19 +240,7 @@ export default function BlogPost({ post, recentPosts }: { post: any, recentPosts
             )}
 
             {post.faqs && post.faqs.length > 0 && (
-              <div className="mt-16 pt-10 border-t border-gray-200">
-                <h2 className="font-serif text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                  {post.faqs.map((faq: any, index: number) => (
-                    <div key={index} className="bg-gray-50 rounded-2xl p-6 md:p-8">
-                      <h3 className="font-serif text-xl font-bold text-gray-900 mb-3">{faq.question}</h3>
-                      <div className="font-serif text-lg text-gray-700 leading-relaxed [&_p]:mb-3 [&_p:last-child]:mb-0">
-                        <PortableText value={faq.answer} components={ptComponents} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <FaqAccordion faqs={post.faqs} />
             )}
           </motion.div>
         </div>

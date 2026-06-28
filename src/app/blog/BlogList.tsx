@@ -59,7 +59,7 @@ export default function BlogList({ posts }: { posts: any[] }) {
                     <p className="text-sm font-bold text-[#3366FF] uppercase tracking-wider mb-4">
                       {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                     </p>
-                    <h2 className="text-2xl font-bold mb-4 text-black leading-tight group-hover:text-[#FF5722] transition-colors">
+                    <h2 className="text-2xl font-bold mb-4 text-black leading-tight group-hover:text-[#FF5722] transition-colors line-clamp-3 min-h-[5rem]">
                       {post.title}
                     </h2>
                     <p className="text-gray-600 font-medium leading-relaxed flex-1 line-clamp-3">
