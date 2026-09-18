@@ -149,7 +149,7 @@ export function SalesChatbot() {
         return () => window.removeEventListener('resize', check);
     }, []);
 
-    // ── Auto-open after 5s (tooltip only on mobile, full open on desktop) ──────
+    // ── Auto-open after 5s (tooltip + preview popup only, never full chat) ──────
     useEffect(() => {
         if (hasAutoOpened || messages.length > 0) return;
 
@@ -167,16 +167,13 @@ export function SalesChatbot() {
             }]);
             setUnreadCount(1);
 
-            // On mobile: show preview popup. On desktop: open full chat.
-            if (window.innerWidth >= 768) {
-                setIsOpen(true);
-            } else {
-                setShowMobilePreview(true);
-            }
+            // Always show small preview popup — never auto-expand the full chat
+            setShowMobilePreview(true);
         }, 5000);
 
         return () => { clearTimeout(tooltipTimer); clearTimeout(openTimer); };
     }, [hasAutoOpened, messages.length, pathname]);
+
 
     // ── Scroll & focus ────────────────────────────────────────────────────────
     useEffect(() => {
