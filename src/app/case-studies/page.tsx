@@ -42,7 +42,7 @@ export default function CaseStudiesPage() {
             Proof of Work
           </span>
           <h1 className="mt-3 text-5xl font-black leading-[1] tracking-tighter text-black md:text-7xl lg:text-[80px]">
-            Case Studies
+            Our Work
           </h1>
           <p className="mt-6 max-w-2xl text-xl font-medium text-gray-500">
             We let results do the talking. Every engagement is built around measurable outcomes, not promises.

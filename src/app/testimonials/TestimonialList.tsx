@@ -2,8 +2,22 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useRef, useState } from 'react'
 
 export default function TestimonialList({ testimonials }: { testimonials: any[] }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const handlePlayPause = () => {
+    if (!videoRef.current) return
+    if (isPlaying) {
+      videoRef.current.pause()
+    } else {
+      videoRef.current.play()
+    }
+    setIsPlaying(!isPlaying)
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -23,10 +37,67 @@ export default function TestimonialList({ testimonials }: { testimonials: any[] 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' as const }}
-        className="mb-20 text-center max-w-4xl mx-auto"
+        className="mb-16 text-center max-w-4xl mx-auto"
       >
         <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-black">Wall of <span className="text-[#FF5722]">Love</span></h1>
         <p className="text-gray-600 text-xl md:text-2xl font-medium leading-relaxed">Hear what our clients have to say about working with us.</p>
+      </motion.div>
+
+      {/* Featured Video Testimonial */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+        className="max-w-3xl mx-auto mb-24"
+      >
+        <div className="text-center mb-6">
+          <span className="inline-flex items-center gap-2 bg-[#FF5722]/10 text-[#FF5722] text-sm font-bold px-4 py-2 rounded-full uppercase tracking-wider">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 6a2 2 0 012-2h6l2 2h4a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+            </svg>
+            Video Testimonial
+          </span>
+        </div>
+
+        <div
+          className="relative rounded-[32px] overflow-hidden shadow-2xl cursor-pointer group bg-black"
+          onClick={handlePlayPause}
+          role="button"
+          aria-label={isPlaying ? 'Pause video' : 'Play video'}
+        >
+          <video
+            ref={videoRef}
+            className="w-full max-h-[560px] object-cover"
+            onEnded={() => setIsPlaying(false)}
+            onPause={() => setIsPlaying(false)}
+            onPlay={() => setIsPlaying(true)}
+            playsInline
+          >
+            <source src="/assets/Client testimonial.mov" type="video/quicktime" />
+            <source src="/assets/Client testimonial.mov" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Play / Pause overlay */}
+          <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+            <div className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+              {isPlaying ? (
+                <svg className="w-8 h-8 text-[#FF5722]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                </svg>
+              ) : (
+                <svg className="w-8 h-8 text-[#FF5722] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7L8 5z" />
+                </svg>
+              )}
+            </div>
+          </div>
+
+          {/* Gradient overlay when not playing */}
+          {!isPlaying && (
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+          )}
+        </div>
       </motion.div>
 
       {testimonials.length > 0 ? (

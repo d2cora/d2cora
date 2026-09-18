@@ -114,84 +114,112 @@ export function GraphicPortfolio() {
       </div>
 
       {/* Case Study spotlight */}
-      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 pb-20 md:px-12">
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 pb-20 md:px-12 mt-16 md:mt-24">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <p className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-[#3366FF]">
-            Client Case Study
-          </p>
-          <Link href="/case-studies/vini-grow-holidays" className="group block">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/8">
-              <div className="h-px w-full bg-gradient-to-r from-[#3366FF] to-[#FF5722]" />
-              <div className="flex flex-col gap-8 p-8 md:flex-row md:items-center md:p-12">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 md:mb-12 gap-4">
+             <div>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF5722] mb-3 flex items-center gap-2">
+                   <span className="w-2 h-2 rounded-full bg-[#FF5722] animate-pulse"></span>
+                   Featured Case Study
+                </p>
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">Proof of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3366FF] to-[#3b82f6]">Work</span></h3>
+             </div>
+             <Link
+               href="/case-studies"
+               className="hidden md:inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/50 transition-colors hover:text-white pb-2"
+             >
+               View All Work
+               <ArrowRight className="h-4 w-4" />
+             </Link>
+          </div>
 
-                {/* Logo + name */}
-                <div className="flex items-center gap-5 shrink-0">
-                  <div className="h-16 w-16 overflow-hidden rounded-2xl border border-white/10">
-                    <Image
-                      src="/assets/case-studies/vini-grow/logo.jpg"
-                      alt="Vini Grow Holidays"
-                      width={64}
-                      height={64}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-gray-500">Travel &amp; Visa Agency</p>
-                    <h3 className="text-xl font-black tracking-tight text-white">Vini Grow Holidays</h3>
-                  </div>
-                </div>
-
-                {/* Headline */}
-                <div className="flex-1">
-                  <p className="text-lg font-bold leading-snug text-white md:text-xl">
-                    37 qualified leads. 155 WhatsApp conversations. Page 1 Google rankings.{" "}
-                    <span className="text-[#3366FF]">In record time.</span>
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {["Performance Marketing", "SEO", "Website Redesign", "AI Search"].map((tag) => (
-                      <span key={tag} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-gray-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Stats */}
-                <div className="flex shrink-0 gap-6">
-                  {[
-                    { v: "37", l: "Leads" },
-                    { v: "₹6.14", l: "CPL" },
-                    { v: "26.9K", l: "Reached" },
-                  ].map((s) => (
-                    <div key={s.l} className="text-center">
-                      <p className="text-2xl font-black text-white">{s.v}</p>
-                      <p className="text-xs font-bold uppercase tracking-wider text-gray-500">{s.l}</p>
+          <Link href="/case-studies/vini-grow-holidays" className="group block relative">
+            {/* Glow effect behind the card */}
+            <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-[#3366FF] via-[#8A2BE2] to-[#FF5722] opacity-20 blur-2xl transition-all duration-700 group-hover:opacity-50 group-hover:blur-3xl"></div>
+            
+            <div className="relative flex flex-col lg:flex-row overflow-hidden rounded-[2rem] border border-white/10 bg-[#161616]/90 backdrop-blur-xl shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
+              
+              {/* Left Side: Visual/Branding */}
+              <div className="relative lg:w-2/5 p-8 md:p-12 lg:p-14 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-white/5 to-transparent">
+                 {/* Decorative background shapes */}
+                 <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-[#3366FF] opacity-20 blur-[80px] mix-blend-screen transition-transform duration-1000 group-hover:scale-150"></div>
+                 <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-[#FF5722] opacity-10 blur-[80px] mix-blend-screen transition-transform duration-1000 group-hover:scale-150"></div>
+                 
+                 <div className="relative z-10 flex flex-col h-full min-h-[300px]">
+                    <div>
+                       <span className="inline-block px-4 py-2 rounded-full border border-white/20 bg-white/10 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md mb-8 shadow-sm">
+                         Travel & Visa Agency
+                       </span>
+                       <div className="flex items-center gap-5">
+                         <div className="h-16 w-16 md:h-20 md:w-20 overflow-hidden rounded-2xl border border-white/20 shadow-2xl bg-white">
+                           <Image
+                             src="/assets/case-studies/vini-grow/logo.jpg"
+                             alt="Vini Grow Holidays"
+                             width={80}
+                             height={80}
+                             className="h-full w-full object-cover"
+                           />
+                         </div>
+                         <h4 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-none">Vini Grow<br />Holidays</h4>
+                       </div>
                     </div>
-                  ))}
-                </div>
+                    
+                    <div className="mt-auto pt-12">
+                        <div className="flex flex-wrap gap-2">
+                          {["Performance Marketing", "SEO", "Website Redesign", "AI Search"].map((tag) => (
+                            <span key={tag} className="rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-[10px] md:text-xs font-semibold text-gray-300 backdrop-blur-md">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                    </div>
+                 </div>
+              </div>
 
-                {/* Arrow */}
-                <div className="shrink-0 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-all duration-300 group-hover:border-[#3366FF] group-hover:bg-[#3366FF]">
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
-                </div>
+              {/* Right Side: Data/Action */}
+              <div className="relative lg:w-3/5 p-8 md:p-12 lg:p-14 border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center bg-gradient-to-bl from-white/[0.02] to-transparent">
+                 <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white mb-10 lg:mb-12">
+                    37 qualified leads. 155 WhatsApp conversations. Page 1 Google rankings.{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF5722] to-[#FF8A65]">In record time.</span>
+                 </h4>
+                 
+                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-12">
+                    {[
+                      { v: "37", l: "Qualified Leads", prefix: "" },
+                      { v: "6.14", l: "Cost Per Lead", prefix: "₹" },
+                      { v: "26.9K", l: "Total Reached", prefix: "" },
+                    ].map((s) => (
+                      <div key={s.l} className="flex flex-col justify-center border border-white/5 bg-white/5 rounded-2xl p-5 md:p-6 transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/10 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                        <p className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tighter">
+                          {s.prefix && <span className="text-[#3366FF] text-xl md:text-2xl mr-1 font-bold">{s.prefix}</span>}
+                          {s.v}
+                        </p>
+                        <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400">{s.l}</p>
+                      </div>
+                    ))}
+                 </div>
+                 
+                 <div className="inline-flex items-center text-sm font-bold uppercase tracking-widest text-white transition-colors group-hover:text-[#3366FF] w-max">
+                    Read Full Case Study
+                    <ArrowRight className="ml-3 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
+                 </div>
               </div>
             </div>
           </Link>
-
-          <div className="mt-6 text-center">
-            <Link
-              href="/case-studies"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition-colors hover:text-white"
-            >
-              View all case studies
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+          
+          {/* Mobile view all link */}
+          <Link
+             href="/case-studies"
+             className="md:hidden mt-8 inline-flex w-full justify-center items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/50 transition-colors hover:text-white"
+           >
+             View All Work
+             <ArrowRight className="h-4 w-4" />
+           </Link>
         </motion.div>
       </div>
     </section>

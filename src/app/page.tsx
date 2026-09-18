@@ -52,6 +52,8 @@ const Services = dynamic(() => import("@/components/sections/Services").then(mod
 const Industries = dynamic(() => import("@/components/sections/Industries").then(mod => ({ default: mod.Industries })));
 const VisionSection = dynamic(() => import("@/components/sections/VisionSection").then(mod => ({ default: mod.VisionSection })));
 const GraphicPortfolio = dynamic(() => import("@/components/sections/GraphicPortfolio").then(mod => ({ default: mod.GraphicPortfolio })));
+const DigitalCanvas = dynamic(() => import("@/components/sections/DigitalCanvas").then(mod => ({ default: mod.DigitalCanvas })));
+const TestimonialTeaser = dynamic(() => import("@/components/sections/TestimonialTeaser").then(mod => ({ default: mod.TestimonialTeaser })));
 
 import { TrustSignal } from "@/components/sections/TrustSignal";
 import { FAQ } from "@/components/sections/FAQ";
@@ -72,7 +74,9 @@ export default function Home() {
         <Industries />
         <VisionSection />
         <GraphicPortfolio />
+        <DigitalCanvas />
         <Services />
+        <TestimonialTeaser />
 
         {/* SEO Copy Section */}
         <section className="flex w-full flex-col lg:flex-row bg-[#fffbeb] text-blue-950 min-h-screen lg:min-h-[80vh]">

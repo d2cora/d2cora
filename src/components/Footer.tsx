@@ -25,7 +25,8 @@ export function Footer() {
         { name: "HOME", href: "/" },
         { name: "ABOUT US", href: "/about" },
         { name: "SERVICES", href: "/services" },
-        { name: "OUR WORK", href: "/#projects" },
+        { name: "SHOWCASE", href: "/showcase" },
+        { name: "OUR WORK", href: "/case-studies" },
         { name: "BLOG", href: "/blog" },
         { name: "CONTACT US", href: "/contact" },
     ];
@@ -186,6 +187,7 @@ export function Footer() {
                         © {currentYear} D2CORA. All rights reserved.
                     </p>
                     <div className="flex gap-8">
+                        <Link href="/showcase" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Showcase</Link>
                         <Link href="/privacy-policy" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Privacy Policy</Link>
                         <Link href="/terms-and-conditions" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Terms & Conditions</Link>
                     </div>
