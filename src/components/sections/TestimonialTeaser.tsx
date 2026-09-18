@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useRef, useState } from "react";
 
 export function TestimonialTeaser() {
@@ -127,32 +126,7 @@ export function TestimonialTeaser() {
           </div>
         </motion.div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 flex flex-col items-center gap-4"
-        >
-          <Link
-            href="/testimonials"
-            className="group inline-flex items-center gap-3 border-2 border-[#FF5722] px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.15em] text-[#FF5722] transition-all duration-300 hover:bg-[#FF5722] hover:text-white"
-          >
-            See All Testimonials
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            >
-              <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" />
-            </svg>
-          </Link>
-          <p className="text-sm font-medium text-white/30">100% real client stories. No fake reviews</p>
-        </motion.div>
+
       </div>
     </section>
   );
