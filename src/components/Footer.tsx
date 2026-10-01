@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Linkedin, Instagram } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function Footer() {
     const pathname = usePathname();
@@ -182,14 +183,15 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-gray-100 pt-8 md:flex-row">
+                <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-gray-100 pt-8 lg:flex-row">
                     <p className="text-sm font-bold uppercase tracking-[0.2em] text-black">
                         © {currentYear} D2CORA. All rights reserved.
                     </p>
-                    <div className="flex gap-8">
+                    <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
                         <Link href="/showcase" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Showcase</Link>
                         <Link href="/privacy-policy" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Privacy Policy</Link>
                         <Link href="/terms-and-conditions" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Terms & Conditions</Link>
+                        <LanguageSwitcher variant="footer" isDark={false} />
                     </div>
                 </div>
             </div>

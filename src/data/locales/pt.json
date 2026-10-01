@@ -1,0 +1,247 @@
+{
+  "locale": "pt",
+  "name": "Portuguese",
+  "nativeName": "Português",
+  "flag": "🇧🇷",
+  "region": "International",
+  "dir": "ltr",
+  "countryCode": "BR",
+  "seo": {
+    "title": "D2CORA | Agência de Performance Marketing & Tráfego Pago | D2C e E-Commerce",
+    "description": "Agência especializada em tráfego pago (Meta e Google Ads), SEO, geração de leads e CRO para marcas D2C, e-commerce e empresas. Escale suas vendas com a d2cora.",
+    "keywords": [
+      "agencia de marketing digital",
+      "agencia de performance marketing",
+      "anuncios meta google ads",
+      "trafego pago e-commerce",
+      "escala de marcas d2c",
+      "geracao de leads",
+      "agencia seo",
+      "otimizacao de conversao cro",
+      "d2cora"
+    ],
+    "h1": "d2cora: Agência Líder em Performance Marketing para Marcas D2C e E-Commerce",
+    "canonical": "https://www.d2cora.com/pt",
+    "targetCountry": "BR"
+  },
+  "hero": {
+    "badge": "Agência de Crescimento Nº 1 em ROI",
+    "headlinePart1": "ESCALANDO MARCAS",
+    "headlinePart2": "COM SISTEMAS VALIDADOS",
+    "headlineGradient": "DE MARKETING\nE VENDAS.",
+    "description": "Somos parceiros de marcas D2C e empresas de serviços ambiciosas para gerar receita previsível por meio de tráfego pago orientado a dados e execução impecável.",
+    "ctaButton": "Agendar Reunião",
+    "subCta": "Sessão Estratégica Gratuita de 30 Minutos"
+  },
+  "trustSignal": {
+    "title": "A escolha de fundadores e empresários que priorizam ROI real em vez de métricas de vaidade.",
+    "subtitle": "De prestadores de serviços locais a plataformas SaaS em expansão acelerada, ajudamos equipes que exigem resultados previsíveis.",
+    "badge": "Resultados Recordes Comprovados",
+    "ctaButton": "Solicitar Consultoria Gratuita"
+  },
+  "industries": {
+    "title": "Experiência Consolidada em Diversos Setores.",
+    "subtitle": "Adaptamos nossos sistemas de crescimento comprovados aos desafios singulares do seu mercado.",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "Marcas D2C e E-Commerce",
+        "subNiches": [
+          "Moda e vestuário",
+          "Beleza e skincare",
+          "Suplementos",
+          "Joias e acessórios",
+          "Produtos pet"
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Marcas Pessoais e Mentores",
+        "subNiches": [
+          "Coaches executivos",
+          "Criadores fitness",
+          "Consultores de negócios"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Negócios e Serviços Locais",
+        "subNiches": [
+          "Serviços residenciais",
+          "Escritórios de advocacia",
+          "Estética automotiva"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Empresas SaaS e Tecnologia",
+        "subNiches": [
+          "B2B SaaS",
+          "Ferramentas para devs",
+          "Aplicativos Fintech"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Incorporadoras e Imobiliárias",
+        "subNiches": [
+          "Imóveis de alto padrão",
+          "Corretores comerciais",
+          "Gestão patrimonial"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Clínicas e Saúde",
+        "subNiches": [
+          "Clínicas odontológicas",
+          "Dermatologia",
+          "Estética e bem-estar"
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Educação de Alto Valor",
+        "subNiches": [
+          "Bootcamps práticos",
+          "Academias EdTech",
+          "Treinamento executivo"
+        ]
+      }
+    ]
+  },
+  "vision": {
+    "quote": "Descubra ideias atemporais que inspiram marcas autênticas e transformam a excelência operacional em domínio indiscutível de mercado.",
+    "highlight": "ideias atemporais"
+  },
+  "graphicPortfolio": {
+    "title": "Nosso Portfólio",
+    "titleHighlight": "Visual",
+    "featuredBadge": "Estudo de Caso em Destaque",
+    "caseStudyTitle": "Prova de",
+    "caseStudyTitleHighlight": "Resultados",
+    "viewAllWork": "Ver Todos os Projetos",
+    "agencyType": "Agência de Viagens e Vistos",
+    "clientName": "Vini Grow Holidays",
+    "tags": [
+      "Performance Marketing",
+      "SEO",
+      "Redesign de Sites",
+      "Busca com IA"
+    ]
+  },
+  "digitalCanvas": {
+    "title": "Nosso Canvas",
+    "titleHighlight": "Digital",
+    "subtitle": "Conheça as plataformas digitais de alta conversão que criamos para nossos parceiros. Marcas reais, crescimento real.",
+    "viewAllProjects": "Ver Todos os Projetos",
+    "visitLive": "Visitar Site",
+    "siteDescriptions": {
+      "Vini Grow Holidays": "Experiência em Viagens e Turismo",
+      "Tattoos Delhi": "Portfólio de Estúdio de Tatuagem"
+    }
+  },
+  "services": {
+    "marqueeText": "serviços",
+    "viewAllServices": "Ver Todos os Serviços",
+    "categories": [
+      {
+        "id": 1,
+        "category": "Performance Marketing",
+        "quote": "Veicular anúncios é *fácil*. Torná-los *lucrativos* é estratégia pura.",
+        "overview": "Criamos campanhas de alto retorno no Meta, Google e TikTok com foco obsessivo em ROAS e lucro líquido.",
+        "outcomes": "Receita em escala acelerada, redução de CAC e margens de lucro sólidas.",
+        "bestFor": "E-commerces e SaaS prontos para escalar a aquisição de clientes."
+      },
+      {
+        "id": 2,
+        "category": "Marketing de Conteúdo",
+        "quote": "Conteúdo que não apenas é *visto*, mas sim *lembrado*.",
+        "overview": "Criamos narrativas envolventes e peças visuais refinadas que estabelecem laços de confiança duradouros com seu público.",
+        "outcomes": "Maior autoridade de marca, alto engajamento e clientes fiéis.",
+        "bestFor": "Empresas que desejam se consolidar como referência em seu nicho."
+      },
+      {
+        "id": 3,
+        "category": "Social Media Marketing",
+        "quote": "*As marcas das quais as pessoas falam* são aquelas em que elas *compram*.",
+        "overview": "Transformamos suas redes sociais em uma comunidade vibrante e fortalecemos a voz da sua marca onde realmente importa.",
+        "outcomes": "Crescimento contínuo de seguidores qualificados e alcance viral.",
+        "bestFor": "Marcas B2C e D2C que buscam liderança nas redes sociais."
+      },
+      {
+        "id": 4,
+        "category": "Desenvolvimento Web & CRO",
+        "quote": "Um site projetado para transformar *VISITANTES* em *COMPRADORES*.",
+        "overview": "Desenvolvemos sites ultrarrápidos, modernos e arquitetados para maximizar a conversão de vendas.",
+        "outcomes": "Carregamento em menos de 1 segundo, taxas de conversão superiores e UI/UX impecável.",
+        "bestFor": "Marcas que precisam de uma vitrine digital de alto impacto comercial."
+      },
+      {
+        "id": 5,
+        "category": "Otimização para Buscas (SEO)",
+        "quote": "Posicione-se em 1º lugar onde seus *clientes ideais* estão pesquisando.",
+        "overview": "Estratégias de SEO baseadas em dados para capturar tráfego qualificado de fundo de funil sem custo contínuo de anúncios.",
+        "outcomes": "Top posições no Google e fluxo ininterrupto de leads orgânicos gratuitos.",
+        "bestFor": "Negócios que buscam construir um ativo de tráfego próprio e perpétuo."
+      },
+      {
+        "id": 6,
+        "category": "Automação WhatsApp & CRM",
+        "quote": "Automatize seus processos, *multiplique suas conversões*.",
+        "overview": "Fluxos inteligentes de WhatsApp com IA e integração CRM para engajar e converter leads 24 horas por dia.",
+        "outcomes": "Atendimento instantâneo, mais agendamentos e funil de vendas automatizado.",
+        "bestFor": "Clínicas e negócios locais que querem acelerar o fechamento de vendas."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Depoimentos de Parceiros",
+    "title": "Resultados reais.",
+    "titleHighlight": "Histórias de sucesso.",
+    "subtitle": "Veja o que dizem os fundadores e empresários cujos negócios ajudamos a alcançar um novo patamar de faturamento.",
+    "videoLabel": "Depoimento em Vídeo",
+    "videoCta": "Assista ao relato dos clientes →"
+  },
+  "growthPartner": {
+    "title": "Seu Parceiro na",
+    "titleHighlight": "Escala do Negócio",
+    "paragraph1": "Fazer uma empresa crescer de forma consistente exige muito mais do que anúncios isolados. Requer uma abordagem integrada de tráfego qualificado, otimização de conversão e aquisição eficiente.",
+    "paragraph2": "Aliamos rigor analítico e sofisticação criativa para assegurar que cada centavo investido gere o maior retorno financeiro possível.",
+    "ctaButton": "Acelere Seu Crescimento Agora"
+  },
+  "faq": {
+    "title": "Perguntas",
+    "titleHighlight": "Frequentes (FAQ)",
+    "subtitle": "Tire suas dúvidas sobre nosso método de trabalho e como aceleramos empresas.",
+    "items": [
+      {
+        "question": "Como o marketing digital de performance ajuda meu negócio a faturar mais?",
+        "answer": "Conectamos sua marca diretamente a compradores prontos para fechar negócio através de canais validados e anúncios assertivos."
+      },
+      {
+        "question": "Em quanto tempo começam a aparecer os primeiros resultados?",
+        "answer": "Campanhas de tráfego pago (Meta/Google) trazem resultados nos primeiros dias. Estratégias de SEO demandam de 3 a 6 meses para maturação."
+      },
+      {
+        "question": "O que diferencia a d2cora de outras agências tradicionais?",
+        "answer": "Nós não somos meros operadores de anúncios; nos posicionamos como parceiros estratégicos focados no seu ROI líquido e lucratividade."
+      },
+      {
+        "question": "Como é feito o acompanhamento do sucesso das campanhas?",
+        "answer": "Através de métricas transparentes e relatórios detalhados: custo de aquisição (CAC), taxa de conversão, ROAS e receita gerada."
+      },
+      {
+        "question": "Qual é o valor dos serviços?",
+        "answer": "Nossos planos são customizados conforme o estágio, os objetivos e o potencial de investimento da sua empresa."
+      }
+    ]
+  },
+  "footerCta": {
+    "badge": "Vamos Crescer Juntos",
+    "title": "Pronto para escalar",
+    "titleHighlight": "sua marca?",
+    "subtitle": "Agende uma sessão estratégica gratuita de 30 minutos sem nenhum compromisso.",
+    "ctaButton": "Agendar Reunião"
+  }
+}

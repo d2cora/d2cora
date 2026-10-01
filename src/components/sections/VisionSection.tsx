@@ -4,8 +4,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 
-export function VisionSection() {
+export interface VisionContent {
+    quote?: string;
+    highlight?: string;
+}
+
+export function VisionSection({ content }: { content?: VisionContent }) {
     const containerRef = useRef<HTMLElement>(null);
+    const quote = content?.quote ?? "Discover timeless ideas that inspire authentic brands and transform execution into market leading dominance.";
+    const highlight = content?.highlight ?? "timeless ideas";
     
     // We track the scroll progress over this specific section
     const { scrollYProgress } = useScroll({
@@ -60,9 +67,7 @@ export function VisionSection() {
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         viewport={{ once: true }}
                     >
-                        Discover{" "}
-                        <span className="italic font-light opacity-90">timeless ideas</span>{" "}
-                        that inspire authentic brands and transform execution into market leading dominance.
+                        {quote}
                     </motion.h2>
                 </motion.div>
 

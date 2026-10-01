@@ -1,0 +1,248 @@
+{
+  "locale": "de",
+  "name": "German",
+  "nativeName": "Deutsch",
+  "flag": "🇩🇪",
+  "region": "International",
+  "dir": "ltr",
+  "countryCode": "DE",
+  "seo": {
+    "title": "D2CORA | Performance Marketing Agentur | D2C, E-Commerce & Leadgenerierung",
+    "description": "Führende Digitalagentur für Performance Marketing, Meta & Google Ads, SEO und Conversion-Rate-Optimierung (CRO). Wir skalieren D2C-Marken und Unternehmen profitabel.",
+    "keywords": [
+      "performance marketing agentur",
+      "digital marketing agentur",
+      "meta ads agentur",
+      "google ads agentur",
+      "d2c marketing",
+      "ecommerce wachstum",
+      "leadgenerierung",
+      "cro agentur",
+      "seo agentur",
+      "d2cora"
+    ],
+    "h1": "d2cora: Führende Performance Marketing Agentur für D2C-Marken & E-Commerce Skalierung",
+    "canonical": "https://www.d2cora.com/de",
+    "targetCountry": "DE"
+  },
+  "hero": {
+    "badge": "Top-Bewertete Wachstumsagentur",
+    "headlinePart1": "MARKEN SKALIEREN",
+    "headlinePart2": "MIT ERPROBTEN",
+    "headlineGradient": "MARKETING-\nSYSTEMEN.",
+    "description": "Wir arbeiten mit ambitionierten D2C- und Dienstleistungsunternehmen zusammen, um planbare Umsätze durch datengestütztes Performance Marketing und präzise Ausführung zu erzielen.",
+    "ctaButton": "Gespräch Buchen",
+    "subCta": "Kostenlose 30-minütige Strategiesitzung"
+  },
+  "trustSignal": {
+    "title": "Das Vertrauen von Gründern und Unternehmern, die echten ROI über leere Versprechen stellen.",
+    "subtitle": "Von lokalen Dienstleistern bis hin zu wachsenden SaaS-Plattformen – wir unterstützen Teams, die planbares Wachstum verlangen.",
+    "badge": "Nachgewiesene Rekordergebnisse",
+    "ctaButton": "Kostenlose Beratung anfordern"
+  },
+  "industries": {
+    "title": "Fundierte Expertise in Schlüsselbranchen.",
+    "subtitle": "Wir passen unsere bewährten Wachstumssysteme präzise an die Herausforderungen Ihrer Branche an.",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "D2C- & E-Commerce-Marken",
+        "subNiches": [
+          "Mode & Textilien",
+          "Hautpflege & Kosmetik",
+          "Nahrungsergänzungsmittel",
+          "Schmuck",
+          "Tierbedarf"
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Personal Brands & Coaches",
+        "subNiches": [
+          "Executive Coaches",
+          "Fitness-Trainer",
+          "Unternehmensberater"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Lokale Dienstleistungsbetriebe",
+        "subNiches": [
+          "Handwerk & Hausservice",
+          "Kanzleien & Notare",
+          "Fahrzeugaufbereitung"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "SaaS- & Technologieunternehmen",
+        "subNiches": [
+          "B2B SaaS",
+          "Entwickler-Tools",
+          "Fintech-Lösungen"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Immobilienentwickler & Makler",
+        "subNiches": [
+          "Luxusimmobilien",
+          "Gewerbemakler",
+          "Immobilienverwaltung"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Kliniken & Gesundheitszentren",
+        "subNiches": [
+          "Zahnkliniken",
+          "Dermatologie",
+          "Ästhetik & Wellness"
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Hochwertige Bildungsanbieter",
+        "subNiches": [
+          "Bootcamps",
+          "EdTech-Akademien",
+          "Führungskräftetraining"
+        ]
+      }
+    ]
+  },
+  "vision": {
+    "quote": "Entdecken Sie zeitlose Ideen, die authentische Marken inspirieren und operative Exzellenz in Marktführerschaft verwandeln.",
+    "highlight": "zeitlose Ideen"
+  },
+  "graphicPortfolio": {
+    "title": "Unser Grafik-",
+    "titleHighlight": "Portfolio",
+    "featuredBadge": "Ausgewählte Fallstudie",
+    "caseStudyTitle": "Beweis der",
+    "caseStudyTitleHighlight": "Leistung",
+    "viewAllWork": "Alle Arbeiten ansehen",
+    "agencyType": "Reise- & Visa-Agentur",
+    "clientName": "Vini Grow Holidays",
+    "tags": [
+      "Performance Marketing",
+      "SEO",
+      "Website-Relaunch",
+      "KI-Suche"
+    ]
+  },
+  "digitalCanvas": {
+    "title": "Unsere Digitale",
+    "titleHighlight": "Leinwand",
+    "subtitle": "Erleben Sie die digitalen Plattformen, die wir für unsere Partner geschaffen haben. Echte Marken, echtes Wachstum, messbare Erfolge.",
+    "viewAllProjects": "Alle Projekte ansehen",
+    "visitLive": "Website öffnen",
+    "siteDescriptions": {
+      "Vini Grow Holidays": "Reise- & Tourismuserlebnis",
+      "Tattoos Delhi": "Tattoo-Studio Portfolio"
+    }
+  },
+  "services": {
+    "marqueeText": "dienstleistungen",
+    "viewAllServices": "Alle Dienstleistungen ansehen",
+    "categories": [
+      {
+        "id": 1,
+        "category": "Performance Marketing",
+        "quote": "Werbeanzeigen zu schalten ist *einfach*. Sie *profitabel* zu machen, ist Strategie.",
+        "overview": "Wir entwickeln hochrentable Werbekampagnen auf Meta, Google und TikTok mit Fokus auf maximalen ROAS und planbare Umsatzsteigerung.",
+        "outcomes": "Skalierbare Umsatzströme, gesenkte Kundenakquisitionskosten (CAC) und sichere Margen.",
+        "bestFor": "E-Commerce- und SaaS-Marken mit klarem Wachstumsfokus."
+      },
+      {
+        "id": 2,
+        "category": "Content Marketing",
+        "quote": "Inhalte, die nicht nur *gesehen*, sondern *im Gedächtnis behalten* werden.",
+        "overview": "Wir schaffen überzeugende Geschichten und visuelle Erlebnisse, die emotionale Verbindungen zu Ihrer Zielgruppe herstellen.",
+        "outcomes": "Gesteigerte Markenautorität, hohe Interaktionsraten und treue Kunden.",
+        "bestFor": "Unternehmen, die eine Vordenkerrolle in ihrem Markt anstreben."
+      },
+      {
+        "id": 3,
+        "category": "Social Media Marketing",
+        "quote": "*Die Marken, über die gesprochen wird*, sind die, bei denen *gekauft wird*.",
+        "overview": "Wir machen Ihre Social-Media-Kanäle zu einer engagierten Community und stärken Ihre Markenstimme.",
+        "outcomes": "Schnelleres Abonnentenwachstum und hohe Relevanz.",
+        "bestFor": "B2C- und D2C-Marken, die soziale Kanäle dominieren wollen."
+      },
+      {
+        "id": 4,
+        "category": "Webentwicklung & CRO",
+        "quote": "Eine Website, die *BESUCHER* in *KUNDEN* verwandelt.",
+        "overview": "Wir entwickeln extrem schnelle, conversion-optimierte Webseiten für messbaren Geschäftserfolg.",
+        "outcomes": "Ladezeiten unter einer Sekunde, überlegene Conversion-Raten und modernes UI/UX.",
+        "bestFor": "Marken, die ein digitales Aushängeschild der Spitzenklasse benötigen."
+      },
+      {
+        "id": 5,
+        "category": "Suchmaschinenoptimierung (SEO)",
+        "quote": "Rang #1 dort, wo Ihre *Wunschkunden* aktiv suchen.",
+        "overview": "Datengestützte SEO-Strategien zur Gewinnung kaufbereiter Kunden ganz ohne laufende Werbekosten.",
+        "outcomes": "Top-Platzierungen bei Google und stetiger Zufluss qualifizierter Leads.",
+        "bestFor": "Unternehmen, die auf nachhaltigen organischen Zuwachs setzen."
+      },
+      {
+        "id": 6,
+        "category": "WhatsApp & Workflow-Automatisierung",
+        "quote": "Prozesse automatisieren, *Abschlüsse vervielfachen*.",
+        "overview": "KI-gestützte WhatsApp-Systeme und CRM-Automatisierungen für 24/7-Kundenbetreuung und schnelle Lead-Konvertierung.",
+        "outcomes": "Sofortige Reaktionszeiten, mehr Termine und optimierte Verkaufsprozesse.",
+        "bestFor": "Kliniken und Dienstleister, die administrative Reibungsverluste beseitigen wollen."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Kundenstimmen",
+    "title": "Echte Ergebnisse.",
+    "titleHighlight": "Echte Geschichten.",
+    "subtitle": "Verlassen Sie sich nicht nur auf unser Wort. Hören Sie direkt von Gründern, die wir erfolgreich skaliert haben.",
+    "videoLabel": "Video-Kundenstimme",
+    "videoCta": "Erfahren Sie, was unsere Kunden sagen →"
+  },
+  "growthPartner": {
+    "title": "Ihr Partner für",
+    "titleHighlight": "Markenwachstum",
+    "paragraph1": "Um ein Unternehmen erfolgreich zu skalieren, reicht einfache Online-Werbung längst nicht mehr aus. Ein ganzheitlicher Ansatz für Performance Marketing, Conversion-Optimierung und Kundenakquise ist unerlässlich.",
+    "paragraph2": "Wir verknüpfen kreative Exzellenz mit tiefgehender Datenanalyse für maximalen Ertrag jedes investierten Euros.",
+    "ctaButton": "Jetzt Wachstum Starten"
+  },
+  "faq": {
+    "title": "Häufig Gestellte",
+    "titleHighlight": "Fragen",
+    "subtitle": "Alles, was Sie über unsere Zusammenarbeit und Methoden wissen müssen.",
+    "items": [
+      {
+        "question": "Wie hilft mir digitales Marketing beim Unternehmenswachstum?",
+        "answer": "Es positioniert Ihre Marke zielgenau vor kaufbereiten Kunden und generiert planbare Anfragen und Verkäufe."
+      },
+      {
+        "question": "Wie schnell sind erste Ergebnisse sichtbar?",
+        "answer": "Bezahlte Kampagnen (PPC/Meta) liefern binnen Tagen erste Leads. Organische Maßnahmen wie SEO benötigen meist 3 bis 6 Monate."
+      },
+      {
+        "question": "Was unterscheidet d2cora von anderen Agenturen?",
+        "answer": "Wir schalten nicht bloß Anzeigen, sondern analysieren Markt und Wettbewerb, um nachweisbaren ROI zu garantieren."
+      },
+      {
+        "question": "Wie wird der Kampagnenerfolg gemessen?",
+        "answer": "Anhand transparenter Kennzahlen: Neukundengewinnung, Conversion-Raten und Gesamtrendite (ROAS/ROI)."
+      },
+      {
+        "question": "Was kosten Ihre Dienstleistungen?",
+        "answer": "Unsere Preisgestaltung ist flexibel und richtet sich nach Ihren spezifischen Unternehmenszielen und Budgets."
+      }
+    ]
+  },
+  "footerCta": {
+    "badge": "Lassen Sie uns starten",
+    "title": "Bereit, Ihre Marke",
+    "titleHighlight": "zu skalieren?",
+    "subtitle": "Buchen Sie jetzt eine unverbindliche 30-minütige Strategiesitzung.",
+    "ctaButton": "Gespräch Buchen"
+  }
+}

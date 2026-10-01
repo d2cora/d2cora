@@ -1,14 +1,15 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import { getHreflangAlternates } from '@/lib/i18n';
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.d2cora.com',
+    languages: getHreflangAlternates(),
   },
 };
 
-// Hardcoded FAQ items for JSON-LD structured data
+// FAQ items for JSON-LD structured data
 const faqItems = [
   {
     question: "How will digital marketing help grow my business?",
@@ -45,7 +46,35 @@ const faqJsonLd = {
   })),
 };
 
+const businessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['ProfessionalService', 'Organization', 'LocalBusiness'],
+  '@id': 'https://www.d2cora.com/#organization',
+  name: 'd2cora',
+  alternateName: 'D2CORA Digital Marketing Agency',
+  description: 'd2cora is your one-stop marketing ecosystem helping D2C brands, e-commerce, clinics, and businesses scale profitably through performance marketing, Google & Meta ads, SEO, and conversion optimization.',
+  url: 'https://www.d2cora.com',
+  logo: 'https://www.d2cora.com/assets/d2cora%20full.svg',
+  image: 'https://www.d2cora.com/assets/d2c-growth-partner.jpg',
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Khatima',
+    addressRegion: 'Uttarakhand',
+    postalCode: '262308',
+    addressCountry: 'IN',
+  },
+  sameAs: [
+    'https://in.linkedin.com/company/d2cora1',
+    'https://www.instagram.com/d2cora.media/',
+    'https://x.com/Rahul___Bora',
+  ],
+};
+
 import { Hero } from "@/components/sections/Hero";
+import { TrustSignal } from "@/components/sections/TrustSignal";
+import { GrowthPartner } from "@/components/sections/GrowthPartner";
+import { FAQ } from "@/components/sections/FAQ";
 
 // Lazy load components
 const Services = dynamic(() => import("@/components/sections/Services").then(mod => ({ default: mod.Services })));
@@ -55,13 +84,14 @@ const GraphicPortfolio = dynamic(() => import("@/components/sections/GraphicPort
 const DigitalCanvas = dynamic(() => import("@/components/sections/DigitalCanvas").then(mod => ({ default: mod.DigitalCanvas })));
 const TestimonialTeaser = dynamic(() => import("@/components/sections/TestimonialTeaser").then(mod => ({ default: mod.TestimonialTeaser })));
 
-import { TrustSignal } from "@/components/sections/TrustSignal";
-import { FAQ } from "@/components/sections/FAQ";
-
 export default function Home() {
   return (
     <main className="w-full">
-      {/* FAQ JSON-LD structured data for Google rich results */}
+      {/* Schemas for Google Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -77,48 +107,7 @@ export default function Home() {
         <DigitalCanvas />
         <Services />
         <TestimonialTeaser />
-
-        {/* SEO Copy Section */}
-        <section className="flex w-full flex-col lg:flex-row bg-[#fffbeb] text-blue-950 min-h-screen lg:min-h-[80vh]">
-          
-          {/* Text Section (Left Half) */}
-          <div className="flex w-full lg:w-1/2 flex-col justify-center px-8 py-20 md:px-16 lg:px-24">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight">
-              Your Partner in <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1524ca] to-[#3b82f6]">Brand Growth</span>
-              </h2>
-              <p className="text-lg md:text-xl font-medium leading-relaxed text-gray-700">
-                Scaling a business requires more than just basic advertising. Whether you're a direct-to-consumer ecommerce brand or a local service business, growth demands a holistic, data-driven approach to performance marketing, conversion rate optimization, and customer acquisition. 
-              </p>
-              <p className="text-lg md:text-xl font-medium leading-relaxed text-gray-700">
-                We combine creative excellence with rigorous analytics to ensure every campaign is optimized for maximum ROI, turning your traffic into loyal customers and your spend into measurable profit.
-              </p>
-            </div>
-            
-            <div className="pt-10">
-               <a href="/contact" className="group inline-flex items-center justify-center gap-3 border-2 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.15em] transition-all duration-300 bg-transparent border-[#1524ca] text-[#1524ca] hover:bg-[#1524ca] hover:text-[#fffbeb] w-full max-w-sm md:w-auto md:max-w-none">
-               Start Growing Today
-               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:translate-x-1">
-                 <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"/>
-               </svg>
-             </a>
-            </div>
-          </div>
-          
-          {/* Full Image Section (Right Half) */}
-          <div className="relative hidden w-full md:block lg:w-1/2 md:min-h-[500px] lg:min-h-full">
-             <Image 
-               src="/assets/d2c-growth-partner.jpg" 
-               alt="Your Partner in Brand Growth" 
-               fill
-               className="object-cover object-center"
-               sizes="(max-width: 1024px) 100vw, 50vw"
-             />
-          </div>
-          
-        </section>
-
+        <GrowthPartner />
         <FAQ />
       </div>
     </main>

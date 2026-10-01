@@ -3,9 +3,25 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 
-export function TestimonialTeaser() {
+export interface TestimonialTeaserContent {
+  badge?: string;
+  title?: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  videoLabel?: string;
+  videoCta?: string;
+}
+
+export function TestimonialTeaser({ content }: { content?: TestimonialTeaserContent }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const badge = content?.badge ?? "Client Love";
+  const title = content?.title ?? "Real results.";
+  const titleHighlight = content?.titleHighlight ?? "Real stories.";
+  const subtitle = content?.subtitle ?? "Don't take our word for it. Hear directly from the founders we've helped scale.";
+  const videoLabel = content?.videoLabel ?? "Video Testimonial";
+  const videoCta = content?.videoCta ?? "Watch what our clients say →";
 
   const handlePlayPause = () => {
     if (!videoRef.current) return;
@@ -37,7 +53,7 @@ export function TestimonialTeaser() {
               <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
-              Client Love
+              {badge}
             </span>
           </motion.div>
 
@@ -48,8 +64,8 @@ export function TestimonialTeaser() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="max-w-3xl text-4xl font-black leading-tight tracking-tight text-white md:text-6xl"
           >
-            Real results.{" "}
-            <span className="text-[#FF5722]">Real stories.</span>
+            {title}{" "}
+            <span className="text-[#FF5722]">{titleHighlight}</span>
           </motion.h2>
 
           <motion.p
@@ -59,7 +75,7 @@ export function TestimonialTeaser() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-xl text-lg font-medium leading-relaxed text-white/60"
           >
-            Don&apos;t take our word for it. Hear directly from the founders we&apos;ve helped scale.
+            {subtitle}
           </motion.p>
         </div>
 
@@ -118,8 +134,8 @@ export function TestimonialTeaser() {
               {/* Bottom label when paused */}
               {!isPlaying && (
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-8 pb-7 pt-16 pointer-events-none">
-                  <p className="text-sm font-bold uppercase tracking-widest text-white/60">Video Testimonial</p>
-                  <p className="text-xl font-black text-white">Watch what our clients say →</p>
+                  <p className="text-sm font-bold uppercase tracking-widest text-white/60">{videoLabel}</p>
+                  <p className="text-xl font-black text-white">{videoCta}</p>
                 </div>
               )}
             </div>

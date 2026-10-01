@@ -18,8 +18,22 @@ const websites = [
   }
 ];
 
-export function DigitalCanvas() {
+export interface DigitalCanvasContent {
+  title?: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  viewAllProjects?: string;
+  visitLive?: string;
+  siteDescriptions?: Record<string, string>;
+}
 
+export function DigitalCanvas({ content }: { content?: DigitalCanvasContent }) {
+  const title = content?.title ?? "Our Digital";
+  const titleHighlight = content?.titleHighlight ?? "Canvas";
+  const subtitle = content?.subtitle ?? "Experience the digital storefronts we've crafted for our partners. Real brands, real growth, real results.";
+  const viewAllProjects = content?.viewAllProjects ?? "View All Projects";
+  const visitLive = content?.visitLive ?? "Visit Live";
+  const siteDescriptions = content?.siteDescriptions ?? {};
 
   return (
     <section 
@@ -28,16 +42,15 @@ export function DigitalCanvas() {
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-tight">
-            Our Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1524ca] to-[#3b82f6]">Canvas</span>
+            {title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1524ca] to-[#3b82f6]">{titleHighlight}</span>
           </h2>
           <p className="text-xl md:text-2xl font-medium text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Experience the digital storefronts we've crafted for our partners. 
-            Real brands, real growth, real results.
+            {subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
-          {websites.map((site, index) => (
+          {websites.map((site) => (
             <div 
               key={site.name}
               className="group relative rounded-3xl p-8 md:p-12 border border-gray-200 transition-all duration-300 hover:border-transparent hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] bg-white"
@@ -45,7 +58,9 @@ export function DigitalCanvas() {
               <div className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{site.name}</h3>
-                  <p className="text-gray-600 font-medium text-lg">{site.description}</p>
+                  <p className="text-gray-600 font-medium text-lg">
+                    {siteDescriptions[site.name] ?? site.description}
+                  </p>
                 </div>
                 <a 
                   href={site.url} 
@@ -53,7 +68,7 @@ export function DigitalCanvas() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1524ca] hover:text-blue-600 transition-colors"
                 >
-                  Visit Live
+                  {visitLive}
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                     <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"/>
                   </svg>
@@ -101,7 +116,7 @@ export function DigitalCanvas() {
             href="/showcase" 
             className="inline-flex items-center gap-3 rounded-full bg-[#1524ca] px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:-translate-y-1"
           >
-            View All Projects
+            {viewAllProjects}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"/>
             </svg>

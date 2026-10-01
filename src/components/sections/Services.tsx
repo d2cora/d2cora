@@ -7,8 +7,37 @@ import Link from "next/link";
 import { serviceCategories } from "@/lib/constants/services";
 import { ServiceCategory } from "./services/ServiceCategory";
 
-export function Services() {
+export interface ServicesContent {
+    marqueeText?: string;
+    viewAllServices?: string;
+    categories?: Array<{
+        id: number;
+        category: string;
+        quote: string;
+        overview: string;
+        outcomes?: string;
+        bestFor?: string;
+    }>;
+}
+
+export function Services({ content }: { content?: ServicesContent }) {
     const [hoveredCategory, setHoveredCategory] = useState<number | null>(null);
+
+    const marqueeText = content?.marqueeText ?? "services";
+    const viewAllServices = content?.viewAllServices ?? "View All Services";
+
+    const categoriesToRender = serviceCategories.map((baseCat) => {
+        const localized = content?.categories?.find((c) => c.id === baseCat.id);
+        if (!localized) return baseCat;
+        return {
+            ...baseCat,
+            category: localized.category || baseCat.category,
+            quote: localized.quote || baseCat.quote,
+            overview: localized.overview || baseCat.overview,
+            outcomes: localized.outcomes || baseCat.outcomes,
+            bestFor: localized.bestFor || baseCat.bestFor,
+        };
+    });
 
     return (
         <section
@@ -33,11 +62,11 @@ export function Services() {
                 >
                     <span className="text-[120px] font-light tracking-tight md:text-[200px]">
                         <span className="font-bold text-[#1a1a1a] opacity-100">©</span>
-                        <span className="text-[#1a1a1a] opacity-10"> services </span>
+                        <span className="text-[#1a1a1a] opacity-10"> {marqueeText} </span>
                         <span className="font-bold text-[#1a1a1a] opacity-100">©</span>
-                        <span className="text-[#1a1a1a] opacity-10"> services </span>
+                        <span className="text-[#1a1a1a] opacity-10"> {marqueeText} </span>
                         <span className="font-bold text-[#1a1a1a] opacity-100">©</span>
-                        <span className="text-[#1a1a1a] opacity-10"> services</span>
+                        <span className="text-[#1a1a1a] opacity-10"> {marqueeText}</span>
                     </span>
                 </motion.div>
 
@@ -50,7 +79,7 @@ export function Services() {
             <div className="relative z-10 px-6 md:px-16">
                 {/* Services Categories */}
                 <div className="space-y-0">
-                    {serviceCategories.map((category, categoryIndex) => (
+                    {categoriesToRender.map((category, categoryIndex) => (
                         <ServiceCategory
                             key={category.id}
                             category={category}
@@ -67,7 +96,7 @@ export function Services() {
                         href="/services"
                         className="group inline-flex items-center gap-3 border-2 border-black px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.15em] text-black transition-all duration-300 bg-transparent hover:bg-black hover:text-[#f4f0e6]"
                     >
-                        View All Services
+                        {viewAllServices}
                         <svg
                             width="16"
                             height="16"

@@ -80,7 +80,28 @@ function MarqueeRow({ items, baseVelocity }: { items: string[], baseVelocity: nu
   );
 }
 
-export function GraphicPortfolio() {
+export interface GraphicPortfolioContent {
+  title?: string;
+  titleHighlight?: string;
+  featuredBadge?: string;
+  caseStudyTitle?: string;
+  caseStudyTitleHighlight?: string;
+  viewAllWork?: string;
+  agencyType?: string;
+  clientName?: string;
+  tags?: string[];
+}
+
+export function GraphicPortfolio({ content }: { content?: GraphicPortfolioContent }) {
+  const title = content?.title ?? "Our Graphic";
+  const titleHighlight = content?.titleHighlight ?? "Portfolio";
+  const featuredBadge = content?.featuredBadge ?? "Featured Case Study";
+  const caseStudyTitle = content?.caseStudyTitle ?? "Proof of";
+  const caseStudyTitleHighlight = content?.caseStudyTitleHighlight ?? "Work";
+  const viewAllWork = content?.viewAllWork ?? "View All Work";
+  const agencyType = content?.agencyType ?? "Travel & Visa Agency";
+  const tags = content?.tags ?? ["Performance Marketing", "SEO", "Website Redesign", "AI Search"];
+
   const rowConfigs = [
     { items: getRowItems(0, 7), speed: -1.7 },
     { items: getRowItems(7, 7), speed: -1.2 },
@@ -102,7 +123,7 @@ export function GraphicPortfolio() {
             transition={{ duration: 0.8 }}
             className={`${funkyFont.className} text-center w-full text-5xl md:text-7xl lg:text-[7rem] text-[#FDFBF7] tracking-tighter leading-none italic font-black`}
           >
-            Our Graphic <span className="text-orange-500">Portfolio</span>
+            {title} <span className="text-orange-500">{titleHighlight}</span>
           </motion.h2>
         </div>
 
@@ -125,15 +146,15 @@ export function GraphicPortfolio() {
              <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF5722] mb-3 flex items-center gap-2">
                    <span className="w-2 h-2 rounded-full bg-[#FF5722] animate-pulse"></span>
-                   Featured Case Study
+                   {featuredBadge}
                 </p>
-                <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">Proof of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3366FF] to-[#3b82f6]">Work</span></h3>
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">{caseStudyTitle} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3366FF] to-[#3b82f6]">{caseStudyTitleHighlight}</span></h3>
              </div>
              <Link
                href="/case-studies"
                className="hidden md:inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/50 transition-colors hover:text-white pb-2"
              >
-               View All Work
+               {viewAllWork}
                <ArrowRight className="h-4 w-4" />
              </Link>
           </div>
@@ -153,7 +174,7 @@ export function GraphicPortfolio() {
                  <div className="relative z-10 flex flex-col h-full min-h-[300px]">
                     <div>
                        <span className="inline-block px-4 py-2 rounded-full border border-white/20 bg-white/10 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md mb-8 shadow-sm">
-                         Travel & Visa Agency
+                         {agencyType}
                        </span>
                        <div className="flex items-center gap-5">
                          <div className="h-16 w-16 md:h-20 md:w-20 overflow-hidden rounded-2xl border border-white/20 shadow-2xl bg-white">
@@ -171,7 +192,7 @@ export function GraphicPortfolio() {
                     
                     <div className="mt-auto pt-12">
                         <div className="flex flex-wrap gap-2">
-                          {["Performance Marketing", "SEO", "Website Redesign", "AI Search"].map((tag) => (
+                          {tags.map((tag) => (
                             <span key={tag} className="rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-[10px] md:text-xs font-semibold text-gray-300 backdrop-blur-md">
                               {tag}
                             </span>

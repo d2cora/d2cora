@@ -27,8 +27,25 @@ const faqs = [
   }
 ];
 
-export function FAQ() {
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface FaqContent {
+  title?: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  items?: FaqItem[];
+}
+
+export function FAQ({ content }: { content?: FaqContent }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const title = content?.title ?? "Frequently Asked";
+  const titleHighlight = content?.titleHighlight ?? "Questions";
+  const subtitle = content?.subtitle ?? "Everything you need to know about our process and how we help businesses scale through digital excellence.";
+  const itemsToRender = content?.items ?? faqs;
 
   return (
     <section id="faq" className="relative overflow-hidden bg-black py-24">
@@ -41,15 +58,15 @@ export function FAQ() {
           className="mb-16 max-w-3xl"
         >
           <h2 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Frequently Asked <span className="text-white/40">Questions</span>
+            {title} <span className="text-white/40">{titleHighlight}</span>
           </h2>
           <p className="text-lg text-white/60">
-            Everything you need to know about our process and how we help businesses scale through digital excellence.
+            {subtitle}
           </p>
         </motion.div>
 
         <div className="max-w-4xl">
-          {faqs.map((faq, index) => (
+          {itemsToRender.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 10 }}

@@ -3,7 +3,19 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export function TrustSignal() {
+export interface TrustSignalContent {
+    title?: string;
+    subtitle?: string;
+    badge?: string;
+    ctaButton?: string;
+}
+
+export function TrustSignal({ content }: { content?: TrustSignalContent }) {
+    const title = content?.title ?? "Trusted by founders and business owners who value ROI over hype.";
+    const subtitle = content?.subtitle ?? "From local service businesses to scaling SaaS platforms, we partner with teams that demand predictable growth and clear execution.";
+    const badge = content?.badge ?? "Record Breaking Results";
+    const ctaButton = content?.ctaButton ?? "Book A Free Consultation";
+
     return (
         <section
             className="relative z-10 w-full min-h-screen overflow-hidden border-b border-black/5 bg-[#86c6a6] py-16 md:py-24"
@@ -28,7 +40,7 @@ export function TrustSignal() {
                         transition={{ duration: 0.8 }}
                     >
                         <h2 className="font-heading text-3xl font-bold leading-snug tracking-tight text-black md:text-4xl lg:text-5xl">
-                            Trusted by founders and business owners who value ROI over hype.
+                            {title}
                         </h2>
                     </motion.div>
 
@@ -40,7 +52,7 @@ export function TrustSignal() {
                         className="border-l-4 border-black pl-6"
                     >
                         <p className="text-lg font-medium leading-relaxed text-black/80 md:text-xl">
-                            From local service businesses to scaling SaaS platforms, we partner with teams that demand predictable growth and clear execution.
+                            {subtitle}
                         </p>
                     </motion.div>
                 </div>
@@ -57,7 +69,7 @@ export function TrustSignal() {
                     <div className="mb-4 flex items-center gap-3">
                         <span className="inline-block h-[4px] w-6 bg-black" />
                         <p className="text-sm font-black uppercase tracking-[0.18em] text-black">
-                            Record Breaking Results
+                            {badge}
                         </p>
                     </div>
                     <div className="overflow-hidden rounded-3xl shadow-2xl">
@@ -87,7 +99,7 @@ export function TrustSignal() {
                     href="/contact"
                     className="group inline-flex items-center gap-3 border-2 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.15em] transition-all duration-300 bg-transparent border-white text-white hover:bg-white hover:text-[#86c6a6]"
                 >
-                    Book A Free Consultation
+                    {ctaButton}
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:translate-x-1">
                         <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" />
                     </svg>

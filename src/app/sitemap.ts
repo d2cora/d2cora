@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { client } from '@/sanity/lib/client'
 import { serviceCategories } from '@/lib/constants/services'
+import { NON_DEFAULT_LOCALES } from '@/lib/i18n'
 
 // Regenerate the sitemap within 60 seconds of a new post being published
 export const revalidate = 60
@@ -25,6 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
+  // 20 Multilingual Homepages for international and regional search ranking
+  const localizedHomeUrls = NON_DEFAULT_LOCALES.map((locale) => ({
+    url: `${baseUrl}/${locale.code}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }))
+
   const staticUrls = [
     '',
     '/about',
@@ -42,5 +51,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }))
 
-  return [...staticUrls, ...serviceUrls, ...blogUrls]
+  return [...staticUrls, ...localizedHomeUrls, ...serviceUrls, ...blogUrls]
 }

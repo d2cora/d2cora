@@ -9,6 +9,7 @@ import { PopupModal } from "react-calendly";
 
 import React, { useCallback, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export const Navbar = React.memo(function Navbar() {
     const pathname = usePathname();
@@ -128,29 +129,32 @@ export const Navbar = React.memo(function Navbar() {
                         />
                     </Link>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="z-50 text-white/70 transition-colors hover:text-white"
-                        aria-label="Menu"
-                        aria-expanded={mobileMenuOpen}
-                    >
-                        <svg
-                            className="h-6 w-6"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                    <div className="flex items-center gap-2 z-50">
+                        <LanguageSwitcher variant="navbar" isDark={true} />
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="text-white/70 transition-colors hover:text-white p-1"
+                            aria-label="Menu"
+                            aria-expanded={mobileMenuOpen}
                         >
-                            {mobileMenuOpen ? (
-                                <path d="M6 18L18 6M6 6l12 12" />
-                            ) : (
-                                <path d="M4 6h16M4 12h16M4 18h16" />
-                            )}
-                        </svg>
-                    </button>
+                            <svg
+                                className="h-6 w-6"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                {mobileMenuOpen ? (
+                                    <path d="M6 18L18 6M6 6l12 12" />
+                                ) : (
+                                    <path d="M4 6h16M4 12h16M4 18h16" />
+                                )}
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -217,8 +221,9 @@ export const Navbar = React.memo(function Navbar() {
                             ))}
                         </div>
 
-                        {/* Right — WhatsApp + CTA */}
+                        {/* Right — Language + WhatsApp + CTA */}
                         <div className="flex-1 hidden items-center justify-end gap-3 md:flex lg:gap-4">
+                            <LanguageSwitcher isDark={isDarkBackground} />
                             {/* WhatsApp Icon */}
                             <a
                                 href="https://wa.me/919548316900"
@@ -311,13 +316,17 @@ export const Navbar = React.memo(function Navbar() {
                                     ))}
                                 </nav>
 
-                                {/* WhatsApp & CTA Buttons */}
+                                {/* Language & WhatsApp & CTA Buttons */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
-                                    className="mt-8 flex flex-col gap-3"
+                                    className="mt-6 flex flex-col gap-3"
                                 >
+                                    <div className="flex items-center justify-between border-t border-b border-white/10 py-3 px-1">
+                                        <span className="text-xs font-semibold text-neutral-400">Language / भाषा</span>
+                                        <LanguageSwitcher variant="navbar" isDark={true} />
+                                    </div>
                                     <a
                                         href="https://wa.me/919548316900"
                                         target="_blank"

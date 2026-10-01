@@ -168,13 +168,29 @@ function MobileBackground() {
 
 // ----------------------------------------
 
-export function Hero() {
+export interface HeroContent {
+  badge?: string;
+  headlinePart1?: string;
+  headlinePart2?: string;
+  headlineGradient?: string;
+  description?: string;
+  ctaButton?: string;
+  subCta?: string;
+}
+
+export function Hero({ content }: { content?: HeroContent }) {
   const { scrollY } = useScroll();
   const [isCentered, setIsCentered] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
   const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
+
+  const headlinePart1 = content?.headlinePart1 ?? "SCALING BRANDS";
+  const headlinePart2 = content?.headlinePart2 ?? "WITH PROVEN";
+  const headlineGradient = content?.headlineGradient ?? "MARKETING\nSYSTEMS.";
+  const description = content?.description ?? "We partner with ambitious D2C and service-based businesses to drive predictable revenue through data-driven performance marketing and flawless execution.";
+  const ctaButton = content?.ctaButton ?? "Book A Call";
 
   // Only read isMobile once on mount
   useEffect(() => {
@@ -250,19 +266,19 @@ export function Hero() {
                 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-light tracking-widest leading-[1.2]"
                 style={{ color: DARK }}
               >
-                SCALING BRANDS
+                {headlinePart1}
               </span>
               <span
                 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-light tracking-widest leading-[1.2]"
                 style={{ color: DARK }}
               >
-                WITH PROVEN
+                {headlinePart2}
               </span>
               <span
-                className="font-heading text-6xl sm:text-8xl md:text-9xl lg:text-[9rem] font-black tracking-tighter leading-[0.9] mt-4 md:mt-6 text-[#1524ca] bg-none md:text-transparent md:bg-clip-text md:bg-gradient-to-r md:from-[#1524ca] md:to-[#3b82f6]"
+                className="font-heading text-6xl sm:text-8xl md:text-9xl lg:text-[9rem] font-black tracking-tighter leading-[0.9] mt-4 md:mt-6 text-[#1524ca] bg-none md:text-transparent md:bg-clip-text md:bg-gradient-to-r md:from-[#1524ca] md:to-[#3b82f6] whitespace-pre-line"
                 style={{ textShadow: "0 4px 32px rgba(21,36,202,0.15)" }}
               >
-                MARKETING<br />SYSTEMS.
+                {headlineGradient}
               </span>
             </h1>
           </motion.div>
@@ -275,14 +291,14 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase leading-relaxed max-w-2xl" style={{ color: DARK, opacity: 0.7 }}>
-              We partner with ambitious D2C and service-based businesses to drive predictable revenue through data-driven performance marketing and flawless execution.
+              {description}
             </p>
             <button
               onClick={() => setIsCalendlyOpen(true)}
               data-scrolled={scrolled}
               className="group relative inline-flex items-center gap-3 border-2 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.15em] transition-all duration-300 bg-transparent border-[#1524ca] text-[#1524ca] hover:!bg-white hover:!border-white hover:!text-[#1524ca] data-[scrolled=true]:max-md:!bg-white data-[scrolled=true]:max-md:!border-white data-[scrolled=true]:max-md:!text-[#1524ca]"
             >
-              Book A Call
+              {ctaButton}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:translate-x-1">
                 <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"/>
               </svg>
