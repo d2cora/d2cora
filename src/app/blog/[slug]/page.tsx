@@ -8,18 +8,23 @@ export const revalidate = 60
 
 export async function generateStaticParams() {
   const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`)
-  return posts.map((post: any) => ({
-    slug: post.slug,
-  }))
+  return posts
+    .filter((post: any) => post?.slug)
+    .map((post: any) => ({
+      slug: post.slug.trim(),
+    }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  const post = await client.fetch(`*[_type == "post" && slug.current == $slug][0]{
+  const rawSlug = resolvedParams.slug || '';
+  const slug = decodeURIComponent(rawSlug).trim();
+
+  const post = await client.fetch(`*[_type == "post" && (slug.current == $slug || slug.current match $slug)][0]{
     title,
     description,
     "imageUrl": thumbnail.asset->url
-  }`, { slug: resolvedParams.slug })
+  }`, { slug })
 
   if (!post) {
     return {}
@@ -45,7 +50,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const post = await client.fetch(`*[_type == "post" && slug.current == $slug][0]{
+  const rawSlug = resolvedParams.slug || '';
+  const slug = decodeURIComponent(rawSlug).trim();
+
+  const post = await client.fetch(`*[_type == "post" && (slug.current == $slug || slug.current match $slug)][0]{
     _id,
     title,
     description,
@@ -53,19 +61,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     content,
     faqs,
     "imageUrl": thumbnail.asset->url,
+    "imageDimensions": thumbnail.asset->metadata.dimensions,
     "authorName": author->name,
     "authorImage": author->image.asset->url
-  }`, { slug: resolvedParams.slug })
+  }`, { slug })
 
   if (!post) {
     notFound()
   }
 
-  const recentPosts = await client.fetch(`*[_type == "post" && slug.current != $slug] | order(publishedAt desc)[0...3]{
+  const recentPosts = await client.fetch(`*[_type == "post" && slug.current != $slug && !(slug.current match $slug)] | order(publishedAt desc)[0...3]{
     title,
     "slug": slug.current,
-    "imageUrl": thumbnail.asset->url
-  }`, { slug: resolvedParams.slug })
+    "imageUrl": thumbnail.asset->url,
+    "imageDimensions": thumbnail.asset->metadata.dimensions
+  }`, { slug })
 
   const jsonLd = {
     '@context': 'https://schema.org',

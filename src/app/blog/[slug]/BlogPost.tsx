@@ -64,6 +64,26 @@ const inlineTextComponents = {
   },
 }
 
+function getSanityImageDimensions(imageObj: any) {
+  if (imageObj?.asset?.metadata?.dimensions) {
+    return imageObj.asset.metadata.dimensions
+  }
+  const ref = imageObj?.asset?._ref || imageObj?._ref
+  if (typeof ref === 'string') {
+    const parts = ref.split('-')
+    if (parts.length >= 3) {
+      const dimPart = parts[2]
+      if (dimPart && dimPart.includes('x')) {
+        const [w, h] = dimPart.split('x').map(Number)
+        if (!isNaN(w) && !isNaN(h) && w > 0 && h > 0) {
+          return { width: w, height: h, aspectRatio: w / h }
+        }
+      }
+    }
+  }
+  return null
+}
+
 const ptComponents = {
 
   types: {
@@ -71,15 +91,22 @@ const ptComponents = {
       if (!value?.asset?._ref) {
         return null
       }
+      const dims = getSanityImageDimensions(value)
+      const width = dims?.width || 1400
+      const height = dims?.height || 800
+      const imageUrl = urlFor(value).auto('format').url() as string
+
       return (
         <figure className="my-10 w-full">
-          <div className="relative w-full h-[400px] overflow-hidden bg-gray-100">
+          <div className="w-full overflow-hidden rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center p-1 md:p-2">
             <Image
               alt={value.alt || 'Blog content image'}
               loading="lazy"
-              src={urlFor(value).fit('max').auto('format').url() as string}
-              fill
-              className="object-cover"
+              src={imageUrl}
+              width={width}
+              height={height}
+              sizes="(max-width: 768px) 100vw, 850px"
+              className="w-full h-auto object-contain rounded-xl"
             />
           </div>
           {value.alt && <figcaption className="mt-3 text-center text-sm text-gray-500 italic font-serif">{value.alt}</figcaption>}
@@ -107,15 +134,24 @@ const ptComponents = {
 
           {/* Image side */}
           {hasImage && (
-            <div className="w-full md:w-[42%] shrink-0">
-              <div className="relative w-full overflow-hidden bg-gray-100" style={{ aspectRatio: '4/3' }}>
-                <Image
-                  alt={value.image.alt || ''}
-                  src={urlFor(value.image).fit('max').auto('format').url() as string}
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
+            <div className="w-full md:w-[45%] shrink-0">
+              <div className="w-full overflow-hidden rounded-2xl bg-gray-50 border border-gray-100 p-1 flex items-center justify-center">
+                {(() => {
+                  const dims = getSanityImageDimensions(value.image)
+                  const w = dims?.width || 800
+                  const h = dims?.height || 600
+                  return (
+                    <Image
+                      alt={value.image.alt || ''}
+                      src={urlFor(value.image).auto('format').url() as string}
+                      width={w}
+                      height={h}
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="w-full h-auto object-contain rounded-xl"
+                      loading="lazy"
+                    />
+                  )
+                })()}
               </div>
               {value.image.alt && (
                 <p className="mt-2 text-center text-sm text-gray-500 italic font-serif">{value.image.alt}</p>
@@ -183,19 +219,21 @@ export default function BlogPost({ post, recentPosts }: { post: any, recentPosts
             Back to Blog
           </Link>
 
-          {/* Hero image — sharp corners */}
+          {/* Hero image — show full image without cropping */}
           {post.imageUrl && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="relative w-full h-[300px] md:h-[450px] overflow-hidden mb-6"
+              className="w-full overflow-hidden mb-8 rounded-2xl border border-gray-100 bg-gray-50 flex items-center justify-center p-1 md:p-2"
             >
               <Image
                 src={post.imageUrl}
                 alt={post.title}
-                fill
-                className="object-cover"
+                width={post.imageDimensions?.width || 1400}
+                height={post.imageDimensions?.height || 700}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 850px"
+                className="w-full h-auto object-contain rounded-xl"
                 priority
               />
             </motion.div>
@@ -293,13 +331,14 @@ export default function BlogPost({ post, recentPosts }: { post: any, recentPosts
               <div className="space-y-6">
                 {recentPosts.map((rp) => (
                   <Link href={`/blog/${rp.slug}`} key={rp.slug} className="group block">
-                    <div className="relative w-full h-44 overflow-hidden mb-3 bg-gray-100">
+                    <div className="relative w-full aspect-[16/9] overflow-hidden mb-3 bg-gray-50 rounded-lg flex items-center justify-center border border-gray-100">
                       {rp.imageUrl ? (
                         <Image
                           src={rp.imageUrl}
                           alt={rp.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 1024px) 100vw, 350px"
+                          className="object-contain p-1 group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-400 font-sans text-sm">No Image</div>

@@ -39,15 +39,16 @@ export default function BlogList({ posts }: { posts: any[] }) {
         >
           {posts.map((post) => (
             <motion.div key={post._id} variants={itemVariants}>
-              <Link href={`/blog/${post.slug.current}`}>
+              <Link href={`/blog/${(typeof post.slug === 'string' ? post.slug : post.slug?.current || '').trim()}`}>
                 <div className="bg-white border border-gray-100 overflow-hidden h-full flex flex-col group hover:shadow-xl transition-all duration-300">
-                  <div className="relative h-60 w-full overflow-hidden bg-gray-50">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-gray-50 flex items-center justify-center border-b border-gray-100">
                     {post.imageUrl ? (
                       <Image
                         src={post.imageUrl}
                         alt={post.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-400 font-medium">

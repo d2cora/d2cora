@@ -18,8 +18,22 @@ export const postType = defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        slugify: (input: string) =>
+          input
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w-]+/g, '')
+            .slice(0, 96),
       },
-      validation: (rule) => rule.required(),
+      validation: (rule) =>
+        rule.required().custom((slug) => {
+          if (!slug?.current) return true;
+          if (slug.current.trim() !== slug.current) {
+            return 'Slug cannot have leading or trailing whitespace.';
+          }
+          return true;
+        }),
     }),
     defineField({
       name: 'thumbnail',
