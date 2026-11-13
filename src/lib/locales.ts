@@ -4,7 +4,6 @@ import { LocaleCode, LocaleData } from './i18n';
 import enData from '@/data/locales/en.json';
 import hiData from '@/data/locales/hi.json';
 import bnData from '@/data/locales/bn.json';
-import mrData from '@/data/locales/mr.json';
 import taData from '@/data/locales/ta.json';
 import teData from '@/data/locales/te.json';
 import guData from '@/data/locales/gu.json';
@@ -27,7 +26,6 @@ const dictionaries: Record<LocaleCode, LocaleData> = {
   en: enData as unknown as LocaleData,
   hi: hiData as unknown as LocaleData,
   bn: bnData as unknown as LocaleData,
-  mr: mrData as unknown as LocaleData,
   ta: taData as unknown as LocaleData,
   te: teData as unknown as LocaleData,
   gu: guData as unknown as LocaleData,

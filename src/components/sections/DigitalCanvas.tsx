@@ -7,14 +7,14 @@ const websites = [
     name: 'Vini Grow Holidays',
     url: 'https://vinigrowholidays.com',
     description: 'High-Converting Travel & Booking Platform (UI/UX, SEO & AI Search)',
-    useScreenshot: false,
+    useScreenshot: true,
     image: '/assets/vini-grow-preview.jpg',
   },
   {
     name: 'Tattoos Delhi',
     url: 'https://www.tattoosdelhi.com',
     description: 'High-Contrast Brand Experience & Lead Generation Storefront',
-    useScreenshot: false,
+    useScreenshot: true,
   }
 ];
 
@@ -65,7 +65,7 @@ export function DigitalCanvas({ content }: { content?: DigitalCanvasContent }) {
                 <a 
                   href={site.url} 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1524ca] hover:text-blue-600 transition-colors"
                 >
                   {visitLive}

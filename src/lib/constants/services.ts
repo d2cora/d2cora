@@ -14,7 +14,7 @@ export const serviceCategories = [
         outcomes: "Scalable revenue streams, lowered acquisition costs, clear attribution, and predictable profit margins.",
         bestFor: "E-commerce brands and SaaS companies ready to aggressively scale their user acquisition with data-backed spending.",
         images: [],
-        templateImage: "/assets/services pemplates/Performance marketing.png"
+        templateImage: "/assets/services/performance-marketing.png"
     },
     {
         id: 2,
@@ -31,7 +31,7 @@ export const serviceCategories = [
         ],
         outcomes: "Increased brand authority, higher user engagement, improved brand recall, and a loyal community of advocates.",
         bestFor: "Brands looking to establish thought leadership and build a deeply engaged audience through storytelling.",
-        templateImage: "/assets/services pemplates/Content marketing.png"
+        templateImage: "/assets/services/content-marketing.jpg"
     },
     {
         id: 3,
@@ -48,7 +48,7 @@ export const serviceCategories = [
         ],
         outcomes: "Exponential growth in followers, high engagement rates, increased brand awareness, and culturally relevant positioning.",
         bestFor: "B2C brands aiming to dominate social conversations and D2C companies wanting to build viral brand loyalty.",
-        templateImage: "/assets/services pemplates/Social media marketing.png"
+        templateImage: "/assets/services/social-media-marketing.png"
     },
     {
         id: 4,
@@ -65,7 +65,7 @@ export const serviceCategories = [
         ],
         outcomes: "A premium digital storefront, higher conversion rates, lightning-fast load times, and a seamless user experience.",
         bestFor: "D2C brands and modern businesses needing a high-performance digital presence to scale their operations.",
-        templateImage: "/assets/services/website-development-v2.png"
+        templateImage: "/assets/services/website-development.jpg"
     },
     {
         id: 5,
@@ -99,6 +99,6 @@ export const serviceCategories = [
         ],
         outcomes: "Instant response times, higher conversion rates on inbound leads, reduced support overhead, and an automated sales pipeline.",
         bestFor: "D2C brands and service businesses that want to scale their sales and support without exponentially growing headcount.",
-        templateImage: ""
+        templateImage: "/assets/services/ai-automation.png"
     }
 ];

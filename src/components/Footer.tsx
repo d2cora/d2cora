@@ -5,13 +5,22 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Linkedin, Instagram } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function Footer() {
     const pathname = usePathname();
     if (pathname?.startsWith('/studio')) return null;
 
     const currentYear = new Date().getFullYear();
+
+    const globalSolutions = [
+        { name: "SHOPIFY SEO AGENCY", href: "/services/shopify-seo-agency" },
+        { name: "D2C MARKETING AGENCY", href: "/services/d2c-marketing-agency" },
+        { name: "ECOMMERCE CRO AGENCY", href: "/services/ecommerce-cro-agency" },
+        { name: "AI SEARCH & GEO AGENCY", href: "/services/ai-search-geo-agency" },
+        { name: "SEO AGENTUR (DACH)", href: "/de/seo-agentur" },
+        { name: "B2B LEADGENERIERUNG", href: "/de/b2b-leadgenerierung-agentur" },
+        { name: "SEO AGENTUR KOSTEN", href: "/blog/seo-agentur-kosten" },
+    ];
 
     const services = [
         { name: "PERFORMANCE MARKETING", href: "/services/performance-marketing" },
@@ -71,7 +80,7 @@ export function Footer() {
                 <div className="mb-24 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
                     
                     {/* Brand & Social Column */}
-                    <div className="flex flex-col items-start gap-8 lg:col-span-4">
+                    <div className="flex flex-col items-start gap-8 lg:col-span-3">
                         <Link href="/" className="group flex items-center gap-2">
                             <div className="relative h-24 w-24 md:h-28 md:w-28 xl:h-32 xl:w-32">
                                 <Image
@@ -112,12 +121,28 @@ export function Footer() {
                                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                                 </svg>
                             </a>
-
                         </div>
+                    </div>
+
+                    {/* Global Solutions Column */}
+                    <div className="lg:col-span-3">
+                        <h4 className="mb-6 text-sm font-bold uppercase tracking-[0.15em] text-[#001A33]">Global Solutions</h4>
+                        <ul className="space-y-3">
+                            {globalSolutions.map((item) => (
+                                <li key={item.name}>
+                                    <Link
+                                        href={item.href}
+                                        className="text-sm font-semibold tracking-wide text-[#001A33] transition-colors hover:text-[#3366FF]"
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                     
                     {/* Services Column */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-2">
                         <h4 className="mb-6 text-sm font-bold uppercase tracking-[0.15em] text-[#001A33]">Services</h4>
                         <ul className="space-y-3">
                             {services.map((item) => (
@@ -151,13 +176,13 @@ export function Footer() {
                     </div>
 
                     {/* Address Column */}
-                    <div className="flex flex-col items-start lg:col-span-3">
+                    <div className="flex flex-col items-start lg:col-span-2">
                         <h4 className="mb-6 text-sm font-bold uppercase tracking-[0.15em] text-[#001A33]">Contact & Info</h4>
                         <div className="space-y-4 text-sm font-medium text-[#001A33]/80">
                             <p className="font-semibold text-[#001A33]">Global Growth Partner</p>
-                            <p>Serving North America (EST/PST), UK (GMT) &amp; Europe (CET)</p>
-                            <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-[#3366FF] transition-colors hover:text-[#001A33] mt-2">
-                                Book a 30-Min Discovery Session →
+                            <p className="text-xs leading-relaxed">Serving US (EST/PST), UK (GMT) &amp; Europe (CET)</p>
+                            <Link href="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#3366FF] transition-colors hover:text-[#001A33] mt-2">
+                                Book 30-Min Session →
                             </Link>
                         </div>
                     </div>
@@ -184,7 +209,6 @@ export function Footer() {
                         <Link href="/showcase" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Showcase</Link>
                         <Link href="/privacy-policy" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Privacy Policy</Link>
                         <Link href="/terms-and-conditions" className="text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:text-[#3366FF]">Terms & Conditions</Link>
-                        <LanguageSwitcher variant="footer" isDark={false} />
                     </div>
                 </div>
             </div>

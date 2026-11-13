@@ -21,7 +21,7 @@ const websites = [
     category: 'Lifestyle & Art',
     color: '#f3f4f6',
     hoverColor: 'hover:bg-gray-100',
-    useScreenshot: false,
+    useScreenshot: true,
   },
   {
     name: 'Your Brand Next',
@@ -90,7 +90,7 @@ export default function ShowcasePage() {
                   <a 
                     href={site.url} 
                     target="_blank" 
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1524ca] hover:text-blue-600 transition-colors"
                   >
                     Visit Live

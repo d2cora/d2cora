@@ -10,14 +10,14 @@ const caseStudies = [
     client: "Vini Grow Holidays",
     category: "Travel & Visa Assistance",
     services: ["Performance Marketing", "SEO", "Website Redesign", "AI Search Visibility"],
-    headline: "155 WhatsApp leads. 47 qualified leads. Page 1 rankings. In 14 days.",
+    headline: "37 qualified leads. 155 automated funnel conversations. Page 1 Google rankings. In 14 days.",
     description:
       "A local travel and visa assistance agency with zero digital presence, 91 failed campaigns, and no qualified leads. Completely transformed with structured ads, technical SEO, and AI-era search optimization.",
     stats: [
-      { value: "155", label: "WhatsApp Conversations" },
-      { value: "47", label: "Qualified Leads" },
+      { value: "155", label: "Funnel Conversations" },
+      { value: "37", label: "Qualified Leads" },
       { value: "26.9K", label: "People Reached" },
-      { value: "$0.08", label: "Avg. Cost Per Lead" },
+      { value: "$0.08", label: "Cost Per Lead" },
     ],
     logo: "/assets/case-studies/vini-grow/logo.jpg",
     accentColor: "#1d4ed8",

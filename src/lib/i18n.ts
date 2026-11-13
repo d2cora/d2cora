@@ -2,7 +2,6 @@ export type LocaleCode =
   | 'en'
   | 'hi'
   | 'bn'
-  | 'mr'
   | 'ta'
   | 'te'
   | 'gu'
@@ -33,10 +32,9 @@ export interface LanguageMeta {
 
 export const SUPPORTED_LOCALES: LanguageMeta[] = [
   { code: 'en', name: 'English', nativeName: 'English', flag: '🌐', region: 'Global', dir: 'ltr', countryCode: 'US' },
-  // Indian Languages (10)
+  // Indian Languages (9)
   { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳', region: 'Indian', dir: 'ltr', countryCode: 'IN' },
   { code: 'bn', name: 'Bengali', nativeName: 'বাংলা', flag: '🇮🇳', region: 'Indian', dir: 'ltr', countryCode: 'IN' },
-  { code: 'mr', name: 'Marathi', nativeName: 'मराठी', flag: '🇮🇳', region: 'Indian', dir: 'ltr', countryCode: 'IN' },
   { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇮🇳', region: 'Indian', dir: 'ltr', countryCode: 'IN' },
   { code: 'te', name: 'Telugu', nativeName: 'తెలుగు', flag: '🇮🇳', region: 'Indian', dir: 'ltr', countryCode: 'IN' },
   { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી', flag: '🇮🇳', region: 'Indian', dir: 'ltr', countryCode: 'IN' },

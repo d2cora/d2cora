@@ -6,10 +6,16 @@ import BlogPost from './BlogPost'
 // Revalidate every 60 seconds so new posts appear quickly
 export const revalidate = 60
 
+const EXCLUDED_SLUGS = new Set([
+  'best-digital-marketing-agency-in-roorkee',
+  'best-digital-marketing-agency-in-khatima',
+  'history-evolution-of-d2c-india-boom',
+]);
+
 export async function generateStaticParams() {
   const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`)
   return posts
-    .filter((post: any) => post?.slug)
+    .filter((post: any) => post?.slug && !EXCLUDED_SLUGS.has(post.slug.trim()))
     .map((post: any) => ({
       slug: post.slug.trim(),
     }))
@@ -31,16 +37,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   // Set noindex on hyper-local Indian town blog posts to preserve US/EU topical authority
-  const isLocalIndianPost = /roorkee|khatima|uttarakhand|haridwar/i.test(slug + ' ' + (post.title || ''));
+  const isLocalIndianPost = EXCLUDED_SLUGS.has(slug) || /roorkee|khatima|uttarakhand|haridwar/i.test(slug + ' ' + (post.title || ''));
 
   return {
     title: `${post.title} | d2cora Blog`,
     description: post.description,
+    alternates: {
+      canonical: `https://d2cora.com/blog/${slug}`,
+    },
     ...(isLocalIndianPost ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       title: post.title,
       description: post.description,
       type: 'article',
+      url: `https://d2cora.com/blog/${slug}`,
       images: post.imageUrl ? [{ url: post.imageUrl }] : [],
     },
     twitter: {
@@ -64,6 +74,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     publishedAt,
     content,
     faqs,
+    language,
     "imageUrl": thumbnail.asset->url,
     "imageDimensions": thumbnail.asset->metadata.dimensions,
     "authorName": author->name,
@@ -73,6 +84,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) {
     notFound()
   }
+
+  const isGerman =
+    post.language === 'de' ||
+    /agentur|kosten|preis|leadgenerierung|beauftragen|suchmaschinenoptimierung/i.test(slug + ' ' + (post.title || ''));
 
   const recentPosts = await client.fetch(`*[_type == "post" && slug.current != $slug && !(slug.current match $slug)] | order(publishedAt desc)[0...3]{
     title,
@@ -88,11 +103,47 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: post.description,
     image: post.imageUrl ? [post.imageUrl] : [],
     datePublished: post.publishedAt,
+    mainEntityOfPage: `https://d2cora.com/blog/${slug}`,
     author: [{
       '@type': 'Organization',
-      name: post.authorName || 'd2cora Team',
-    }]
+      name: post.authorName || 'D2CORA Team',
+      url: 'https://d2cora.com'
+    }],
+    publisher: {
+      '@type': 'Organization',
+      name: 'D2CORA',
+      url: 'https://d2cora.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://d2cora.com/assets/d2cora.png'
+      }
+    }
   }
+
+  const breadcrumbsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: isGerman ? 'Startseite' : 'Home',
+        item: isGerman ? 'https://d2cora.com/de' : 'https://d2cora.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://d2cora.com/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://d2cora.com/blog/${slug}`,
+      },
+    ],
+  };
 
   // Extract plain text from a Portable Text block array for JSON-LD
   const toPlainText = (blocks: any): string => {
@@ -126,13 +177,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsSchema) }}
+      />
       {faqSchema && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
-      <BlogPost post={post} recentPosts={recentPosts} />
+      <BlogPost post={post} recentPosts={recentPosts} isGerman={isGerman} slug={slug} />
     </>
   )
 }

@@ -13,6 +13,7 @@ export default function ContactPage() {
         name: "",
         email: "",
         whatsapp: "",
+        budget: "€1.500 – €3.000 / $2,000 – $3,500",
         subject: "",
         message: "",
     });
@@ -86,7 +87,8 @@ export default function ContactPage() {
             const form = new FormData();
             form.append("name", formData.name);
             form.append("email", formData.email);
-            form.append("message", formData.message);
+            form.append("message", `[Budget: ${formData.budget}]\n\n${formData.message}`);
+            form.append("budget", formData.budget);
             form.append("subject", formData.subject || "New Inquiry from Website");
 
             if (formData.whatsapp) {
@@ -132,7 +134,7 @@ export default function ContactPage() {
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
@@ -240,7 +242,7 @@ export default function ContactPage() {
                                         transition={{ delay: 1.8 }}
                                     >
                                         <label htmlFor="whatsapp" className="mb-2 block text-sm font-medium text-[#001A33]">
-                                            WhatsApp Number
+                                            Phone / WhatsApp (Optional)
                                         </label>
                                         <input
                                             type="tel"
@@ -251,6 +253,28 @@ export default function ContactPage() {
                                             className="w-full rounded-xl border border-[#001A33]/20 bg-white/60 px-4 py-3 text-[#001A33] transition-all duration-1000 placeholder:text-[#001A33]/40 focus:border-[#001A33]/40 focus:bg-white/90 focus:outline-none"
                                             placeholder="+1 (555) 000-0000"
                                         />
+                                    </motion.div>
+
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 1.9 }}
+                                    >
+                                        <label htmlFor="budget" className="mb-2 block text-sm font-medium text-[#001A33]">
+                                            Monthly Marketing Budget
+                                        </label>
+                                        <select
+                                            id="budget"
+                                            name="budget"
+                                            value={formData.budget}
+                                            onChange={handleChange}
+                                            className="w-full rounded-xl border border-[#001A33]/20 bg-white/80 px-4 py-3 text-[#001A33] transition-all duration-1000 focus:border-[#001A33]/40 focus:bg-white focus:outline-none text-sm font-medium"
+                                        >
+                                            <option value="€1.500 – €3.000 / $2,000 – $3,500">€1.500 – €3.000 / $2,000 – $3,500 / mo</option>
+                                            <option value="€3.000 – €6.000 / $3,500 – $7,000">€3.000 – €6.000 / $3,500 – $7,000 / mo</option>
+                                            <option value="€6.000+ / $7,000+">€6.000+ / $7,000+ / mo</option>
+                                            <option value="Einmaliges SEO / CRO Audit ($1,500 / €1.200)">Einmaliges SEO / CRO Audit ($1,500 / €1.200)</option>
+                                        </select>
                                     </motion.div>
 
                                     <motion.div
@@ -307,6 +331,12 @@ export default function ContactPage() {
                                     <Send className={`relative z-10 h-5 w-5 ${!isSending && 'group-hover:translate-x-1'} transition-transform`} />
                                     <span className="relative z-10">{isSending ? "Sending..." : "Send Message"}</span>
                                 </motion.button>
+
+                                <div className="mt-4 text-center">
+                                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#001A33]/70">
+                                        🛡️ Serving US, UK &amp; DACH • 100% GDPR / DSGVO Compliant
+                                    </span>
+                                </div>
                             </motion.form>
                         </div>
                     </motion.div>
@@ -379,14 +409,10 @@ export default function ContactPage() {
                                             <Phone className="h-5 w-5 text-[#001A33]" />
                                         </div>
                                         <div>
-                                            <h3 className="mb-1 font-semibold">Phone</h3>
-                                            <a
-                                                href="tel:+91 9548316900"
-                                                className="text-[#001A33]/70 transition-colors hover:text-[#001A33]"
-                                            >
-                                                 +91 9548316900
-
-                                            </a>
+                                            <h3 className="mb-1 font-semibold">Direct Strategy Call</h3>
+                                            <p className="text-xs text-[#001A33]/70">
+                                                Schedule a 30-min growth diagnostic with our engineering leads.
+                                            </p>
                                         </div>
                                     </motion.div>
 
@@ -401,9 +427,9 @@ export default function ContactPage() {
                                             <MapPin className="h-5 w-5 text-[#001A33]" />
                                         </div>
                                         <div>
-                                            <h3 className="mb-1 font-semibold">Location</h3>
+                                            <h3 className="mb-1 font-semibold">Coverage &amp; Presence</h3>
                                             <p className="text-[#001A33]/70">
-                                                Working remotely worldwide
+                                                Serving US (EST/PST), UK (GMT) &amp; DACH / Europe (CET)
                                             </p>
                                         </div>
                                     </motion.div>

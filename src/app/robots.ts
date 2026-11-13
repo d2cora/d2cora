@@ -7,11 +7,13 @@ export default function robots(): MetadataRoute.Robots {
         // Allow all search engine bots to crawl the whole site
         userAgent: '*',
         allow: '/',
-        // Block crawlers from hitting studio, API routes, and internal Next.js paths
+        // Block crawlers from hitting studio, API routes, internal Next.js paths, and deprecated locales
         disallow: [
           '/studio/',
           '/api/',
           '/_next/',
+          '/mr/',
+          '/mr',
         ],
       },
       {

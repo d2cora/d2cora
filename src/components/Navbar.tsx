@@ -9,7 +9,6 @@ import { PopupModal } from "react-calendly";
 
 import React, { useCallback, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export const Navbar = React.memo(function Navbar() {
     const pathname = usePathname();
@@ -130,7 +129,12 @@ export const Navbar = React.memo(function Navbar() {
                     </Link>
 
                     <div className="flex items-center gap-2 z-50">
-                        <LanguageSwitcher variant="navbar" isDark={true} />
+                        <Link
+                            href="/contact"
+                            className="rounded-full bg-[#1524ca] px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition-all hover:bg-blue-600"
+                        >
+                            Book a Call
+                        </Link>
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -221,15 +225,23 @@ export const Navbar = React.memo(function Navbar() {
                             ))}
                         </div>
 
-                        {/* Right — Language + CTA */}
+                        {/* Right — CTAs */}
                         <div className="flex-1 hidden items-center justify-end gap-3 md:flex lg:gap-4">
-                            <LanguageSwitcher isDark={isDarkBackground} />
-                            {/* CTA Button */}
+                            <Link
+                                href="/founder-brand-audit"
+                                className={`hidden xl:inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-xs font-semibold transition-all duration-300 ${isDarkBackground
+                                    ? "border-white/20 text-white/80 hover:border-white hover:text-white hover:bg-white/5"
+                                    : "border-black/20 text-black/80 hover:border-black hover:text-black hover:bg-black/5"
+                                    }`}
+                            >
+                                <span>Free Growth Audit</span>
+                            </Link>
+                            {/* Primary CTA Button */}
                             <Link
                                 href="/contact"
-                                className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-normal backdrop-blur-sm transition-all duration-300 md:px-4 md:py-2.5 md:text-sm lg:gap-2 lg:px-5 ${isDarkBackground
-                                    ? "border-white/30 bg-white/10 text-white hover:bg-white hover:text-black"
-                                    : "border-black/30 bg-black/10 text-black hover:bg-black hover:text-white"
+                                className={`flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-bold backdrop-blur-sm transition-all duration-300 md:px-5 md:py-2.5 md:text-sm lg:gap-2 ${isDarkBackground
+                                    ? "border-white/30 bg-white text-black hover:bg-white/90 shadow-sm"
+                                    : "border-black/30 bg-black text-white hover:bg-neutral-800 shadow-sm"
                                     }`}
                             >
                                 <span>Book a Call</span>
@@ -304,27 +316,29 @@ export const Navbar = React.memo(function Navbar() {
                                     ))}
                                 </nav>
 
-                                {/* Language & WhatsApp & CTA Buttons */}
+                                {/* Multiple Call Booking CTAs */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
                                     className="mt-6 flex flex-col gap-3"
                                 >
-                                    <div className="flex items-center justify-between border-t border-b border-white/10 py-3 px-1">
-                                        <span className="text-xs font-semibold text-neutral-400">Language / भाषा</span>
-                                        <LanguageSwitcher variant="navbar" isDark={true} />
-                                    </div>
                                     <Link
                                         href="/contact"
                                         onClick={handleLinkClick}
-                                        className="flex w-full items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-center text-sm font-normal text-white transition-all duration-300 hover:bg-white hover:text-black"
+                                        className="flex w-full items-center justify-center gap-2 rounded-full bg-[#1524ca] px-6 py-3.5 text-center text-sm font-bold text-white shadow-lg transition-all hover:bg-blue-600"
                                     >
-                                        <span>Book a Call</span>
-                                        <span className="text-xs opacity-70">• its free</span>
+                                        <span>Book a 30-Min Strategy Call</span>
                                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
+                                    </Link>
+                                    <Link
+                                        href="/founder-brand-audit"
+                                        onClick={handleLinkClick}
+                                        className="flex w-full items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-center text-sm font-semibold text-white/90 transition-all hover:bg-white/10 hover:text-white"
+                                    >
+                                        <span>Get Free Growth &amp; SEO Audit</span>
                                     </Link>
                                 </motion.div>
                             </div>
