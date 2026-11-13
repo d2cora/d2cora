@@ -69,29 +69,15 @@ export const ServiceCategory = React.memo(({
                 {/* Category Title & Quote */}
                 <div className="flex flex-col gap-4 md:gap-6">
                     <motion.div className="overflow-hidden pb-2 md:pb-4">
-                        <motion.h2
-                            className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight cursor-pointer text-[#1a1a1a]"
-                            
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                        <motion.h3
+                            className="text-4xl md:text-6xl lg:text-7xl font-light tracking-[0.2em] uppercase cursor-pointer text-[#1a1a1a]"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: categoryIndex * 0.1 }}
+                            transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
                         >
-                            {category.category.split("").map((char, charIndex) => (
-                                <motion.span
-                                    key={charIndex}
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{
-                                        duration: 0.1,
-                                        delay: categoryIndex * 0.2 + charIndex * 0.08
-                                    }}
-                                >
-                                    {char}
-                                </motion.span>
-                            ))}
-                        </motion.h2>
+                            {category.category}
+                        </motion.h3>
                     </motion.div>
 
                     {/* Premium, Minimalist Quote Design */}
@@ -111,12 +97,12 @@ export const ServiceCategory = React.memo(({
                                     color: "#1a1a1a" 
                                 }}
                             >
-                                "{category.quote.split(/(\*.*?\*)/g).map((part, i) => {
+                                &ldquo;{category.quote.split(/(\*.*?\*)/g).map((part, i) => {
                                     if (part.startsWith('*') && part.endsWith('*')) {
                                         return <span key={i} className="text-[#FF5722] font-medium not-italic">{part.slice(1, -1)}</span>;
                                     }
                                     return <span key={i}>{part}</span>;
-                                })}"
+                                })}&rdquo;
                             </motion.p>
                         </motion.div>
                     )}

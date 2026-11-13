@@ -25,10 +25,10 @@ function MobileIndustries() {
         <div className="w-full lg:hidden relative z-10 mt-8 mb-12 px-4 max-w-lg mx-auto">
             <div className="grid grid-cols-2 gap-4">
                 {blockClusters.map((cluster, i) => {
-                    const isWide = i === 0 || i === 3 || i === 6; 
+                    const isWide = i === 0; 
                     let color = "#1524ca";
-                    if (i === 2 || i === 4) color = "#ff6b00"; // Orange
-                    else if (i === 5) color = "#16a34a"; // Green
+                    if (i === 1 || i === 2) color = "#ff6b00"; // Accent
+                    else if (i === 3 || i === 4) color = "#1524ca";
                     const Icon = cluster.icon;
                     
                     return (
@@ -182,7 +182,7 @@ export function Industries() {
                     Deep Expertise Across the Board.
                 </h2>
                 <p className="text-xl font-light max-w-2xl mx-auto text-[#666] leading-relaxed">
-                    We adapt our proven growth systems to fit the unique challenges of your industry.
+                    From ambitious D2C e-commerce brands to scaling B2B &amp; SaaS platforms, we partner with leadership teams that demand predictable growth and clear execution.
                 </p>
             </motion.div>
 

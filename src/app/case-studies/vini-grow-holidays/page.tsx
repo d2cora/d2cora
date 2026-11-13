@@ -23,11 +23,11 @@ const fadeUp = {
 };
 
 const stats = [
-  { value: "155", label: "WhatsApp Conversations", sub: "₹10.30 – ₹13.31 per conversation" },
-  { value: "37", label: "Qualified Leads", sub: "Record breaking ₹6.14 cost per lead" },
+  { value: "155", label: "WhatsApp Conversations", sub: "$0.13 – $0.17 per conversation" },
+  { value: "37", label: "Qualified Leads", sub: "Record-breaking $0.08 cost per lead" },
   { value: "26.9K", label: "People Reached", sub: "Unique reach in record time" },
-  { value: "45.2K", label: "Total Impressions", sub: "Average CPM ₹50.62" },
-  { value: "₹2.3K+", label: "Total Ad Spend", sub: "Maximum efficiency, minimum waste" },
+  { value: "45.2K", label: "Total Impressions", sub: "Average CPM $0.65" },
+  { value: "$28+", label: "Total Ad Spend", sub: "Maximum efficiency, minimum waste" },
   { value: "Page 1", label: "Google Ranking", sub: "Targeted local search terms" },
 ];
 
@@ -75,7 +75,7 @@ const whatWeDid = [
 
 const blogTopics = [
   "How to Apply for a Schengen Visa from India: Step by Step Guide",
-  "Best International Tour Packages from Jaipur Under ₹1 Lakh",
+  "Best International Tour Packages from Jaipur: Complete Budgeting Guide",
   "Dubai Visit Visa: Complete Requirements and Processing Time",
   "Thailand Visa on Arrival for Indian Passport Holders 2025",
   "How to Get a UK Tourist Visa: Documents and Process Explained",
@@ -383,7 +383,7 @@ export default function ViniGrowCaseStudy() {
             <div className="flex shrink-0 flex-col items-center justify-center gap-4 text-center lg:min-w-[220px]">
               {[
                 { n: "37", l: "Leads" },
-                { n: "₹6.14", l: "CPL" },
+                { n: "$0.08", l: "CPL" },
               ].map((s) => (
                 <div key={s.l} className="rounded-2xl border border-white/10 bg-white/5 px-8 py-4 w-full">
                   <p className="text-4xl font-black text-white">{s.n}</p>

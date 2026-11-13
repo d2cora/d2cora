@@ -63,7 +63,7 @@ export default function AboutPage() {
                     </motion.div>
 
                     {/* Founder Cards */}
-                    <div className="grid gap-8 lg:grid-cols-2">
+                    <div className="flex justify-center">
 
                         {/* Rahul Bora */}
                         <motion.div
@@ -71,7 +71,7 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-60px" }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
-                            className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-md md:p-10"
+                            className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-md md:p-10 max-w-2xl w-full"
                         >
                             {/* Top row: photo + name */}
                             <div className="flex items-start gap-6">
@@ -121,58 +121,6 @@ export default function AboutPage() {
                             </div>
                         </motion.div>
 
-                        {/* Anishka Choudhary */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-60px" }}
-                            transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-                            className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-md md:p-10"
-                        >
-                            {/* Top row: photo + name */}
-                            <div className="flex items-start gap-6">
-                                <div className="relative shrink-0">
-                                    <div className="h-20 w-20 overflow-hidden rounded-2xl shadow-md ring-2 ring-gray-100">
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
-                                            src="/assets/anishka-choudhary.png"
-                                            alt="Anishka Choudhary, Co-Founder of d2cora"
-                                            className="h-full w-full object-cover object-top transition-all duration-500"
-                                        />
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-black tracking-tight text-black">Anishka Choudhary</h3>
-                                    <p className="mt-1 text-xs font-bold uppercase tracking-widest text-[#FF5722]">Co-Founder &amp; Creative Director</p>
-                                    <span className="mt-2 inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-500">
-                                        Design · Brand · Experience
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Bio */}
-                            <p className="mt-6 text-base font-medium leading-relaxed text-gray-600">
-                                Anishka brings the creative intelligence to d2cora that transforms strategy into experiences people remember. Her conviction is that great design is not decoration. It is the engine of trust. She ensures every brand d2cora builds feels as premium as it performs.
-                            </p>
-
-                            {/* Quote */}
-                            <div className="mt-6 border-l-2 border-[#FF5722] pl-5">
-                                <p className="text-base italic leading-relaxed text-gray-700">
-                                    People make decisions with their eyes before they think with their minds. If your brand does not inspire confidence at first glance, you have already lost. We build brands that win before a word is read.
-                                </p>
-                                <p className="mt-2 text-xs font-bold uppercase tracking-wider text-gray-400">Anishka Choudhary, Co-Founder</p>
-                            </div>
-
-                            {/* Socials CTA */}
-                            <div className="mt-8 flex items-center gap-4 border-t border-gray-100 pt-6">
-                                <span className="text-sm font-bold uppercase tracking-wider text-black">Follow Anishka:</span>
-                                <div className="flex gap-3">
-                                    <Link href="https://www.linkedin.com/in/anishka-choudhary/" target="_blank" rel="me noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-600 transition-colors hover:bg-[#0A66C2] hover:text-white" aria-label="Anishka Choudhary on LinkedIn">
-                                        <Linkedin className="h-5 w-5" />
-                                    </Link>
-                                </div>
-                            </div>
-                        </motion.div>
                     </div>
 
                     {/* Origin Story */}
@@ -186,10 +134,10 @@ export default function AboutPage() {
                         <div className="flex flex-col justify-center px-10 py-12 md:px-14">
                             <span className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#3366FF]">How It Started</span>
                             <h3 className="mb-5 text-2xl font-black leading-tight tracking-tight text-white md:text-3xl">
-                                Two builders. One mission. Zero compromises.
+                                Built on vision. Zero compromises.
                             </h3>
                             <p className="max-w-lg text-base font-medium leading-relaxed text-gray-400">
-                                Rahul and Anishka didn&apos;t set out to run an agency. They wanted to build a machine that could consistently turn business goals into digital reality, combining systems thinking with creative mastery.
+                                Rahul didn&apos;t set out to run an agency. He wanted to build a machine that could consistently turn business goals into digital reality, combining systems thinking with relentless execution.
                             </p>
                         </div>
                         <div className="flex items-center justify-center bg-[#3366FF] px-10 py-12 md:min-w-[340px] md:px-14">
@@ -203,12 +151,8 @@ export default function AboutPage() {
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img src="/assets/rahul-bora.jpg" alt="Rahul Bora" className="h-full w-full object-cover object-top" />
                                         </div>
-                                        <div className="h-9 w-9 overflow-hidden rounded-full ring-2 ring-[#3366FF]">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img src="/assets/anishka-choudhary.png" alt="Anishka Choudhary" className="h-full w-full object-cover object-top" />
-                                        </div>
                                     </div>
-                                    <span className="text-sm font-semibold text-white/80">Rahul &amp; Anishka</span>
+                                    <span className="text-sm font-semibold text-white/80">Rahul Bora</span>
                                 </div>
                             </div>
                         </div>

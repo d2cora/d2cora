@@ -6,14 +6,14 @@ const websites = [
   {
     name: 'Vini Grow Holidays',
     url: 'https://vinigrowholidays.com',
-    description: 'Travel & Tourism Experience',
+    description: 'High-Converting Travel & Booking Platform (UI/UX, SEO & AI Search)',
     useScreenshot: false,
     image: '/assets/vini-grow-preview.jpg',
   },
   {
     name: 'Tattoos Delhi',
     url: 'https://www.tattoosdelhi.com',
-    description: 'Tattoo Studio Portfolio',
+    description: 'High-Contrast Brand Experience & Lead Generation Storefront',
     useScreenshot: false,
   }
 ];

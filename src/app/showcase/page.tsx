@@ -8,7 +8,7 @@ const websites = [
   {
     name: 'Vini Grow Holidays',
     url: 'https://vinigrowholidays.com',
-    description: 'Travel & Tourism Experience',
+    description: 'High-Converting Travel & Booking Platform (UI/UX, SEO & AI Search)',
     category: 'Travel & Visa Assistance',
     color: '#f0fdf4',
     hoverColor: 'hover:bg-emerald-50',
@@ -17,7 +17,7 @@ const websites = [
   {
     name: 'Tattoos Delhi',
     url: 'https://www.tattoosdelhi.com',
-    description: 'Tattoo Studio Portfolio',
+    description: 'High-Contrast Brand Experience & Lead Generation Storefront',
     category: 'Lifestyle & Art',
     color: '#f3f4f6',
     hoverColor: 'hover:bg-gray-100',

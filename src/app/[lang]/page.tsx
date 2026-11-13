@@ -113,7 +113,7 @@ export default async function LocalizedHomePage({
   // Rich Multi-Entity Schema.org Graph for International Ranking
   const businessJsonLd = {
     '@context': 'https://schema.org',
-    '@type': ['ProfessionalService', 'Organization', 'LocalBusiness'],
+    '@type': ['Organization', 'ProfessionalService'],
     '@id': `https://www.d2cora.com/${lang}#organization`,
     name: 'd2cora',
     alternateName: data.seo.title,
@@ -122,27 +122,11 @@ export default async function LocalizedHomePage({
     logo: 'https://www.d2cora.com/assets/d2cora%20full.svg',
     image: 'https://www.d2cora.com/assets/d2c-growth-partner.jpg',
     inLanguage: lang,
-    areaServed: [
-      {
-        '@type': 'Country',
-        name: data.seo.targetCountry,
-      },
-      {
-        '@type': 'AdministrativeArea',
-        name: 'Worldwide',
-      },
-    ],
+    areaServed: ["US", "GB", "DE", "NL", "EU"],
     knowsLanguage: [lang, 'en'],
     priceRange: '$$$',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Khatima',
-      addressRegion: 'Uttarakhand',
-      postalCode: '262308',
-      addressCountry: 'IN',
-    },
     sameAs: [
-      'https://in.linkedin.com/company/d2cora1',
+      'https://www.linkedin.com/company/d2cora1',
       'https://www.instagram.com/d2cora.media/',
       'https://x.com/Rahul___Bora',
     ],

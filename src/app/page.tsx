@@ -48,24 +48,18 @@ const faqJsonLd = {
 
 const businessJsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['ProfessionalService', 'Organization', 'LocalBusiness'],
+  '@type': ['Organization', 'ProfessionalService'],
   '@id': 'https://www.d2cora.com/#organization',
   name: 'd2cora',
   alternateName: 'D2CORA Digital Marketing Agency',
-  description: 'd2cora is your one-stop marketing ecosystem helping D2C brands, e-commerce, clinics, and businesses scale profitably through performance marketing, Google & Meta ads, SEO, and conversion optimization.',
+  description: 'D2CORA is a revenue-driven SEO, paid acquisition, and CRO agency partnering with scaling D2C e-commerce and B2B brands across the US, UK, and Europe.',
   url: 'https://www.d2cora.com',
   logo: 'https://www.d2cora.com/assets/d2cora%20full.svg',
   image: 'https://www.d2cora.com/assets/d2c-growth-partner.jpg',
   priceRange: '$$$',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Khatima',
-    addressRegion: 'Uttarakhand',
-    postalCode: '262308',
-    addressCountry: 'IN',
-  },
+  areaServed: ["US", "GB", "DE", "NL", "EU"],
   sameAs: [
-    'https://in.linkedin.com/company/d2cora1',
+    'https://www.linkedin.com/company/d2cora1',
     'https://www.instagram.com/d2cora.media/',
     'https://x.com/Rahul___Bora',
   ],

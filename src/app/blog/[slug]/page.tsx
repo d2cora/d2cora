@@ -30,9 +30,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {}
   }
 
+  // Set noindex on hyper-local Indian town blog posts to preserve US/EU topical authority
+  const isLocalIndianPost = /roorkee|khatima|uttarakhand|haridwar/i.test(slug + ' ' + (post.title || ''));
+
   return {
     title: `${post.title} | d2cora Blog`,
     description: post.description,
+    ...(isLocalIndianPost ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       title: post.title,
       description: post.description,
@@ -91,13 +95,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   // Extract plain text from a Portable Text block array for JSON-LD
-  const toPlainText = (blocks: any[]): string => {
+  const toPlainText = (blocks: any): string => {
+    if (typeof blocks === 'string') return blocks
     if (!blocks || !Array.isArray(blocks)) return ''
     return blocks
       .map((block) => {
         if (block._type !== 'block' || !block.children) return ''
         return block.children.map((child: any) => child.text ?? '').join('')
       })
+      .filter(Boolean)
       .join('\n')
   }
 

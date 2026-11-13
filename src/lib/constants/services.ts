@@ -71,7 +71,7 @@ export const serviceCategories = [
         id: 5,
         category: "Search Engine Optimization",
         quote: "Whether they're *searching for you* or not, *we'll make sure they find you*.",
-        items: ["Technical SEO", "On-Page Optimization", "Off-Page & Link Building", "Local SEO"],
+        items: ["Technical & Shopify SEO", "Generative Engine Optimization (GEO / AI Search)", "On-Page & Content Authority", "Digital PR & Link Building"],
         overview: "We optimize your digital footprint to ensure you rank at the top of search results. Our data-driven SEO strategies drive high-intent organic traffic that converts.",
         images: [],
         problems: [
@@ -86,10 +86,10 @@ export const serviceCategories = [
     },
     {
         id: 6,
-        category: "WhatsApp & Custom Automation",
+        category: "AI & Custom Workflow Automation",
         quote: "Automate your workflows. *Convert, close, and support 24/7*.",
-        items: ["WhatsApp AI Agents", "Custom Workflow Automation", "24/7 Customer Support", "Lead Qualification"],
-        overview: "We deploy intelligent WhatsApp bots and custom automation workflows that engage customers, qualify leads, and close sales on autopilot, around the clock.",
+        items: ["AI Lead Qualification Agents", "CRM & Klaviyo Automation", "24/7 Conversational Funnels", "Custom Workflow Systems"],
+        overview: "We deploy intelligent AI agents and custom automation workflows that engage customers, qualify leads, and close sales on autopilot, around the clock.",
         images: [],
         problems: [
             "Losing sales after hours or on weekends",

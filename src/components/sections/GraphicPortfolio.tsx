@@ -205,14 +205,14 @@ export function GraphicPortfolio({ content }: { content?: GraphicPortfolioConten
               {/* Right Side: Data/Action */}
               <div className="relative lg:w-3/5 p-8 md:p-12 lg:p-14 border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center bg-gradient-to-bl from-white/[0.02] to-transparent">
                  <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white mb-10 lg:mb-12">
-                    37 qualified leads. 155 WhatsApp conversations. Page 1 Google rankings.{" "}
+                    37 qualified leads. 155 automated funnel conversations. Page 1 Google rankings.{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF5722] to-[#FF8A65]">In record time.</span>
                  </h4>
                  
                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-12">
                     {[
                       { v: "37", l: "Qualified Leads", prefix: "" },
-                      { v: "6.14", l: "Cost Per Lead", prefix: "₹" },
+                      { v: "0.08", l: "Cost Per Lead", prefix: "$" },
                       { v: "26.9K", l: "Total Reached", prefix: "" },
                     ].map((s) => (
                       <div key={s.l} className="flex flex-col justify-center border border-white/5 bg-white/5 rounded-2xl p-5 md:p-6 transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/10 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">

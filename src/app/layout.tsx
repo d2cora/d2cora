@@ -24,26 +24,30 @@ const lora = Lora({
 });
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.d2cora.com"),
-  title: "D2CORA | One-Stop Digital Marketing Agency for Businesses, Clinics, E-commerce & Local Brands",
-  description: "d2cora is your one-stop marketing ecosystem — helping service businesses, local brands, e-commerce stores, clinics, and D2C companies grow through performance marketing, lead generation, Meta & Google Ads, SEO, and conversion optimization. Scale smarter with d2cora.",
+  title: "D2CORA | Revenue-Driven SEO, Paid Acquisition & CRO Partner for Scaling D2C & B2B Brands",
+  description: "We partner with ambitious US, UK & European D2C e-commerce and service brands to drive predictable revenue through technical SEO, AI search optimization (GEO), performance marketing, and high-converting web engineering.",
   keywords: [
-    "digital marketing agency",
-    "one stop marketing agency",
-    "marketing ecosystem",
-    "performance marketing",
-    "lead generation agency",
-    "Meta ads agency",
-    "Google ads agency",
-    "marketing for clinics",
-    "marketing for local businesses",
-    "ecommerce marketing agency",
-    "D2C marketing",
-    "service business marketing",
-    "social media marketing agency",
-    "SEO agency India",
+    "SEO agency",
+    "technical SEO agency",
     "CRO agency",
+    "performance marketing agency",
+    "D2C marketing agency",
+    "Shopify SEO agency",
+    "GEO AI search optimization",
+    "paid acquisition agency",
+    "B2B marketing agency",
+    "ecommerce growth agency",
     "d2cora",
   ],
+  alternates: {
+    canonical: "https://d2cora.com",
+    languages: {
+      "en-US": "https://d2cora.com",
+      "en-GB": "https://d2cora.com/uk",
+      "de-DE": "https://d2cora.com/de",
+      "x-default": "https://d2cora.com",
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -81,6 +85,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               gtag('config', 'G-YSS004F4T1');
             `,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["Organization", "ProfessionalService"],
+            "@id": "https://d2cora.com/#organization",
+            "name": "D2CORA",
+            "url": "https://d2cora.com",
+            "logo": "https://d2cora.com/assets/d2cora%20full.svg",
+            "description": "Revenue-driven SEO, paid acquisition, and CRO partner for scaling D2C and B2B brands across the US, UK, and Europe.",
+            "areaServed": ["US", "GB", "DE", "NL", "EU"],
+            "sameAs": [
+              "https://www.linkedin.com/company/d2cora1",
+              "https://x.com/Rahul___Bora",
+              "https://www.instagram.com/d2cora.media/"
+            ]
+          }) }}
         />
       </head>
       <body

@@ -41,7 +41,7 @@ const CLOSING_URGENCY = [
 ];
 
 const TRUST_SIGNALS = [
-    "We've helped D2C brands go from ₹50K/month in revenue to ₹5L+/month, not by spending more, but by spending smarter.",
+    "We've helped D2C brands scale from $5K/month in revenue to $50K+/month — not by spending more, but by spending smarter.",
     "Our clients typically see a 2-3x improvement in ROAS within the first 90 days. That's not a promise, that's our track record.",
     "We don't take on brands we can't grow. If we say yes to working with you, it means we see the opportunity, and we back that with results.",
 ];
@@ -151,7 +151,7 @@ export function getStaticResponse(input: string, state: ConversationState): Scri
     }
 
     // ── PRICING / BUDGET OBJECTIONS ───────────────────────────────────────────
-    if (/price|cost|how much|expensive|budget|afford|charge|rate|package|fee|rupee|lakh|₹/.test(lower)) {
+    if (/price|cost|how much|expensive|budget|afford|charge|rate|package|fee/.test(lower)) {
         return {
             message: pick(OBJECTION_PRICE),
             actions: {
@@ -254,7 +254,7 @@ export function getStaticResponse(input: string, state: ConversationState): Scri
     // ── CASE STUDIES / RESULTS ────────────────────────────────────────────────
     if (/case stud|example|portfolio|work|client|result|success|testimonial|review/.test(lower)) {
         return {
-            message: `Love that you asked 🙌 Our case studies are on the website, check them out at d2cora.com/case-studies. One of my favorites: we took a D2C travel brand from ₹0 to consistent 5L+/month revenue in under a year using a mix of performance ads and content. Want me to walk you through how we'd do something similar for you?`,
+            message: `Love that you asked 🙌 Our case studies are on the website, check them out at d2cora.com/case-studies. One of my favorites: we took a D2C travel brand from zero to consistent $50K+/month revenue in under a year using a mix of performance ads and content. Want me to walk you through how we'd do something similar for you?`,
             actions: {
                 quickReplies: ["Yes, walk me through it", "Book a Free Strategy Call", "I want to see more examples"],
             },
@@ -276,33 +276,33 @@ export function getStaticResponse(input: string, state: ConversationState): Scri
         return {
             message: `That's exactly what we do, and we're good at it 💪 ${pick(TRUST_SIGNALS)}\n\nWhat's your current monthly revenue or traffic? Even a rough number helps me tell you what's possible.`,
             actions: {
-                quickReplies: ["Under ₹1L/month", "₹1L–₹5L/month", "₹5L–₹20L/month", "₹20L+/month"],
+                quickReplies: ["Under $5K/month", "$5K–$25K/month", "$25K–$100K/month", "$100K+/month"],
             },
         };
     }
 
     // ── REVENUE TIER HANDLING ─────────────────────────────────────────────────
-    if (/under.*1l|₹0|just started|no revenue|₹50k|beginner|new brand/.test(lower)) {
+    if (/under.*5k|just started|no revenue|beginner|new brand/.test(lower)) {
         return {
-            message: "Exciting stage! 🌱 Early-stage brands are our favourite because the growth potential is massive. We've launched brands from zero and gotten them to ₹2-5L/month within 6 months using the right mix of content and performance ads. The key is building the right foundation. Want to see what that looks like for your brand?",
+            message: "Exciting stage! 🌱 Early-stage brands are our favourite because the growth potential is massive. We've launched brands from zero and gotten them to $20-50K/month within 6 months using the right mix of content and performance ads. The key is building the right foundation. Want to see what that looks like for your brand?",
             actions: {
                 quickReplies: ["Yes, show me the plan", "Book a Free Call", "What's the minimum budget?"],
             },
         };
     }
 
-    if (/1l.*5l|₹1l|₹2l|₹3l|1 lakh|growing/.test(lower)) {
+    if (/5k.*25k|growing|scaling/.test(lower)) {
         return {
-            message: "You're in the sweet spot 📈 At this stage, the biggest lever is almost always your ad efficiency + conversion rate. Most brands at ₹1-5L/month are leaving 40-60% of their potential revenue on the table. A proper performance marketing audit + CRO can 2-3x your numbers without increasing spend. Want to see how?",
+            message: "You're in the sweet spot 📈 At this stage, the biggest lever is almost always your ad efficiency + conversion rate. Most brands at $5-25K/month are leaving 40-60% of their potential revenue on the table. A proper performance marketing audit + CRO can 2-3x your numbers without increasing spend. Want to see how?",
             actions: {
                 quickReplies: ["Yes, do an audit!", "Tell me more about CRO", "Book a Strategy Call"],
             },
         };
     }
 
-    if (/5l.*20l|₹5l|₹10l|₹15l|scaling/.test(lower)) {
+    if (/25k.*100k|scaling/.test(lower)) {
         return {
-            message: "Now we're talking! 🚀 At ₹5-20L/month, the game is about profitable scaling, not just growth. This means tighter attribution, aggressive A/B testing, and multi-channel diversification. Brands at your stage need a full-stack team. That's exactly what we bring. Let's get on a call and I'll show you exactly where your next ₹10L is coming from.",
+            message: "Now we're talking! 🚀 At $25-100K/month, the game is about profitable scaling, not just growth. This means tighter attribution, aggressive A/B testing, and multi-channel diversification. Brands at your stage need a full-stack team. That's exactly what we bring. Let's get on a call and I'll show you exactly where your next $50K is coming from.",
             actions: {
                 showCalendly: true,
                 quickReplies: ["Book a Call Now", "Tell me more first"],
@@ -365,7 +365,7 @@ export function getStaticResponse(input: string, state: ConversationState): Scri
     }
 
     // ── LOCATION / WHO YOU ARE ────────────────────────────────────────────────
-    if (/where|location|based|india|remote|roorkee|city|country|offshore/.test(lower)) {
+    if (/where|location|based|remote|city|country|offshore/.test(lower)) {
         return {
             message: "We're a fully remote team working with brands worldwide 🌍 Our roots are in India, and we've worked with D2C brands from India, the US, UK, and Southeast Asia. Distance is never a barrier, we operate completely async and over video calls. Where are you based?",
             actions: {

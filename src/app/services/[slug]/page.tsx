@@ -12,9 +12,12 @@ export default function ServicePage({ params }: { params: Promise<{ slug: string
     const slug = resolvedParams.slug;
 
     // Find the matching service category based on the slug
-    const service = serviceCategories.find(
-        (c) => c.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-') === slug
-    );
+    const service = serviceCategories.find((c) => {
+        const catSlug = c.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+        if (catSlug === slug) return true;
+        if (c.id === 6 && (slug === 'whatsapp-custom-automation' || slug === 'ai-custom-workflow-automation')) return true;
+        return false;
+    });
 
     if (!service) {
         notFound();

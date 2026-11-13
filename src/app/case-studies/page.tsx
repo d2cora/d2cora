@@ -17,7 +17,7 @@ const caseStudies = [
       { value: "155", label: "WhatsApp Conversations" },
       { value: "47", label: "Qualified Leads" },
       { value: "26.9K", label: "People Reached" },
-      { value: "₹40", label: "Avg. Cost Per Lead" },
+      { value: "$0.08", label: "Avg. Cost Per Lead" },
     ],
     logo: "/assets/case-studies/vini-grow/logo.jpg",
     accentColor: "#1d4ed8",
